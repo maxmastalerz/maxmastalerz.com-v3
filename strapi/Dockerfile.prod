@@ -1,0 +1,11 @@
+FROM node:12
+
+WORKDIR /strapi-app
+
+COPY ./package.json .
+RUN npm install
+COPY . .
+
+RUN ls -l
+
+CMD ["npm", "run", "develop"]

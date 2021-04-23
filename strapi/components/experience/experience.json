@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_experience_experiences",
+  "info": {
+    "name": "experience",
+    "icon": "arrow-right"
+  },
+  "options": {},
+  "attributes": {
+    "year_range": {
+      "type": "string",
+      "required": true,
+      "default": "2000 - 2004"
+    },
+    "position": {
+      "type": "string",
+      "required": true,
+      "default": "DevOps Engineer"
+    },
+    "desc": {
+      "type": "string",
+      "required": true,
+      "default": "Lorem ipsum dolor sit amet, consete tur sadipscing elitr, sed diam nonum."
+    }
+  }
+}

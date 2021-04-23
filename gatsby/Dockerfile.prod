@@ -1,0 +1,15 @@
+FROM node:12
+
+WORKDIR /gatsby-app
+
+RUN npm install -g gatsby-cli
+
+COPY ./package.json .
+RUN npm install
+COPY . .
+
+RUN ls -l
+
+#Running with -- passes on the paramters to the npm run scripts
+
+CMD ["sh", "-c", "npm run build && npm run serve -- --host=${HOST} --port ${GATSBY_PORT}"]

@@ -1,0 +1,13 @@
+FROM node:12
+
+WORKDIR /strapi-app
+
+COPY . .
+
+RUN npm install
+
+RUN ls -l
+
+RUN apt-get -q update && apt-get -qy install netcat
+
+CMD ["./wait-for", "-t", "60", "db:3306", "--", "npm", "run", "develop"]

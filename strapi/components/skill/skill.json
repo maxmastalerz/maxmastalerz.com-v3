@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_skill_skills",
+  "info": {
+    "name": "skill",
+    "icon": "check-circle"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "string",
+      "required": true,
+      "default": "flaticon-global icon"
+    },
+    "name": {
+      "type": "string",
+      "default": "Web Design",
+      "required": true
+    },
+    "desc": {
+      "type": "string",
+      "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
+      "required": true
+    }
+  }
+}

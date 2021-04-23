@@ -1,0 +1,68 @@
+{
+  "kind": "singleType",
+  "collectionName": "banners",
+  "info": {
+    "name": "banner",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "default": "Leonardo Dicaprio"
+    },
+    "desc": {
+      "type": "string",
+      "required": true
+    },
+    "hire_link": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    },
+    "contact_link": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    },
+    "fb_url": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    },
+    "tw_url": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    },
+    "in_url": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    },
+    "be_url": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    },
+    "dr_url": {
+      "type": "string",
+      "required": true,
+      "default": "#"
+    }
+  }
+}

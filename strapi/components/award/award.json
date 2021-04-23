@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_award_awards",
+  "info": {
+    "name": "award",
+    "icon": "angle-right"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "files",
+        "images",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "year": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

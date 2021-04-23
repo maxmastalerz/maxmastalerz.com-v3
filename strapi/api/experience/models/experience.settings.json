@@ -1,0 +1,29 @@
+{
+  "kind": "singleType",
+  "collectionName": "experiences",
+  "info": {
+    "name": "experience"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "header": {
+      "type": "string",
+      "required": true,
+      "default": "I Have <span>5+</span> Years Of Experience With Many Awards"
+    },
+    "desc": {
+      "type": "string",
+      "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+      "required": true
+    },
+    "experiences": {
+      "type": "component",
+      "repeatable": true,
+      "component": "experience.experience"
+    }
+  }
+}

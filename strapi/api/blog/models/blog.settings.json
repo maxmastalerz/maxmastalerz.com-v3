@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogs",
+  "info": {
+    "name": "blog",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "How To Improve Design Skill & Manage Design Work"
+    },
+    "short_desc": {
+      "type": "string",
+      "default": "Lorem ipsum dolor sit amet, consete tur sadipscing elitr, sed diam nonumy eirmod tempor invidunt",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "date": {
+      "type": "string",
+      "required": true,
+      "default": "12 Oct"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    },
+    "long_desc": {
+      "type": "richtext",
+      "default": "I'm baby direct trade gastropub vape, pork belly migas you probably haven't heard of them freegan shaman kombucha pitchfork marfa 90's prism offal. Swag gluten-free readymade typewriter irony lyft 8-bit kitsch. Beard man braid direct trade taiyaki lumbersexual celiac meggings forage. Green juice four loko readymade meditation bushwick trust fund. Next level ugh intelligentsia hammock, man braid taiyaki chartreuse chia authentic williamsburg raclette 90's iceland.  Wolf ugh twee post-ironic. Mixtape selfies adaptogen coloring book mlkshk, hexagon seitan poutine bushwick cold-pressed. Cred cray actually truffaut intelligentsia jean shorts tattooed pug artisan helvetica biodiesel snackwave bushwick keytar messenger bag. Banh mi cornhole crucifix keffiyeh. Flexitarian franzen edison bulb, helvetica humblebrag pug fanny pack brooklyn everyday carry enamel pin messenger bag subway tile trust fund ennui.  Ramps stumptown farm-to-table chillwave occupy. Vexillologist actually umami jean shorts ennui messenger bag ramps occupy. Before they sold out 3 wolf moon cloud bread normcore hoodie microdosing waistcoat keffiyeh kinfolk pour-over sartorial scenester migas tumblr tumeric. Cold-pressed banh mi pabst, kogi hammock pitchfork tattooed hexagon readymade green juice williamsburg letterpress. Butcher leggings deep v, jianbing poke vinyl four loko dreamcatcher lo-fi twee. Church-key kickstarter chartreuse, 90's yuccie quinoa meggings craft beer.  Affogato narwhal bitters, cloud bread ramps butcher polaroid drinking vinegar pop-up tote bag fixie jianbing shoreditch air plant. Yuccie celiac single-origin coffee, knausgaard actually migas asymmetrical pork belly tilde small batch poutine neutra hella. Pinterest artisan flannel williamsburg prism, cold-pressed brooklyn. Cornhole air plant street art tumblr cray bushwick fanny pack butcher ennui. Keytar +1 iceland brooklyn vegan. Keytar artisan paleo, iceland gentrify vegan poke swag bespoke bushwick brunch salvia slow-carb. Narwhal kombucha craft beer chambray intelligentsia gochujang.  Iceland kombucha marfa, everyday carry subway tile actually gentrify listicle pitchfork before they sold out +1. Pork belly vegan microdosing beard pickled. 3 wolf moon banh mi thundercats everyday carry williamsburg viral. Hexagon vexillologist polaroid, succulents blue bottle dreamcatcher tilde heirloom. Green juice wolf palo santo, wayfarers meggings literally activated charcoal keytar trust fund yr narwhal brunch photo booth dreamcatcher skateboard. Health goth chartreuse activated charcoal knausgaard church-key.",
+      "required": true
+    }
+  }
+}

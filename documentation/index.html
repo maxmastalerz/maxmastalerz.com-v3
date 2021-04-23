@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Reton/Dexia - Gatsby React Multipurpose Portfolio Landing Page Template</title>
+
+        <!-- Styles -->
+        <link href="css/collection.css" rel="stylesheet">
+        <link href="css/custom.css" rel="stylesheet">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,400,500%7CLato:300,400" rel="stylesheet" type="text/css">
+
+        <!-- Scripts -->
+        <script src="js/other.js"></script>
+        <script src="js/custom.js"></script>
+    </head>
+
+    <body data-spy="scroll" data-target=".sidebar" data-offset="200">
+
+        <!-- Sidebar -->
+        <aside class="sidebar sidebar-boxed sidebar-dark">  
+            <ul class="nav sidenav dropable">
+                <li><a href="#introduction" title="Introduction">Introduction</a></li>
+                <li><a href="#getting_started" title="Setup Development Envrionment">Setup Development Environment</a></li>
+                <li><a href="#documenter_cover">Pages and Components Info</a></li>
+                <li><a href="#dependencies" title="Dependencies">Dependencies</a></li>
+                <li><a href="#change_layout" title="Change Default Home Page">Change Default Home Page</a></li>
+                <li><a href="#supports" title="Support">Support</a></li>
+            </ul>
+        </aside>
+        <!-- END Sidebar -->
+
+        <header class="site-header navbar-transparent"> 
+            <!-- Banner -->
+            <div class="banner auto-size" style="background-color: #455aa2">
+                <div class="container-fluid">
+                    <h1><strong>Reton/Dexia - Gatsby/React</strong>  Documentation</h1>
+                </div>
+            </div>
+            <!-- END Banner --> 
+        </header>
+        
+        <main class="container-fluid"> 
+            <!-- Main content -->
+            <article class="main-content" role="main">
+                <section id="introduction">
+                    <div class="page-header">
+                        <h3>Introduction</h3>
+                    </div>
+
+                    <p>Reton/Dexia - Gatsby React Multipurpose Portfolio Landing Page Template</p>
+                </section>
+
+                <section id="getting_started">
+                    <div class="page-header">
+                        <h3>Setup Development Environment</h3>
+                    </div>
+                    <p>
+                        To kickstart the development of the web app with Rewy, at first need to setup the Gatsby & React development environment.
+                    </p>
+                    <p>Following tools are needed to setup a react dev environment:</p>
+                    <ul>
+                        <li><b>Node JS</b></li>
+                        <p>
+                            NodeJS works as a node package manager behind the scene. It is recommended to download and install the latest version of Node JS from its official site <a href="http://nodejs.org/" target="_blank">http://nodejs.org/</a>
+                        </p>
+                    </ul>
+                    
+                    <div class="page-header">
+                        <h3>Preparation</h3>
+                    </div>
+
+                    <p>
+                        <strong>Step 1:</strong> You'll need to install <a href="https://nodejs.org/en/" href="_blank">Node.js >=v10.0+ (Recommended Version)</a> (NPM comes along with it) and serve (a NPM package)
+                    </p>
+
+                    <ul>
+                        <li><b>Projects Structure</b></li>
+                        <p>
+                            In the downloaded folder you will found 2 projects on is 
+                            <ul>
+                                <li><b><i>gatsby/without-strapi</i></b></li>
+                                <p>This one is totally React based static template</p>
+                            </ul>
+                            and the second one is 
+                            <ul>
+                                <li><b><i>gatsby/with-strapi-cms</i></b></li>
+                                <p>And this one with <a href="https://strapi.io/" target="_blank">Strapi API</a> support, and configured with Strapi.</p>
+                                <p><b>How to start Strapi API?</b></p>
+                                <p>Go to <code class="language-markup">dexia-api</code> root and open the terminal/git bash install all dependencies by <code class="language-markup">npm install</code> then <code class="language-markup">npm run develop</code> when project run the url will open automatically on your default browser and go to this link <a href="http://localhost:1337/admin/auth/login" target="_blank" rel="noopener noreferrer">http://localhost:1337/admin/auth/login</a> and login via this credentials, <br /><b>Email:</b> <code class="language-markup">hello@hibootstrap.com</code> and the <b>Password:</b> <code class="language-markup">HiBootstrap10</code> and it is the admin, you can learn more about <a href="https://strapi.io/" target="_blank" rel="noopener noreferrer">Strapi here</a></p>
+                                <p>You will find the example code of Strapi/Graphql <code class="language-markup">/src/components/Index</code></p>
+                                <p>And the GraphQL playground is <code class="language-markup">http://localhost:8000/___graphql</code></p>
+                                <p><b>Now continue step 2</b></p>
+                            </ul>
+                        </p>
+                    </ul>
+
+                    <p>
+                        <strong>Step 2:</strong> Install the <a href="https://www.gatsbyjs.org/docs/quick-start/" target="_blank">Gatsby CLI</a>.
+                    </p>
+                    <p>
+                        <code class="language-markup">npm install -g gatsby-cli</code>
+                    </p>
+                    <p>Use command line tool i.e. powershell or terminal and navigate to the project(Rewy) root. This is powershell in windows and terminal on mac/linux.</p>
+                    <p>
+                        <strong>Step 3:</strong> Go to the Rewy root folder and open the terminal and run <code class="language-markup">npm install</code>.
+                    </p>
+
+                    <p>
+                        <strong>Step 4:</strong> 
+                        <ul>
+                            <li>Start development server</li>
+                            <li><code class="language-markup">gatsby develop</code></li>
+                            <li>Gatsby will start a hot-reloading development environment accessible by default at <code class="language-markup">http://localhost:8000</code>.</li>
+                            <li>Try editing the home page in src/pages/index.js. Saved changes will live reload in the browser.</li>
+                        </ul>
+                        <ul>
+                            <li>Create a production build</li>
+                            <li><code class="language-markup">gatsby build</code></li>
+                            <li>Gatsby will perform an optimized production build for your site, generating static HTML and per-route JavaScript code bundles.</li>
+                        </ul>
+                        <ul>
+                            <li>Serve the production build locally</li>
+                            <li><code class="language-markup">gatsby serve</code></li>
+                            <li>Gatsby starts a local HTML server for testing your built site.</li>
+                        </ul>
+                    </p>
+                </section>
+
+                <section id="documenter_cover">
+                    <div class="page-header">
+                        <h3>Pages and Components Info</h3>
+                    </div>
+                    
+                    <div id="documenter_buttons"> </div>
+					<ul>
+						<li>Default Home Page (<b>/pages/index.js</b>)</li>
+                        <li>Demo Two (<b>/pages/demo-two.js</b>)</li>
+						<li>Etc....</li>
+					</ul>
+		
+                    <h6 style="margin-top:20px"><strong>Common Components:</strong></h6>
+                    <ul>
+                        <li>Navbar (<b>/components/App/Navbar.js</b>)</li>
+                        <li>Footer (<b>/components/App/Footer.js</b>)</li>
+                        <li>GoTop (<b>/components/App/GoTop.js</b>)</li>
+                        <li>Layout (<b>/components/App/Layout.js</b>)</li>
+						<li>Etc....</li>
+                    </ul>
+                    
+                    <h6 style="margin-top:20px"><strong>Template Features:</strong></h6>
+                    <ul>
+                        <li>React JS 16.12+</li>
+                        <li>Gatsby JS 2.23+</li>
+                        <li>Functional Components</li>
+                        <li>Recoiljs</li>
+                        <li>Bootstrap</li>
+                        <li>Simple client-side routing (page based)</li>
+                        <li>Easy Customization</li>
+                    </ul>
+                </section>
+
+                <section id="dependencies">
+                    <div class="page-header">
+                        <h3>Dependencies</h3>
+                    </div>
+                    <p> Here are the <strong>dependencies</strong> list which being used in the MedQ React Template:</p>
+                    <pre class="line-numbers">
+<code class="language-markup"> 
+"dependencies": {
+    "@loadable/component": "^5.14.1",
+    "axios": "^0.21.0",
+    "gatsby": "^2.24.91",
+    "gatsby-image": "^2.4.21",
+    "gatsby-plugin-manifest": "^2.4.37",
+    "gatsby-plugin-offline": "^3.2.38",
+    "gatsby-plugin-react-helmet": "^3.3.14",
+    "gatsby-plugin-sharp": "^2.7.1",
+    "gatsby-source-filesystem": "^2.3.37",
+    "gatsby-source-strapi": "0.0.12",
+    "gatsby-transformer-sharp": "^2.5.21",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-anchor-link-smooth-scroll": "^1.0.12",
+    "react-datepicker": "^3.3.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^6.10.1",
+    "react-markdown": "^5.0.2",
+    "react-modal-video": "^1.2.6",
+    "react-owl-carousel3": "^2.2.5",
+    "recoil": "^0.1.2",
+    "sweetalert2": "^10.9.0",
+    "sweetalert2-react-content": "^3.2.1"
+}
+</code>
+                    </pre class="brush:css">
+                </section>
+
+                <section id="change_layout">
+                    <div class="page-header">
+                        <h3>Change Default Home Page</h3>
+                    </div>
+                    <p>The default home page is <code class="language-markup">index.js</code> which placed in <code class="language-markup">/src/pages/index.js</code> if you want change this default to home page two as default home then just take backup your <code class="language-markup">index.js</code> & make <code class="language-markup">demo-two.js</code> to <code class="language-markup">index.js</code> & that is.</p>
+                </section>
+                
+                <section id="supports">
+                    <div class="page-header">
+                        <h3>Support</h3>
+                    </div>
+                    <p> If you have any questions, please use our profile contact form on Envato ( <a target="_blank" href="https://themeforest.net/user/hibootstrap">https://themeforest.net/user/hibootstrap</a> ). <br>
+                    We aim to answer all questions within <strong>24 hours</strong> . In some cases the waiting time can be extended to <strong>48 hours.</strong></p>
+                    <p>Email: <a href="mailto:hello@hibootstrap.com">hello@hibootstrap.com</a></p>
+                </section>
+            </article>
+            <!-- END Main content --> 
+        </main>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="container-fluid"> <a id="scroll-up" href="#"><i class="fa fa-angle-up"></i></a>
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <p>Copyright &copy; 2020. All right reserved</p>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <ul class="footer-menu">
+                            <li><a href="mailto:hello@hibootstrap.com">Contact us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- END Footer -->
+    </body>
+</html>

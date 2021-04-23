@@ -1,0 +1,55 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_mes",
+  "info": {
+    "name": "about-me",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "header": {
+      "type": "string",
+      "default": "I Am A Project Manager, Specialized In Gatsby/React Based Design & Development",
+      "required": true
+    },
+    "desc": {
+      "type": "string",
+      "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.",
+      "required": true
+    },
+    "residence": {
+      "type": "string",
+      "required": true,
+      "default": "San Francisco"
+    },
+    "address": {
+      "type": "string",
+      "required": true,
+      "default": "2/7, Fake Street, Canada"
+    },
+    "phone": {
+      "type": "string",
+      "required": true,
+      "default": "+008-675-98580"
+    },
+    "email": {
+      "type": "string",
+      "default": "hello@dexia.com",
+      "required": true
+    },
+    "website": {
+      "type": "string",
+      "default": "http://dexia.com",
+      "required": true
+    },
+    "age": {
+      "type": "string",
+      "default": "28 Years",
+      "required": true
+    }
+  }
+}

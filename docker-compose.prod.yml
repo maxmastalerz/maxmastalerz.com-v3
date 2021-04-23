@@ -1,0 +1,30 @@
+version: '3'
+services:
+  strapi:
+    build:      
+      context: ./strapi/
+      dockerfile: Dockerfile.prod
+    ports:
+      - "${STRAPI_PORT}:${STRAPI_PORT}"
+    environment:
+     - HOST=${STRAPI_HOST}
+     - PORT=${STRAPI_PORT}
+     - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
+
+  gatsby:
+    build:      
+      context: ./gatsby/
+      dockerfile: Dockerfile.prod
+    ports:
+      - "${GATSBY_PORT}:${GATSBY_PORT}"
+      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
+    volumes:
+      - ./gatsby:/app
+    depends_on:
+      - 'strapi'
+    #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
+    environment:
+     - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
+     - HOST=${GATSBY_HOST}
+     - GATSBY_PORT=${GATSBY_PORT}
+     - STRAPI_PORT=${STRAPI_PORT}

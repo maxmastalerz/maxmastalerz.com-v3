@@ -1,0 +1,59 @@
+version: '3'
+services:
+  strapi:
+    build:      
+      context: ./strapi/
+      dockerfile: Dockerfile.dev
+    ports:
+      - "${STRAPI_PORT}:${STRAPI_PORT}"
+    volumes:
+      - ./strapi:/strapi-app
+      - node_modules:/strapi-app/node_modules/
+    depends_on:
+      - db
+    environment:
+     - HOST=${STRAPI_HOST}
+     - PORT=${STRAPI_PORT}
+     - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
+     - MYSQL_HOST=${MYSQL_HOST}
+     - MYSQL_PORT=${MYSQL_PORT}
+     - MYSQL_DATABASE=${MYSQL_DATABASE}
+     - MYSQL_USER=${MYSQL_USER}
+     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+
+  gatsby:
+    build:      
+      context: ./gatsby/
+      dockerfile: Dockerfile.dev
+    ports:
+      - "${GATSBY_PORT}:${GATSBY_PORT}"
+      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
+    volumes:
+      - ./gatsby:/app
+    depends_on:
+      - strapi
+    #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
+    environment:
+     - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
+     - HOST=${GATSBY_HOST}
+     - GATSBY_PORT=${GATSBY_PORT}
+     - STRAPI_PORT=${STRAPI_PORT}
+     - ENABLE_GATSBY_REFRESH_ENDPOINT=true
+
+  db:
+    build:
+      context: ./db/
+      dockerfile: Dockerfile
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+volumes:
+  db:
+  node_modules:

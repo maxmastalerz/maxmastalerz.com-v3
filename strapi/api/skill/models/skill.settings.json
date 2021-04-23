@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "skills",
+  "info": {
+    "name": "skill",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "header": {
+      "type": "string",
+      "required": true,
+      "default": "Here Are My All Skills"
+    },
+    "desc": {
+      "type": "string",
+      "required": true,
+      "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et justo duo dolores et ea rebum."
+    },
+    "skills": {
+      "type": "component",
+      "repeatable": true,
+      "component": "skill.skill"
+    }
+  }
+}
