@@ -13,7 +13,7 @@ const MainBanner = () => {
                     <div className="container">
                         <div className="banner-content">
                             <h1><span>Max</span> Mastalerz</h1>
-                            <p>Hello I am a <span>UI/UX Designer</span> from San Francisco. I have rich experience of 5+ years  in web site design and app design, also I am good at extraordinary design concept. I love to hear from you about your unique needs.</p>
+                            <p>Hello and welcome to my site! I'm a new graduate and <span>Software Engineer/Developer</span>. If you need a hand creating highly scaleable and robust apps you've come to the right place.</p>
 
                             <div className="banner-btn-area">
                                 <Link to="#" className="common-btn three">

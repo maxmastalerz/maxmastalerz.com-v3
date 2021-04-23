@@ -1,14 +1,14 @@
 version: '3'
 services:
   strapi:
-    build:      
+    build:
       context: ./strapi/
       dockerfile: Dockerfile.dev
     ports:
       - "${STRAPI_PORT}:${STRAPI_PORT}"
     volumes:
       - ./strapi:/strapi-app
-      - node_modules:/strapi-app/node_modules/
+      - strapi_node_modules:/strapi-app/node_modules/
     depends_on:
       - db
     environment:
@@ -22,14 +22,15 @@ services:
      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
 
   gatsby:
-    build:      
+    build:
       context: ./gatsby/
       dockerfile: Dockerfile.dev
     ports:
       - "${GATSBY_PORT}:${GATSBY_PORT}"
       - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
     volumes:
-      - ./gatsby:/app
+      - ./gatsby:/gatsby-app
+      - gatsby_node_modules:/gatsby-app/node_modules/
     depends_on:
       - strapi
     #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
@@ -39,6 +40,9 @@ services:
      - GATSBY_PORT=${GATSBY_PORT}
      - STRAPI_PORT=${STRAPI_PORT}
      - ENABLE_GATSBY_REFRESH_ENDPOINT=true
+     - NODE_ENV=development
+     - GATSBY_WEBPACK_PUBLICPATH=/
+     - CHOKIDAR_USEPOLLING=1
 
   db:
     build:
@@ -56,4 +60,5 @@ services:
 
 volumes:
   db:
-  node_modules:
+  strapi_node_modules:
+  gatsby_node_modules:
