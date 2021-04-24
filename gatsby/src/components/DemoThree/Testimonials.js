@@ -58,7 +58,7 @@ const Testimonials = () => {
     }, [])
 
     return (
-        <div className="review-area two three five border-bottom-two ptb-100">
+        <div id="testimonials" className="review-area two three five border-bottom-two ptb-100">
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">TESTIMONIALS</span>

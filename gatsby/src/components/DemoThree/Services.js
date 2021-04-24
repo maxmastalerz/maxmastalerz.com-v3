@@ -14,7 +14,7 @@ const Services = () => {
                 <div className="row">
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i class='bx bx-globe icon'></i>
+                            <i className='bx bx-globe icon'></i>
                             <h3>
                                 <Link to="/service-details">
                                     Frontend / Backend Web Development
@@ -30,7 +30,7 @@ const Services = () => {
 
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i class='bx bx-mobile icon'></i>
+                            <i className='bx bx-mobile icon'></i>
                             <h3>
                                 <Link to="/service-details">
                                     App Development & Design
@@ -46,7 +46,7 @@ const Services = () => {
 
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i class='bx bx-desktop icon'></i>
+                            <i className='bx bx-desktop icon'></i>
                             <h3>
                                 <Link to="/service-details">
                                     Desktop Applications
@@ -62,7 +62,7 @@ const Services = () => {
 
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i class='bx bx-dots-horizontal-rounded icon'></i>
+                            <i className='bx bx-dots-horizontal-rounded icon'></i>
                             <h3>
                                 <Link to="/service-details">
                                     Other

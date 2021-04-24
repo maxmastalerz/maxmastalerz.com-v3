@@ -28,7 +28,30 @@ const Navbar = () => {
             }
         });
         window.scrollTo(0, 0);
-    })
+
+        menuActiveClass();
+    }, []);
+
+    const menuActiveClass = () => {
+        let mainNavLinks = document.querySelectorAll(".navbar-nav li a");
+        window.addEventListener("scroll", () => {
+            let fromTop = window.scrollY;
+            mainNavLinks.forEach(link => {
+                if (link.hash){
+                    let section = document.querySelector(link.hash);
+            
+                    if (
+                        section.offsetTop <= fromTop &&
+                        section.offsetTop + section.offsetHeight > fromTop
+                    ) {
+                        link.classList.add("active");
+                    } else {
+                        link.classList.remove("active");
+                    }
+                }
+            });
+        });
+    };
 
     const classOne = collapsed ? 'collapse navbar-collapse' : 'collapse navbar-collapse show';
     const classTwo = collapsed ? 'navbar-toggler navbar-toggler-right collapsed' : 'navbar-toggler navbar-toggler-right';
@@ -37,7 +60,7 @@ const Navbar = () => {
         <React.Fragment>
             <nav id="navbar" className="navbar navbar-expand-lg pufo-aside bg-0f1d22">
                 <div className="container">
-                    <Link to="/demo-three" className="navbar-brand logo">
+                    <Link to="/" className="navbar-brand logo">
                         <img src={logo} alt="logo" />
                     </Link>
 
@@ -60,9 +83,9 @@ const Navbar = () => {
                         <ul className="navbar-nav">
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
                                     offset={() => 100} 
-                                    className="nav-link active" 
+                                    className="nav-link active"
                                     href="#home"
                                 >
                                     Home
@@ -70,7 +93,7 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
                                     href="#about"
@@ -80,7 +103,7 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
                                     href="#services"
@@ -90,7 +113,7 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
                                     href="#experience"
@@ -100,7 +123,7 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
                                     href="#portfolio"
@@ -110,7 +133,7 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
                                     href="#blog"
@@ -120,7 +143,17 @@ const Navbar = () => {
                             </li>
                             <li className="nav-item">
                                 <AnchorLink 
-                                    // onClick={toggleNavbar} 
+                                    onClick={toggleNavbar}
+                                    offset={() => -1} 
+                                    className="nav-link" 
+                                    href="#testimonials"
+                                >
+                                    Testimonials
+                                </AnchorLink>
+                            </li>
+                            <li className="nav-item">
+                                <AnchorLink 
+                                    onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
                                     href="#contact"
