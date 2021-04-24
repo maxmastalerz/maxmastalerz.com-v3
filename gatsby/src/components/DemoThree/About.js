@@ -28,7 +28,7 @@ const About = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-5">
                         <div className="about-img-three">
-                            <img src={aboutImg} alt="About" />
+                            <img height="548" width="312" src={aboutImg} alt="About" />
                         </div>
                     </div>
 
@@ -36,8 +36,8 @@ const About = () => {
                         <div className="about-content">
                             <div className="section-title three">
                                 <span className="sub-title">ABOUT ME</span>
-                                <h2>I Am A Web Developer, Specialized In WordPress, PHP, JavaScript & React</h2>
-                                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et.</p>
+                                <h2>{nodes[0].header}</h2>
+                                <p>{nodes[0].desc}</p>
                             </div>
 
                             <div className="row">
@@ -45,16 +45,12 @@ const About = () => {
                                     <div className="left">
                                         <ul>
                                             <li>
-                                                <span>Age:</span>
-                                                26 Years
+                                                <span>LinkedIn:</span>
+                                                <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank">LinkedIn.com/in/Max-Mastalerz</a>
                                             </li>
                                             <li>
-                                                <span>Residence:</span>
-                                                San Francisco
-                                            </li>
-                                            <li>
-                                                <span>Address:</span>
-                                                <a href="#" target="_blank">12/7, Mc Street, Canada</a>
+                                                <span>GitHub:</span>
+                                                <a href="https://github.com/maxmastalerz" target="_blank">GitHub.com/MaxMastalerz</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -65,16 +61,16 @@ const About = () => {
                                         <ul>
                                             <li>
                                                 <span>Phone:</span>
-                                                <a href="tel:+00932123456">+009 321 23456</a>
+                                                <a href={"tel:"+nodes[0].phone}>{nodes[0].phone}</a>
                                             </li>
                                             <li>
                                                 <span>Email:</span>
-                                                <a href="mailto:hello@reton.com">hello@reton.com</a>
+                                                <a href={"mailto:"+nodes[0].email}>{nodes[0].email}</a>
                                             </li>
-                                            <li>
+                                            {/*<li>
                                                 <span>Website:</span>
                                                 <a href={nodes[0].website} target="_blank">{nodes[0].website}</a>
-                                            </li>
+                                            </li>*/}
                                         </ul>
                                     </div>
                                 </div>

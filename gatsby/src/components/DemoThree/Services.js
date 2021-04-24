@@ -3,75 +3,75 @@ import {Link} from 'gatsby'
 
 const Services = () => {
     return (
-        <div className="what-area three border-bottom-two pt-100 pb-70">
+        <div id="services" className="what-area three border-bottom-two pt-100 pb-70">
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">SERVICES</span>
-                    <h2>I Offer Special Service To My Client For Their Ultimate Satisfaction</h2>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et.</p>
+                    <h2>What Does You Project, Team, or Company Need?</h2>
+                    <p>I have experience in many different areas. Let's narrow down your search.</p>
                 </div>
 
                 <div className="row">
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i className="flaticon-global icon"></i>
+                            <i class='bx bx-globe icon'></i>
                             <h3>
                                 <Link to="/service-details">
-                                    Web Design
+                                    Frontend / Backend Web Development
                                 </Link>
                             </h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum assumenda at doloribus dolore quae quibusdam</p>
+                            <p>Responsive, Accessible, & Search-Optimized design. Your backend will also be secure and extendable.</p>
 
                             <Link to="/service-details" className="what-btn">
-                                Explore More <i className="flaticon-right-arrow"></i>
+                                Learn More <i className="flaticon-right-arrow"></i>
                             </Link>
                         </div>
                     </div>
 
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i className="flaticon-smartphone icon"></i>
+                            <i class='bx bx-mobile icon'></i>
                             <h3>
                                 <Link to="/service-details">
-                                    App Design
+                                    App Development & Design
                                 </Link>
                             </h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum assumenda at doloribus dolore quae quibusdam</p>
+                            <p>Android and iOS compatible apps! Built using Cross-Platform or Hybrid approaches. (React Native / Cordova / PhoneGap)</p>
                             
                             <Link to="/service-details"className="what-btn">
-                                Explore More <i className="flaticon-right-arrow"></i>
+                                Learn More <i className="flaticon-right-arrow"></i>
                             </Link>
                         </div>
                     </div>
 
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i className="flaticon-paintbrush icon"></i>
+                            <i class='bx bx-desktop icon'></i>
                             <h3>
                                 <Link to="/service-details">
-                                    Illustration
+                                    Desktop Applications
                                 </Link>
                             </h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum assumenda at doloribus dolore quae quibusdam</p>
+                            <p>A desktop app may be best suited for your needs. Let me know what you're looking for and I can help make it happen.</p>
                             
                             <Link to="/service-details" className="what-btn">
-                                Explore More <i className="flaticon-right-arrow"></i>
+                                Learn More <i className="flaticon-right-arrow"></i>
                             </Link>
                         </div>
                     </div>
 
                     <div className="col-sm-6 col-lg-6">
                         <div className="what-item">
-                            <i className="flaticon-branding icon"></i>
+                            <i class='bx bx-dots-horizontal-rounded icon'></i>
                             <h3>
                                 <Link to="/service-details">
-                                    Branding
+                                    Other
                                 </Link>
                             </h3>
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum assumenda at doloribus dolore quae quibusdam</p>
+                            <p>Programming a microcontroller or working with integrated circuits? Maybe you're looking for someone to fill a DevOps role? Let's get in touch.</p>
                             
                             <Link to="/service-details" className="what-btn">
-                                Explore More <i className="flaticon-right-arrow"></i>
+                                Learn More <i className="flaticon-right-arrow"></i>
                             </Link>
                         </div>
                     </div>

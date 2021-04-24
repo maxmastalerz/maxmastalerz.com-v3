@@ -11,7 +11,7 @@ const Projects = () => {
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">PROJECTS</span>
-                    <h2>Here Are Some Projects Which Gain A Great Success</h2>
+                    <h2>My Work In Action</h2>
                 </div>
 
                 <div className="row">

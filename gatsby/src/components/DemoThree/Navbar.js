@@ -83,6 +83,26 @@ const Navbar = () => {
                                     // onClick={toggleNavbar} 
                                     offset={() => -1} 
                                     className="nav-link" 
+                                    href="#services"
+                                >
+                                    Services
+                                </AnchorLink>
+                            </li>
+                            <li className="nav-item">
+                                <AnchorLink 
+                                    // onClick={toggleNavbar} 
+                                    offset={() => -1} 
+                                    className="nav-link" 
+                                    href="#experience"
+                                >
+                                    Experience
+                                </AnchorLink>
+                            </li>
+                            <li className="nav-item">
+                                <AnchorLink 
+                                    // onClick={toggleNavbar} 
+                                    offset={() => -1} 
+                                    className="nav-link" 
                                     href="#portfolio"
                                 >
                                     Portfolio

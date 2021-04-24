@@ -28,7 +28,7 @@ const IndexPage = ({data}) => {
                         <About />
                         <Services />
                         <Experience />
-                        <Skills />
+                        {/*<Skills />*/}
                         <Projects />
                         <BlogPost />
                         <Testimonials />

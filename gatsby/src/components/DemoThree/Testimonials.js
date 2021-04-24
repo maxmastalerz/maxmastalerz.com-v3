@@ -1,5 +1,8 @@
 import React from 'react'
 
+import { graphql, useStaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
+
 import review1 from '../../components/App/assets/images/review/review1.jpg'
 import review2 from '../../components/App/assets/images/review/review2.jpg'
 import review3 from '../../components/App/assets/images/review/review3.jpg'
@@ -25,7 +28,29 @@ const options = {
     ],
 }
 
+export const query = graphql`
+  {
+    allStrapiTestimonials {
+      nodes {
+        id
+        name
+        position
+        desc
+        images {
+          childImageSharp {
+            fixed(width: 100) {
+              ...GatsbyImageSharpFixed
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 const Testimonials = () => {
+    const {allStrapiTestimonials: { nodes }} = useStaticQuery(query);
+
     const [display, setDisplay] = React.useState(false);
 
     React.useEffect(() => {
@@ -36,38 +61,26 @@ const Testimonials = () => {
         <div className="review-area two three five border-bottom-two ptb-100">
             <div className="container">
                 <div className="section-title three">
-                    <span className="sub-title">TESTIMONIAL</span>
-                    <h2>Some Generous Words Of My Satisfied Client Who Love My Work</h2>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et.</p>
+                    <span className="sub-title">TESTIMONIALS</span>
+                    <h2>Here's What Some People Had to Say</h2>
+                    <p>These are a few of the testimonials I received from people I worked with.</p>
                 </div>
 
                 {display ? <OwlCarousel 
                     className="review-slider owl-carousel owl-theme"
                     {...options}
                 > 
-                    <div className="review-item">
-                        <i className='bx bxs-quote-right'></i>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus enim illo magni debitis in at culpa quidem eum molestiae reiciendis provident, officiis consequatur voluptates error maiores, pariatur natus ex quaerat</p>
-                        <img src={review1} alt="Review" />
-                        <h3>Andrew Smith</h3>
-                        <span>Web Developer</span>
-                    </div>
-
-                    <div className="review-item">
-                        <i className='bx bxs-quote-right'></i>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus enim illo magni debitis in at culpa quidem eum molestiae reiciendis provident, officiis consequatur voluptates error maiores, pariatur natus ex quaerat</p>
-                        <img src={review2} alt="Review" />
-                        <h3>Tom Henry</h3>
-                        <span>UX/UI Designer</span>
-                    </div>
-
-                    <div className="review-item">
-                        <i className='bx bxs-quote-right'></i>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus enim illo magni debitis in at culpa quidem eum molestiae reiciendis provident, officiis consequatur voluptates error maiores, pariatur natus ex quaerat</p>
-                        <img src={review3} alt="Review" />
-                        <h3>Jac Jacson</h3>
-                        <span>SEO Expert</span>
-                    </div>
+                    {nodes.map((testimonial) => {
+                        return (
+                            <div className="review-item" key={testimonial.id}>
+                                <i className='bx bxs-quote-right'></i>
+                                <p>{testimonial.desc}</p>
+                                <Image alt="Review" fixed={testimonial.images.childImageSharp.fixed} />
+                                <h3>{testimonial.name}</h3>
+                                <span>{testimonial.position}</span>
+                            </div>
+                        )
+                    })}
                 </OwlCarousel> : ''}
             </div>
         </div>
