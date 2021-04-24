@@ -3716,6 +3716,10 @@ button:focus {
 .review-area.three .review-item p {
   color: #4BFFA5 !important;
 }
+.review-area.three .owl-theme .owl-stage .owl-item .review-item {
+  background-position: 0 0;
+  background-size: auto clamp(100%, 650px, 650px);
+}
 .review-area.three .owl-theme .owl-nav {
   margin-top: 30px;
 }

@@ -4364,6 +4364,15 @@ button {
         }
     }
     .owl-theme {
+        .owl-stage {
+            .owl-item {
+                .review-item {
+                    background-position: 0 0;
+                    background-size: auto clamp(100%, 650px, 650px);
+                }
+            }
+        }
+
         .owl-nav {
             margin-top: 30px;
 
