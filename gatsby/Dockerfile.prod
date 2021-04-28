@@ -12,4 +12,4 @@ RUN ls -l
 
 #Running with -- passes on the paramters to the npm run scripts
 
-CMD ["sh", "-c", "npm run build && npm run serve -- --host=${HOST} --port ${PORT}"]
+CMD ["sh", "-c", "npm run build && npm run serve -- --host=${HOST} --port=${PORT}"]

@@ -22,7 +22,7 @@ const IndexPage = ({data}) => {
             <div className="body-bg-five">
                 <div className="main-area two">
                     <Navbar />
-                    <SEO title="Home Demo Three" />
+                    <SEO title="Home" />
                     <div className="main-content two">
                         <MainBanner />
                         <About />

@@ -4,13 +4,26 @@ import baseUrl from '../../utils/baseUrl'
 import { useForm } from 'react-hook-form'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
+import ReCAPTCHA from "react-google-recaptcha";
+const recaptchaRef = React.createRef();
 const MySwal = withReactContent(Swal)
 
-const alertContent = () => {
+const alertSuccessful = () => {
     MySwal.fire({
         title: 'Thanks!',
         text: "Your message has been sent and I'll get back to you soon.",
         icon: 'success',
+        timer: 5000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+    })
+}
+
+const alertFailure = () => {
+    MySwal.fire({
+        title: 'Sorry!',
+        text: "Your message couldn't be delivered.",
+        icon: 'error',
         timer: 5000,
         timerProgressBar: true,
         showConfirmButton: false,
@@ -38,17 +51,28 @@ const ContactForm = () => {
 
     const onSubmit = async e => {
         // e.preventDefault();
+        
+        const recaptchaValue = recaptchaRef.current.getValue();
+        const { name, email, number, subject, text } = contact;
+
+        const url = `${baseUrl}/api/contact`;
+        const payload = { name, email, number, subject, text, recaptchaValue };
+
         try {
-            const url = `${baseUrl}/api/contact`;
-            const { name, email, number, subject, text } = contact;
-            const payload = { name, email, number, subject, text };
-            await axios.post(url, payload);
-            // console.log(url);
-            setContact(INITIAL_STATE);
-            alertContent();
+            let axiosRes = await axios.post(url, payload);
+            let res = axiosRes.data || {};
+
+            if(res.data) {
+                setContact(INITIAL_STATE);
+                alertSuccessful();
+            } else if(res.error) {
+                alertFailure();
+            }
         } catch (error) {
-            // console.log(error)
+            alertFailure();
         }
+
+        recaptchaRef.current.reset();
     };
 
     return (
@@ -57,7 +81,7 @@ const ContactForm = () => {
                 <div className="section-title three">
                     <span className="sub-title">CONTACT ME</span>
                     <h2>Let's Get in Touch</h2>
-                    <p>Just send me an email or a text message and I'll try to get back to you as soon as I can.</p>
+                    <p>Just send me an email or a text message and I'll get back to you as soon as I can.</p>
                 </div>
 
                 <div className="row align-items-center">
@@ -113,14 +137,11 @@ const ContactForm = () => {
                                     type="text" 
                                     name="number" 
                                     className="form-control" 
-                                    placeholder="Phone" 
+                                    placeholder="Phone (Optional)" 
                                     value={contact.number}
                                     onChange={handleChange}
-                                    ref={register({ required: true })}
+                                    ref={register({ required: false })}
                                 />
-                                <div className='invalid-feedback' style={{display: 'block'}}>
-                                    {errors.number && 'Number is required.'}
-                                </div>
                             </div>
                         
                             <div className="form-group">
@@ -138,7 +159,13 @@ const ContactForm = () => {
                                     {errors.text && 'Text body is required.'}
                                 </div>
                             </div>
-                                
+                            <div className="form-group">
+                                <ReCAPTCHA
+                                    id="contact-recaptcha"
+                                    sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
+                                    ref={recaptchaRef}
+                                />
+                            </div>
                             <button type="submit" className="btn common-btn three">Send Message <span></span></button>
                         </form>
                     </div>

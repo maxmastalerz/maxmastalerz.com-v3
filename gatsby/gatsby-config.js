@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Dexia - Gatsby React Multipurpose Portfolio Landing Page Template`,
-    description: `Dexia - Gatsby React Multipurpose Portfolio Landing Page Template.`,
+    title: `maxmastalerz.com`,
+    description: `Looking to hire a software developer or interested in software development? Checkout my portfolio, blog, and more.`,
     author: `@envy_theme`,
   },
   // plugins

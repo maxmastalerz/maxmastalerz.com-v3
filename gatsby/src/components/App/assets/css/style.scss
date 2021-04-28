@@ -1234,6 +1234,9 @@ button {
                 padding-top: 13px;
                 height: auto !important;
             }
+            #contact-recaptcha > div > div {
+                margin: auto;
+            }
         }
         .common-btn {
             transition: $transition;

@@ -1109,6 +1109,9 @@ button:focus {
   padding-top: 13px;
   height: auto !important;
 }
+.contact-area #contactForm .form-group #contact-recaptcha > div > div {
+  margin: auto;
+}
 .contact-area #contactForm .common-btn {
   transition: 0.5s all ease;
   width: 100%;
