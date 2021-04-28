@@ -7,7 +7,7 @@ const Services = () => {
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">SERVICES</span>
-                    <h2>What Does You Project, Team, or Company Need?</h2>
+                    <h2>What Does Your Project, Team, or Company Need?</h2>
                     <p>I have experience in many different areas. Let's narrow down your search.</p>
                 </div>
 
