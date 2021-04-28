@@ -12,7 +12,7 @@ const Services = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-sm-6 col-lg-6">
+                    <div className="col-sm-6 col-lg-6 mb-4">
                         <div className="what-item">
                             <i className='bx bx-globe icon'></i>
                             <h3>
@@ -28,7 +28,7 @@ const Services = () => {
                         </div>
                     </div>
 
-                    <div className="col-sm-6 col-lg-6">
+                    <div className="col-sm-6 col-lg-6 mb-4">
                         <div className="what-item">
                             <i className='bx bx-mobile icon'></i>
                             <h3>
@@ -43,8 +43,7 @@ const Services = () => {
                             </Link>
                         </div>
                     </div>
-
-                    <div className="col-sm-6 col-lg-6">
+                    <div className="col-sm-6 col-lg-6 mb-4">
                         <div className="what-item">
                             <i className='bx bx-desktop icon'></i>
                             <h3>
@@ -60,7 +59,7 @@ const Services = () => {
                         </div>
                     </div>
 
-                    <div className="col-sm-6 col-lg-6">
+                    <div className="col-sm-6 col-lg-6 mb-4">
                         <div className="what-item">
                             <i className='bx bx-dots-horizontal-rounded icon'></i>
                             <h3>
