@@ -1,15 +1,14 @@
 import React from 'react'
 import TopHeader from '../components/Blog/TopHeader'
 import Footer from "../components/DemoThree/Footer";
-import {Link, graphql} from 'gatsby'
+import {Link, graphql} from 'gatsby';
 import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'
-import blogImg5 from '../components/App/assets/images/blog/blog-thumb5.jpg'
-import blogImg6 from '../components/App/assets/images/blog/blog-thumb6.jpg'
-import blogImg7 from '../components/App/assets/images/blog/blog-thumb7.jpg'
 
 const BlogDetails = ({ data }) => {
     const { date, title, long_desc, banner_image } = data.blog
+    const recentBlogPosts = data.recentBlogs.nodes;
+
     return (
         <React.Fragment>  
             
@@ -101,49 +100,25 @@ const BlogDetails = ({ data }) => {
                                 </div>
 
                                 <div className="recent widget-item">
-                                    <h3>Recent Post</h3>
-                                    <div className="recent-inner">
-                                        <ul className="align-items-center">
-                                            <li>
-                                                <img src={blogImg5} alt="Details" />
-                                            </li>
-                                            <li>
-                                                <h3>How Design Became Fun In My Life</h3>
-                                                <Link to="#">
-                                                    Read More <i className="flaticon-right-arrow"></i>
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="recent-inner">
-                                        <ul className="align-items-center">
-                                            <li>
-                                                <img src={blogImg6} alt="Details" />
-                                            </li>
-                                            <li>
-                                                <h3>How Graphic Design Take The Place Of Next Generation</h3>
-                                                <Link to="#">
-                                                    Read More <i className="flaticon-right-arrow"></i>
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="recent-inner">
-                                        <ul className="align-items-center">
-                                            <li>
-                                                <img src={blogImg7} alt="Details" />
-                                            </li>
-                                            <li>
-                                                <h3>Old Tradition Of Art Are Changed Throughout These</h3>
-
-                                                <Link to="#">
-                                                    Read More <i className="flaticon-right-arrow"></i>
-                                                </Link>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                    <h3>Recent Posts</h3>
+                                        {recentBlogPosts.map((recentBlogPost) => {
+                                            return (
+                                                <div className="recent-inner">
+                                                    <ul className="align-items-center">
+                                                        <li>
+                                                            {/*<img src={blogImg5} alt="Details" />*/}
+                                                            <Image fluid={recentBlogPost.image.childImageSharp.fluid} />
+                                                        </li>
+                                                        <li>
+                                                            <h3>{recentBlogPost.title}</h3>
+                                                            <Link to={`/blogs/${recentBlogPost.slug}`}>
+                                                                Read More <i className="flaticon-right-arrow"></i>
+                                                            </Link>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            );
+                                        })}
                                 </div>  
                                 {/*
                                 <div className="tags widget-item">
@@ -183,7 +158,7 @@ const BlogDetails = ({ data }) => {
 }
 
 export const query = graphql`
-  query GetSingleBlog($slug: String) {
+  query GetSingleBlogAndRecentBlogs($slug: String) {
     blog: strapiBlogs(slug: { eq: $slug }) {
         title
         date
@@ -196,7 +171,23 @@ export const query = graphql`
             }
         }
     }
+
+    recentBlogs: allStrapiBlogs(sort: {order: DESC, fields: created_at}, limit: 3, filter: {slug: {ne: $slug}}) {
+      nodes {
+        title
+        slug
+        created_at
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+
   }
-`
+`;
 
 export default BlogDetails
