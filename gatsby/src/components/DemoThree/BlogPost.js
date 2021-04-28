@@ -31,8 +31,8 @@ const BlogPost = () => {
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">BLOG</span>
-                    <h2>Read My Blog To Know More About My Design Process</h2>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et.</p>
+                    <h2>I Have a Blog You May Like</h2>
+                    <p>If you enjoy reading about tech I hope you enjoy the blog. It's very new so bear with me while I work on adding content.</p>
                 </div>
 
                 <div className="row">

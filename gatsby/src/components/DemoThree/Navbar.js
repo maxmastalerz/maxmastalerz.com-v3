@@ -40,13 +40,15 @@ const Navbar = () => {
                 if (link.hash){
                     let section = document.querySelector(link.hash);
             
-                    if (
-                        section.offsetTop <= fromTop &&
-                        section.offsetTop + section.offsetHeight > fromTop
-                    ) {
-                        link.classList.add("active");
-                    } else {
-                        link.classList.remove("active");
+                    if(section) {
+                        if (
+                            section.offsetTop <= fromTop &&
+                            section.offsetTop + section.offsetHeight > fromTop
+                        ) {
+                            link.classList.add("active");
+                        } else {
+                            link.classList.remove("active");
+                        }
                     }
                 }
             });

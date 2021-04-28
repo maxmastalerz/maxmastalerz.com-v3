@@ -640,7 +640,6 @@ button:focus {
 }
 
 .what-item {
-  /*margin-bottom: 30px;*/
   height: 100%;
   text-align: center;
 }
@@ -1204,6 +1203,7 @@ button:focus {
 
 /*-- Copyright --*/
 .copyright-area {
+  background-color: #121212;
   padding-top: 25px;
   padding-bottom: 25px;
 }
@@ -3421,6 +3421,7 @@ button:focus {
 }
 .blog-details-area .details-img-info {
   padding-bottom: 30px;
+  color: #171717;
 }
 .blog-details-area .details-img-info .info {
   margin-bottom: 10px;
@@ -3558,11 +3559,28 @@ button:focus {
   padding-top: 13px;
 }
 .blog-details-area .details-leave .common-btn {
+  color: #33CC80;
+  border: 2px solid #33CC80;
   border-radius: 0;
   width: 100%;
   display: block;
   text-align: center;
   transition: 0.5s all ease;
+}
+.blog-details-area .details-leave .common-btn:before {
+  background-color: #33CC80;
+  border-top: 2px solid #33CC80;
+  border-left: 2px solid #33CC80;
+  border-bottom: 2px solid #33CC80;
+}
+.blog-details-area .details-leave .common-btn:after {
+  background-color: #33CC80;
+  border-top: 2px solid #33CC80;
+  border-right: 2px solid #33CC80;
+  border-bottom: 2px solid #33CC80;
+}
+.blog-details-area .details-leave .common-btn:hover {
+  color: #171717;
 }
 
 .widget-area {
@@ -3636,7 +3654,7 @@ button:focus {
 }
 .widget-area .recent .recent-inner ul li a {
   display: inline-block;
-  color: #F68338;
+  color: #33CC80;
   font-size: 14px;
 }
 .widget-area .recent .recent-inner ul li a i {
@@ -3947,8 +3965,8 @@ button:focus {
 .preloader__circle-line {
   animation: rotate 3.5s ease-in-out infinite;
   border-top: 1px solid transparent;
-  border-left: 1px solid #F68338;
-  border-right: 1px solid #F68338;
+  border-left: 1px solid #4BFFA5;
+  border-right: 1px solid #4BFFA5;
   border-bottom: 1px solid transparent;
   border-radius: 50%;
   position: absolute;
@@ -4026,7 +4044,7 @@ button:focus {
 }
 /*----- End Preloader CSS -----*/
 .top-header {
-  background-color: #171717;
+  background-color: #121212;
   padding-top: 15px;
   padding-bottom: 15px;
   position: fixed;

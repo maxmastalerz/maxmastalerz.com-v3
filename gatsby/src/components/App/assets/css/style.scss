@@ -33,6 +33,7 @@ $common-font: 'Open Sans', sans-serif;
 $heading-font: 'Poppins', sans-serif;
 $all-size: 16px;
 $transition: .5s all ease;
+$dark-black-color: #121212;
 $main-color: #171717;
 $paragraph-color: #757575;
 $white-color: #fff;
@@ -42,6 +43,7 @@ $blue-color: #5C2CFF;
 $pink-color: #ED2C66;
 $grey-color: #B7B7B7;
 $green-color: #4BFFA5;
+$dark-green-color: #33CC80;
 
 /*----- Default CSS -----*/
 body {
@@ -1347,6 +1349,7 @@ button {
 
 /*-- Copyright --*/
 .copyright-area {
+    background-color: $dark-black-color;
     padding-top: 25px;
     padding-bottom: 25px;
 
@@ -4179,11 +4182,30 @@ button {
             }
         }
         .common-btn {
+            color: $dark-green-color;
+            border: 2px solid $dark-green-color;
+
             border-radius: 0;
             width: 100%;
             display: block;
             text-align: center;
             transition: $transition;
+        
+            &:before {
+                background-color: $dark-green-color;
+                border-top: 2px solid $dark-green-color;
+                border-left: 2px solid $dark-green-color;
+                border-bottom: 2px solid $dark-green-color;
+            }
+            &:after {
+                background-color: $dark-green-color;
+                border-top: 2px solid $dark-green-color;
+                border-right: 2px solid $dark-green-color;
+                border-bottom: 2px solid $dark-green-color;
+            }
+            &:hover {
+                color: $main-color;
+            }
         }
     }
 }
@@ -4263,7 +4285,7 @@ button {
                     }
                     a {
                         display: inline-block;
-                        color: $orange-color;
+                        color: $dark-green-color;
                         font-size: 14px;
 
                         i {
@@ -4614,8 +4636,8 @@ button {
 .preloader__circle-line {
     animation: rotate 3.5s ease-in-out infinite;
     border-top: 1px solid transparent;
-    border-left: 1px solid $orange-color;
-    border-right: 1px solid $orange-color;
+    border-left: 1px solid $green-color;
+    border-right: 1px solid $green-color;
     border-bottom: 1px solid transparent;
     border-radius: 50%;
     position: absolute;
@@ -4683,7 +4705,7 @@ button {
 /*----- End Preloader CSS -----*/
 
 .top-header {
-    background-color: $main-color;
+    background-color: $dark-black-color;
     padding-top: 15px;
     padding-bottom: 15px;
     position: fixed;

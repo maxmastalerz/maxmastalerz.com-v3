@@ -1,7 +1,7 @@
 import React from 'react' 
 import TopHeader from '../components/Blog/TopHeader'
 import PageBanner from '../components/Common/PageBanner'
-import Footer from '../components/Blog/Footer'
+import Footer from "../components/DemoThree/Footer";
 import { Link } from 'gatsby'
 import blog10 from '../components/App/assets/images/blog/blog10.jpg'
 import blog11 from '../components/App/assets/images/blog/blog11.jpg'
