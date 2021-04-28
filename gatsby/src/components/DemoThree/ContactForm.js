@@ -8,10 +8,10 @@ const MySwal = withReactContent(Swal)
 
 const alertContent = () => {
     MySwal.fire({
-        title: 'Congratulations!',
-        text: 'Your message was successfully send and will back to you soon',
+        title: 'Thanks!',
+        text: "Your message has been sent and I'll get back to you soon.",
         icon: 'success',
-        timer: 2000,
+        timer: 5000,
         timerProgressBar: true,
         showConfirmButton: false,
     })
@@ -39,10 +39,10 @@ const ContactForm = () => {
     const onSubmit = async e => {
         // e.preventDefault();
         try {
-            // const url = `${baseUrl}/api/contact`;
+            const url = `${baseUrl}/api/contact`;
             const { name, email, number, subject, text } = contact;
             const payload = { name, email, number, subject, text };
-            // await axios.post(url, payload);
+            await axios.post(url, payload);
             // console.log(url);
             setContact(INITIAL_STATE);
             alertContent();
@@ -57,7 +57,7 @@ const ContactForm = () => {
                 <div className="section-title three">
                     <span className="sub-title">CONTACT ME</span>
                     <h2>Let's get in touch</h2>
-                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, seddiam voluptua. At vero eos et accusam et.</p>
+                    <p>Just send me an email or a text message and I'll try to get back to you as soon as I can.</p>
                 </div>
 
                 <div className="row align-items-center">
@@ -129,7 +129,7 @@ const ContactForm = () => {
                                     className="form-control" 
                                     cols="30" 
                                     rows="6" 
-                                    placeholder="Write message" 
+                                    placeholder="Your Message" 
                                     value={contact.text}
                                     onChange={handleChange}
                                     ref={register({ required: true })}
@@ -149,19 +149,11 @@ const ContactForm = () => {
                                 <ul>
                                     <li>
                                         <span>Phone:</span>
-                                        <a href="tel:+00932123456">+009 321 23456</a>
+                                        <a href="tel:+1 905 299 7222">+1 905 299 7222</a>
                                     </li>
                                     <li>
                                         <span>Email:</span>
-                                        <a href="mailto:hello@reton.com">hello@reton.com</a>
-                                    </li>
-                                    <li>
-                                        <span>Website:</span>
-                                        <a href="#" target="_blank">www.reton.com</a>
-                                    </li>
-                                    <li>
-                                        <span>Address:</span>
-                                        <a href="#" target="_blank">12/7, Mc Street, Canada</a>
+                                        <a href="mailto:contact@maxmastalerz.com">contact@maxmastalerz.com</a>
                                     </li>
                                 </ul>
                             </div>
@@ -169,28 +161,18 @@ const ContactForm = () => {
                             <div className="bottom">
                                 <ul>
                                     <li>
-                                        <a href="#" target="_blank">
-                                            <i className='bx bxl-facebook'></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
-                                            <i className='bx bxl-twitter'></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" target="_blank">
+                                        <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank">
                                             <i className='bx bxl-linkedin'></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank">
-                                            <i className='bx bxl-behance'></i>
+                                        <a href="https://github.com/maxmastalerz" target="_blank">
+                                            <i className='bx bxl-github'></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" target="_blank">
-                                            <i className='bx bxl-dribbble'></i>
+                                        <a href="https://stackoverflow.com/users/3960404/max" target="_blank">
+                                            <i className='bx bxl-stack-overflow'></i>
                                         </a>
                                     </li>
                                 </ul>

@@ -4,8 +4,8 @@ services:
     build:
       context: ./strapi/
       dockerfile: Dockerfile.dev
-    ports:
-      - "${STRAPI_PORT}:${STRAPI_PORT}"
+#    ports:
+#      - "${STRAPI_PORT}:${STRAPI_PORT}"
     volumes:
       - ./strapi:/strapi-app
       - strapi_node_modules:/strapi-app/node_modules/
@@ -20,14 +20,19 @@ services:
      - MYSQL_DATABASE=${MYSQL_DATABASE}
      - MYSQL_USER=${MYSQL_USER}
      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+     - AWS_SES_KEY=${STRAPI_AWS_SES_USER_KEY}
+     - AWS_SES_SECRET=${STRAPI_AWS_SES_USER_SECRET}
+     - ENV=${ENV}
+     - DEV_BASE_URL=${DEV_BASE_URL}
+     - PROD_BASE_URL= ${PROD_BASE_URL}
 
   gatsby:
     build:
       context: ./gatsby/
       dockerfile: Dockerfile.dev
-    ports:
-      - "${GATSBY_PORT}:${GATSBY_PORT}"
-      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
+#    ports:
+#      - "${GATSBY_PORT}:${GATSBY_PORT}"
+#      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
     volumes:
       - ./gatsby:/gatsby-app
       - gatsby_node_modules:/gatsby-app/node_modules/
@@ -37,12 +42,31 @@ services:
     environment:
      - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
      - HOST=${GATSBY_HOST}
-     - GATSBY_PORT=${GATSBY_PORT}
+     - PORT=${GATSBY_PORT}
+     - GATSBY_BASE_URL=${DEV_BASE_URL}
      - STRAPI_PORT=${STRAPI_PORT}
      - ENABLE_GATSBY_REFRESH_ENDPOINT=true
      - NODE_ENV=development
      - GATSBY_WEBPACK_PUBLICPATH=/
      - CHOKIDAR_USEPOLLING=1
+
+  nginx:
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./nginx/templates:/etc/nginx/templates
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
+    environment:
+      - NGINX_PORT=${NGINX_PORT}
+      - GATSBY_INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
+      - GATSBY_PORT=${GATSBY_PORT}
+      - STRAPI_PORT=${STRAPI_PORT}
+    depends_on:
+      - strapi
+      - gatsby
 
   db:
     build:

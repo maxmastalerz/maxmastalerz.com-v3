@@ -18,6 +18,7 @@
     "strapi-plugin-content-manager": "3.3.1",
     "strapi-plugin-users-permissions": "3.3.1",
     "strapi-plugin-email": "3.3.1",
+    "strapi-provider-email-amazon-ses": "3.6.0",
     "strapi-plugin-upload": "3.3.1",
     "strapi-connector-bookshelf": "3.3.1",
     "knex": "<0.20.0",

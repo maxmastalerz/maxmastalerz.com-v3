@@ -1,9 +1,5 @@
 let baseUrl = process.env.NODE_ENV === "production" 
-? 'https://maxmastalerz.com'
-: 'http://dev.maxmastalerz.com';
-
-if(process.env.GATSBY_PORT !== "80") {
-	baseUrl += `:${process.env.GATSBY_PORT}`;
-}
+? `https://${process.env.GATSBY_BASE_URL}`
+: `http://${process.env.GATSBY_BASE_URL}`;
 
 export default baseUrl;
