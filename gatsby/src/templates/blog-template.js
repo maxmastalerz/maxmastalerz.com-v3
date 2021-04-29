@@ -103,7 +103,7 @@ const BlogDetails = ({ data }) => {
                                     <h3>Recent Posts</h3>
                                         {recentBlogPosts.map((recentBlogPost) => {
                                             return (
-                                                <div className="recent-inner">
+                                                <div className="recent-inner" key={recentBlogPost.id}>
                                                     <ul className="align-items-center">
                                                         <li>
                                                             {/*<img src={blogImg5} alt="Details" />*/}
@@ -174,6 +174,7 @@ export const query = graphql`
 
     recentBlogs: allStrapiBlogs(sort: {order: DESC, fields: created_at}, limit: 3, filter: {slug: {ne: $slug}}) {
       nodes {
+        id
         title
         slug
         created_at
