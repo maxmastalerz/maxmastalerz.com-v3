@@ -12,20 +12,20 @@ services:
     depends_on:
       - db
     environment:
-     - HOST=${STRAPI_HOST}
-     - PORT=${STRAPI_PORT}
-     - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
-     - MYSQL_HOST=${MYSQL_HOST}
-     - MYSQL_PORT=${MYSQL_PORT}
-     - MYSQL_DATABASE=${MYSQL_DATABASE}
-     - MYSQL_USER=${MYSQL_USER}
-     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-     - AWS_SES_KEY=${STRAPI_AWS_SES_USER_KEY}
-     - AWS_SES_SECRET=${STRAPI_AWS_SES_USER_SECRET}
-     - ENV=${ENV}
-     - DEV_BASE_URL=${DEV_BASE_URL}
-     - PROD_BASE_URL=${PROD_BASE_URL}
-     - RECAPTCHA_SECRET_KEY=${STRAPI_RECAPTCHA_SECRET_KEY}
+      - HOST=${STRAPI_HOST}
+      - PORT=${STRAPI_PORT}
+      - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - AWS_SES_KEY=${STRAPI_AWS_SES_USER_KEY}
+      - AWS_SES_SECRET=${STRAPI_AWS_SES_USER_SECRET}
+      - ENV=${ENV}
+      - DEV_BASE_URL=${DEV_BASE_URL}
+      - PROD_BASE_URL=${PROD_BASE_URL}
+      - RECAPTCHA_SECRET_KEY=${STRAPI_RECAPTCHA_SECRET_KEY}
 
   gatsby:
     build:
@@ -41,16 +41,16 @@ services:
       - strapi
     #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
     environment:
-     - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
-     - HOST=${GATSBY_HOST}
-     - PORT=${GATSBY_PORT}
-     - GATSBY_BASE_URL=${DEV_BASE_URL}
-     - GATSBY_RECAPTCHA_SITE_KEY=${GATSBY_RECAPTCHA_SITE_KEY}
-     - STRAPI_PORT=${STRAPI_PORT}
-     - ENABLE_GATSBY_REFRESH_ENDPOINT=true
-     - NODE_ENV=development
-     - GATSBY_WEBPACK_PUBLICPATH=/
-     - CHOKIDAR_USEPOLLING=1
+      - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
+      - HOST=${GATSBY_HOST}
+      - PORT=${GATSBY_PORT}
+      - GATSBY_BASE_URL=${DEV_BASE_URL}
+      - GATSBY_RECAPTCHA_SITE_KEY=${GATSBY_RECAPTCHA_SITE_KEY}
+      - STRAPI_PORT=${STRAPI_PORT}
+      - ENABLE_GATSBY_REFRESH_ENDPOINT=true
+      - NODE_ENV=development
+      - GATSBY_WEBPACK_PUBLICPATH=/
+      - CHOKIDAR_USEPOLLING=1
 
   nginx:
     build:
@@ -66,6 +66,7 @@ services:
       - GATSBY_INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
       - GATSBY_PORT=${GATSBY_PORT}
       - STRAPI_PORT=${STRAPI_PORT}
+      - STATICMAN_PORT=${STATICMAN_PORT}
     depends_on:
       - strapi
       - gatsby
@@ -83,6 +84,21 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  staticman:
+    build:
+      context: ./staticman
+      dockerfile: Dockerfile
+    env_file: ./staticman/.env
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: ${STATICMAN_PORT}
+      GITHUB_APP_ID: ${STATICMAN_GITHUB_APP_ID}
+      GITHUB_PRIVATE_KEY: ${STATICMAN_GITHUB_PRIVATE_KEY}
+      RSA_PRIVATE_KEY: ${STATICMAN_RSA_PRIVATE_KEY}
+    volumes:
+      - ./staticman:/app
 
 volumes:
   db:

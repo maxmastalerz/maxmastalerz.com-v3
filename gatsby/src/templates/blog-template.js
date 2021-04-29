@@ -51,7 +51,7 @@ const BlogDetails = ({ data }) => {
                                 </div>
                             </div>
 
-                            <div className="details-comments">
+                            {/*<div className="details-comments">
                                 <h3>Comments <span>(02)</span></h3>
                                 <ul>
                                     <li>
@@ -85,7 +85,17 @@ const BlogDetails = ({ data }) => {
                                     </div>
                                     <button type="submit" className="btn common-btn three">Post A Comment</button>
                                 </form>
-                            </div>
+                            </div>*/}
+                            <form method="POST" action="http://dev.maxmastalerz.com/staticman/v3/entry/github/maxmastalerz/maxmastalerz.com-v3/staticman-experimentation/comments">
+                                <input name="options[redirect]" type="hidden" value="https://my-site.com"/>
+                                {/*<!-- e.g. "2016-01-02-this-is-a-post" -->*/}
+                                <input name="options[slug]" type="hidden" value="{{ page.slug }}"/>
+                                <label><input name="fields[name]" type="text"/>Name</label>
+                                <label><input name="fields[email]" type="email"/>E-mail</label>
+                                <label><textarea name="fields[message]"></textarea>Message</label>
+
+                                <button type="submit">Go!</button>
+                            </form>
                         </div>
 
                         <div className="col-lg-4">
