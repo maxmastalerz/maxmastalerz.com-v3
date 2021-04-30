@@ -76,7 +76,7 @@ const ContactForm = () => {
     };
 
     return (
-        <div id="contact" className="contact-area three border-bottom-two pt-100 pb-70">
+        <div id="contact" className="contact-area three border-bottom-two pt-100 pb-100">
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">CONTACT ME</span>
