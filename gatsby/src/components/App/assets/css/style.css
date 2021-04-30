@@ -1960,14 +1960,15 @@ button:focus {
 }
 
 /*-- Blog --*/
-#blog-preview.blog-area.three .blog-item .top h4 {
+.blog-area.three .blog-item .top h4 {
   background-color: #4BFFA5;
 }
+.blog-area.three .blog-item .bottom h3 a:hover {
+  color: #4BFFA5;
+}
+
 #blog-preview.blog-area.three .blog-item .bottom h3 a {
   color: #fff;
-}
-#blog-preview.blog-area.three .blog-item .bottom h3 a:hover {
-  color: #4BFFA5;
 }
 #blog-preview.blog-area.three .blog-item .bottom p {
   color: #B7B7B7;
@@ -1979,14 +1980,8 @@ button:focus {
   color: #fff;
 }
 
-#blog.blog-area.three .blog-item .top h4 {
-  background-color: #4BFFA5;
-}
 #blog.blog-area.three .blog-item .bottom h3 a {
   color: #121212;
-}
-#blog.blog-area.three .blog-item .bottom h3 a:hover {
-  color: #4BFFA5;
 }
 #blog.blog-area.three .blog-item .bottom .blog-btn {
   color: #33CC80;

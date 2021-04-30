@@ -2244,22 +2244,26 @@ button {
 }
 
 /*-- Blog --*/
-#blog-preview.blog-area.three {
+.blog-area.three {
     .blog-item {
-        .top {
-            h4 {
-                background-color: $green-color;
-            }
+        .top h4 {
+            background-color: $green-color;
         }
         .bottom {
-            h3 {
-                a {
-                    color: $white-color;
-
-                    &:hover {
-                        color: $green-color;
-                    }
+            h3 a {
+                &:hover {
+                    color: $green-color;
                 }
+            }
+        }
+    }
+}
+
+#blog-preview.blog-area.three {
+    .blog-item {
+        .bottom {
+            h3 a {
+                color: $white-color;
             }
             p {
                 color: #B7B7B7;
@@ -2277,20 +2281,9 @@ button {
 
 #blog.blog-area.three {
     .blog-item {
-        .top {
-            h4 {
-                background-color: $green-color;
-            }
-        }
         .bottom {
-            h3 {
-                a {
-                    color: $dark-black-color;
-
-                    &:hover {
-                        color: $green-color;
-                    }
-                }
+            h3 a {
+                color: $dark-black-color;
             }
             .blog-btn {
                 color: $dark-green-color;
