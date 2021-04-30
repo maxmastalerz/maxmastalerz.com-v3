@@ -1,0 +1,12 @@
+@import '/web-orig/remark.css';
+
+body {
+	padding: 0;
+}
+
+.root__main {
+	margin: 0 0 48px;
+}
+.root__copyright {
+	display: none;
+}

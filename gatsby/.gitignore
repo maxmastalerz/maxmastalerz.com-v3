@@ -2,6 +2,9 @@ public
 .cache
 node_modules
 
+#SASS CSS MAP
+*.css.map
+
 ############################
 # OS X
 ############################

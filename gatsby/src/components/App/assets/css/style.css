@@ -3421,7 +3421,6 @@ button:focus {
 }
 .blog-details-area .details-img-info {
   padding-bottom: 30px;
-  color: #171717;
 }
 .blog-details-area .details-img-info .info {
   margin-bottom: 10px;
@@ -3482,6 +3481,9 @@ button:focus {
 }
 .blog-details-area .details-img-info .img img {
   width: 100%;
+}
+.blog-details-area #remark42 > iframe {
+  margin: 0 !important;
 }
 .blog-details-area .details-comments {
   padding-bottom: 50px;

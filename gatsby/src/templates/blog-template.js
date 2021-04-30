@@ -1,17 +1,53 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import TopHeader from '../components/Blog/TopHeader'
 import Footer from "../components/DemoThree/Footer";
 import {Link, graphql} from 'gatsby';
 import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'
+import { globalHistory } from '@reach/router';
+
+const insertScript = (src, id, parentElement) => {
+    const script = window.document.createElement('script');
+    script.defer = true;
+    script.src = src;
+    script.id = id;
+    parentElement.appendChild(script);
+    return script;
+};
+// Helper to remove scripts from our page
+const removeScript = (id, parentElement) => {
+    const script = window.document.getElementById(id);
+    if (script) {
+        parentElement.removeChild(script);
+    }
+};
 
 const BlogDetails = ({ data }) => {
-    const { date, title, long_desc, banner_image } = data.blog
+    const { title, date, desc, long_desc, banner_image } = data.blog
     const recentBlogPosts = data.recentBlogs.nodes;
 
+    useEffect(() => {
+        if (!window) { // If there's no window there's nothing to do for us
+            return;
+        }
+        window.remark_config = {
+            host: "http://remark42.dev.maxmastalerz.com",
+            site_id: 'dev.maxmastalerz.com',
+            components: ['embed'],
+            max_shown_comments: 10,
+            page_title: 'Moving to Remark42'
+        };
+        const document = window.document;
+
+        if (document.getElementById('remark42')) {
+            insertScript(`http://remark42.dev.maxmastalerz.com/web/embed.js`, `remark42-script`, document.body);
+        }
+
+        return () => removeScript(`remark42-script`, document.body);
+    }, []);
+
     return (
-        <React.Fragment>  
-            
+        <React.Fragment>
             <div id="blog" className="blog-details-area">
                 <TopHeader />
                 <div className="container ptb-100">
@@ -50,8 +86,7 @@ const BlogDetails = ({ data }) => {
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="details-comments">
+                            {/*<div className="details-comments">
                                 <h3>Comments <span>(02)</span></h3>
                                 <ul>
                                     <li>
@@ -85,7 +120,9 @@ const BlogDetails = ({ data }) => {
                                     </div>
                                     <button type="submit" className="btn common-btn three">Post A Comment</button>
                                 </form>
-                            </div>
+                            </div>*/}
+
+                            <div id="remark42"></div>
                         </div>
 
                         <div className="col-lg-4">

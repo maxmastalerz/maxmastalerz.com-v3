@@ -49,8 +49,6 @@ services:
      - STRAPI_PORT=${STRAPI_PORT}
      - ENABLE_GATSBY_REFRESH_ENDPOINT=true
      - NODE_ENV=development
-     - GATSBY_WEBPACK_PUBLICPATH=/
-     - CHOKIDAR_USEPOLLING=1
 
   nginx:
     build:
@@ -66,6 +64,8 @@ services:
       - GATSBY_INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
       - GATSBY_PORT=${GATSBY_PORT}
       - STRAPI_PORT=${STRAPI_PORT}
+      - REMARK42_PORT=${REMARK42_PORT}
+      - BASE_URL=${DEV_BASE_URL}
     depends_on:
       - strapi
       - gatsby
@@ -83,6 +83,22 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+  remark42:
+      image: umputun/remark42:latest
+      restart: always
+      container_name: "remark42"
+      environment:
+          - REMARK_PORT=${REMARK42_PORT}
+          - REMARK_URL=http://remark42.${DEV_BASE_URL}  # url pointing to your remark42 server
+          - SITE=${REMARK42_SITE_ID}                     # site ID, same as used for `site_id`, see "Setup on your website"
+          - SECRET=${REMARK42_SECRET}           # secret key
+          - AUTH_GITHUB_CID=${REMARK42_GITHUB_OAUTH_CLIENT_ID}           # oauth2 client ID
+          - AUTH_GITHUB_CSEC=${REMARK42_GITHUB_OAUTH_CLIENT_SECRET}      # oauth2 client secret
+          - AUTH_ANON=true
+          - ANON_VOTE=true
+      volumes:
+          - ./remark42/var:/srv/var                        # persistent volume to store all remark42 data
 
 volumes:
   db:
