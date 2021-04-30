@@ -138,7 +138,7 @@ const Navbar = () => {
                                     onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
-                                    href="#blog"
+                                    href="#blog-preview"
                                 >
                                     Blog
                                 </AnchorLink>

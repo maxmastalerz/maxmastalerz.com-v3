@@ -4,7 +4,7 @@ import Image from 'gatsby-image'
 
 export const query = graphql`
   {
-    allStrapiBlogs {
+    allStrapiBlogs(limit: 2, sort: {fields: created_at, order: DESC}) {
       nodes {
         title
         short_desc
@@ -14,7 +14,7 @@ export const query = graphql`
         image {
           childImageSharp {
             fluid {
-                ...GatsbyImageSharpFluid
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -25,9 +25,10 @@ export const query = graphql`
 
 const BlogPost = () => {
     const {allStrapiBlogs: { nodes }} = useStaticQuery(query);
+    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
     return (
-        <div id="blog" className="blog-area three border-bottom-two pt-100 pb-70">
+        <div id="blog-preview" className="blog-area three border-bottom-two pt-100 pb-70">
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">BLOG</span>
@@ -37,6 +38,11 @@ const BlogPost = () => {
 
                 <div className="row">
                     {nodes.map((blog) => {
+                        let fullDate = new Date(blog.date);
+                        let date = fullDate.getDate();
+                        let month = monthNames[fullDate.getMonth()];
+                        let year = fullDate.getFullYear();
+
                         return (
                             <div className="col-sm-6 col-lg-6" key={blog.id}>
                                 <div className="blog-item">
@@ -44,7 +50,7 @@ const BlogPost = () => {
                                         <Link to={`/blogs/${blog.slug}`}>
                                             <Image fluid={blog.image.childImageSharp.fluid} alt="Blog" />
                                         </Link>
-                                        <h4>{blog.date.split(' ')[0]} <span>{blog.date.split(' ')[1]}</span></h4>
+                                        <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
                                     </div>
 
                                     <div className="bottom">
@@ -63,6 +69,12 @@ const BlogPost = () => {
                             </div>
                         )
                     })}
+                </div>
+
+                <div className="text-center">
+                    <Link to="/blog" className="common-btn three">
+                        Check It Out
+                    </Link>
                 </div>
             </div>
         </div>

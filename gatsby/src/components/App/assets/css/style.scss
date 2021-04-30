@@ -2244,7 +2244,7 @@ button {
 }
 
 /*-- Blog --*/
-.blog-area.three {
+#blog-preview.blog-area.three {
     .blog-item {
         .top {
             h4 {
@@ -2269,6 +2269,34 @@ button {
 
                 &:hover {
                     color: $white-color;
+                }
+            }
+        }
+    }
+}
+
+#blog.blog-area.three {
+    .blog-item {
+        .top {
+            h4 {
+                background-color: $green-color;
+            }
+        }
+        .bottom {
+            h3 {
+                a {
+                    color: $dark-black-color;
+
+                    &:hover {
+                        color: $green-color;
+                    }
+                }
+            }
+            .blog-btn {
+                color: $dark-green-color;
+
+                &:hover {
+                    color: $main-color;
                 }
             }
         }
@@ -4724,6 +4752,8 @@ button {
         text-align: right;
         li {
             display: inline-block;
+            padding-left: 20px;
+
             a {
                 color: $white-color;
                 font-weight: 600;

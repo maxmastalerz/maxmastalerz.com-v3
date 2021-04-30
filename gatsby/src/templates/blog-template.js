@@ -153,7 +153,9 @@ const BlogDetails = ({ data, pageContext }) => {
                                                             <Image fluid={recentBlogPost.image.childImageSharp.fluid} />
                                                         </li>
                                                         <li>
-                                                            <h3>{recentBlogPost.title}</h3>
+                                                            <Link to={`/blogs/${recentBlogPost.slug}`}>
+                                                                <h3>{recentBlogPost.title}</h3>
+                                                            </Link>
                                                             <Link to={`/blogs/${recentBlogPost.slug}`}>
                                                                 Read More <i className="flaticon-right-arrow"></i>
                                                             </Link>

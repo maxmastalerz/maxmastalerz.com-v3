@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'gatsby'
 import logo from '../../components/App/assets/images/logo-four.png';
 
-const TopHeader = () => {
+const TopHeader = (props) => {
     return (
         <div className="top-header">
             <div className="container">
@@ -18,10 +18,17 @@ const TopHeader = () => {
                     <div className="col-lg-6">
                         <ul>
                             <li>
-                                <Link to="/blog">
-                                    Blog
+                                <Link to="/">
+                                    Home
                                 </Link>
                             </li>
+                            {!props.hideBlog && (
+                                <li>
+                                    <Link to="/blog">
+                                        Blog
+                                    </Link>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
