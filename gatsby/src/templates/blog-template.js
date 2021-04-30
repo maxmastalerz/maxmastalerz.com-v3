@@ -22,8 +22,10 @@ const removeScript = (id, parentElement) => {
     }
 };
 
-const BlogDetails = ({ data }) => {
+const BlogDetails = ({ data, pageContext }) => {
+    const previousBlog = pageContext.previous;
     const { title, date, desc, long_desc, banner_image } = data.blog
+    const nextBlog = pageContext.next;
     const recentBlogPosts = data.recentBlogs.nodes;
 
     useEffect(() => {
@@ -70,19 +72,23 @@ const BlogDetails = ({ data }) => {
                             <div className="details-pages">
                                 <div className="row align-items-center">
                                     <div className="col-6 col-lg-6">
-                                        <div className="pages-item">
-                                            <a className="pre-project" href="#">
-                                                <i className="flaticon-right-arrow"></i> Previous Article
-                                            </a>
-                                        </div>
+                                        {previousBlog && (
+                                            <div className="pages-item">
+                                                <Link className="pre-project" to={`/blogs/${previousBlog.slug}`}>
+                                                    <i className="flaticon-right-arrow"></i> Previous Article
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
 
                                     <div className="col-6 col-lg-6">
-                                        <div className="pages-item three">
-                                            <a className="next-project" href="#">
-                                                Next Article <i className="flaticon-right-arrow"></i>
-                                            </a>
-                                        </div>
+                                        {nextBlog && (
+                                            <div className="pages-item three">
+                                                <Link className="next-project" to={`/blogs/${nextBlog.slug}`}>
+                                                    Next Article <i className="flaticon-right-arrow"></i>
+                                                </Link>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>

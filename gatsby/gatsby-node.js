@@ -13,19 +13,29 @@ exports.createPages = async ({ graphql, actions }) => {
   const result = await graphql(`
     {
       blogs: allStrapiBlogs {
-        nodes {
-          slug
+        edges {
+          previous {
+            slug
+          }
+          node {
+            slug
+          }
+          next {
+            slug
+          }
         }
       }
     }
   `)
 
-  result.data.blogs.nodes.forEach(blog => {
+  result.data.blogs.edges.forEach(({previous, node, next}) => {
     createPage({
-      path: `/blogs/${blog.slug}`,
+      path: `/blogs/${node.slug}`,
       component: path.resolve(`src/templates/blog-template.js`),
       context: {
-        slug: blog.slug,
+        previous: previous,
+        slug: node.slug,
+        next: next
       },
     })
   })
