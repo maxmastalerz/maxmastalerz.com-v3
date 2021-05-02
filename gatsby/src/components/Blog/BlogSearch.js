@@ -1,5 +1,5 @@
 /* src/components/search-form.js */
-import React, { useState, useRef } from "react"
+import React from "react";
 import { navigate } from "gatsby"
 const BlogSearch = ({ initialQuery = "" }) => {
   const handleSubmit = e => {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'gatsby';
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
@@ -7,7 +8,7 @@ const Footer = () => {
             <div className="copyright-area three">
                 <div className="container">
                     <div className="copyright-item">
-                        <p>&copy;{currentYear} <a href="#">maxmastalerz.com</a></p>
+                        <p>&copy;{currentYear} <Link to="/">maxmastalerz.com</Link></p>
                     </div>
                 </div>
             </div>

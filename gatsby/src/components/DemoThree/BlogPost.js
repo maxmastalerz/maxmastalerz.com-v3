@@ -41,7 +41,6 @@ const BlogPost = () => {
                         let fullDate = new Date(blog.date);
                         let date = fullDate.getDate();
                         let month = monthNames[fullDate.getMonth()];
-                        let year = fullDate.getFullYear();
 
                         return (
                             <div className="col-sm-6 col-lg-6" key={blog.id}>

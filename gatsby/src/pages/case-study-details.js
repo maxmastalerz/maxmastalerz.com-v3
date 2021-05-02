@@ -118,7 +118,7 @@ const CaseStudyDetails = () => {
                         <div className="row align-items-center">
                             <div className="col-sm-4 col-lg-4">
                                 <div className="pages-item">
-                                    <a className="pre-project" href="#">
+                                    <a className="pre-project" href="/">
                                         <i className="flaticon-right-arrow"></i> Previous Project
                                     </a>
                                 </div>
@@ -134,7 +134,7 @@ const CaseStudyDetails = () => {
 
                             <div className="col-sm-4 col-lg-4">
                                 <div className="pages-item three">
-                                    <a className="next-project" href="#">
+                                    <a className="next-project" href="/">
                                         Next Project <i className="flaticon-right-arrow"></i>
                                     </a>
                                 </div>
@@ -167,11 +167,11 @@ const CaseStudyDetails = () => {
                                                 </li>
                                                 <li>
                                                     <span>Website:</span>
-                                                    <a href="http://dexia.com" target="_blank">www.dexia.com</a>
+                                                    <a href="http://dexia.com" target="_blank" rel="noopener noreferrer">www.dexia.com</a>
                                                 </li>
                                                 <li>
                                                     <span>Address:</span>
-                                                    <a href="#">12/7, Mc Street, Canada</a>
+                                                    <a href="/">12/7, Mc Street, Canada</a>
                                                 </li>
                                             </ul>
                                         </div>
@@ -179,27 +179,27 @@ const CaseStudyDetails = () => {
                                         <div className="bottom">
                                             <ul>
                                                 <li>
-                                                    <a href="#" target="_blank">
+                                                    <a href="/" target="_blank" rel="noopener noreferrer">
                                                         <i className='bx bxl-facebook'></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" target="_blank">
+                                                    <a href="/" target="_blank" rel="noopener noreferrer">
                                                         <i className='bx bxl-twitter'></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" target="_blank">
+                                                    <a href="/" target="_blank" rel="noopener noreferrer">
                                                         <i className='bx bxl-linkedin'></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" target="_blank">
+                                                    <a href="/" target="_blank" rel="noopener noreferrer">
                                                         <i className='bx bxl-behance'></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="#" target="_blank">
+                                                    <a href="/" target="_blank" rel="noopener noreferrer">
                                                         <i className='bx bxl-dribbble'></i>
                                                     </a>
                                                 </li>

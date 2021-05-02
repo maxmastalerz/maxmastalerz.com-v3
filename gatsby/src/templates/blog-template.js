@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import TopHeader from '../components/Blog/TopHeader'
 import Footer from "../components/DemoThree/Footer";
-import { Link, graphql/*, navigate*/ } from 'gatsby';
-import { navigate } from "@reach/router"
+import { Link, graphql } from 'gatsby';
 import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'
 import BlogSearch from "../components/Blog/BlogSearch";
@@ -25,7 +24,7 @@ const removeScript = (id, parentElement) => {
 
 const BlogDetails = ({ data, pageContext }) => {
     const previousBlog = pageContext.previous;
-    const { title, date, desc, long_desc, banner_image } = data.blog
+    const { title, date, long_desc, banner_image } = data.blog
     const nextBlog = pageContext.next;
     const recentBlogPosts = data.recentBlogs.nodes;
 

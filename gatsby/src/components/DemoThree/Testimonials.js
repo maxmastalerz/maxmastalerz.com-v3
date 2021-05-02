@@ -3,10 +3,6 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
 
-import review1 from '../../components/App/assets/images/review/review1.jpg'
-import review2 from '../../components/App/assets/images/review/review2.jpg'
-import review3 from '../../components/App/assets/images/review/review3.jpg'
-
 import Loadable from "@loadable/component"
 const OwlCarousel = Loadable(() => import("react-owl-carousel3"))
 

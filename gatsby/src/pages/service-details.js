@@ -79,7 +79,7 @@ const ServiceDetails = () => {
                                                     </li>
                                                     <li>
                                                         <span>Address:</span>
-                                                        <a href="#">12/7, Mc Street, Canada</a>
+                                                        <a href="/">12/7, Mc Street, Canada</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -87,27 +87,27 @@ const ServiceDetails = () => {
                                             <div className="bottom">
                                                 <ul>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="/">
                                                             <i className='bx bxl-facebook'></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="/">
                                                             <i className='bx bxl-twitter'></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="/">
                                                             <i className='bx bxl-linkedin'></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="/">
                                                             <i className='bx bxl-behance'></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#">
+                                                        <a href="/">
                                                             <i className='bx bxl-dribbble'></i>
                                                         </a>
                                                     </li>

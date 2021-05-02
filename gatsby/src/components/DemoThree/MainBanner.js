@@ -1,8 +1,9 @@
 import React from 'react';
-import {Link} from 'gatsby';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 const MainBanner = () => {
+    //const {allStrapiBanner: {nodes} } = data
+    
     return (
         <div id="home" className="banner-area border-bottom-two three">
             <div className="common-right-text-two">
@@ -30,3 +31,28 @@ const MainBanner = () => {
 }
 
 export default MainBanner
+
+/*export const query = graphql`
+  {
+    allStrapiBanner {
+      nodes {
+        name
+        desc
+        fb_url
+        tw_url
+        in_url
+        be_url
+        dr_url
+        hire_link
+        contact_link
+        image {
+          childImageSharp {
+            fluid {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    }
+  }
+`*/

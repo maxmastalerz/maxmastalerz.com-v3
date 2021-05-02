@@ -32,9 +32,15 @@ const GoTop = ({scrollStepInPx, delayInMs}) => {
         timeoutRef.current = setInterval(onScrollStep, delayInMs);
     }
 
+    const handleKeyDown = (e) => {
+        if(e.keyCode === 13) { //Enter
+            scrollToTop();
+        }
+    }
+
     const renderGoTopIcon = () => {
         return (
-            <div className={`go-top ${thePosition ? 'active' : ''}`} onClick={scrollToTop}>
+            <div role="button" tabIndex={0} className={`go-top ${thePosition ? 'active' : ''}`} onClick={scrollToTop} onKeyDown={handleKeyDown}>
                 <i className='bx bxs-up-arrow-alt'></i>
                 <i className='bx bxs-up-arrow-alt'></i>
             </div>

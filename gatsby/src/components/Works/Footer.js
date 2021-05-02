@@ -7,7 +7,7 @@ const Footer = () => {
             <div className="copyright-area seven">
                 <div className="container">
                     <div className="copyright-item">
-                        <p>Copyright @{currentYear} Design & Developed by <a href="https://hibootstrap.com/" target="_blank">HiBootstrap</a></p>
+                        <p>Copyright @{currentYear} Design & Developed by <a href="https://hibootstrap.com/" target="_blank" rel="noopener noreferrer">HiBootstrap</a></p>
                     </div>
                 </div>
             </div>

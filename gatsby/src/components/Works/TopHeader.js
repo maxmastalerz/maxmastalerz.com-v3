@@ -15,8 +15,8 @@ const TopHeader = () => {
                     <div className="col-lg-6">
                         <ul>
                             <li>
-                                <Link href="#works">
-                                    <a>Works</a>
+                                <Link to="#works">
+                                    Works
                                 </Link>
                             </li>
                         </ul>

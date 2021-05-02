@@ -32,7 +32,7 @@ const BlogDetails = () => {
                         <div className="col-lg-8">
                             <div className="details-img-info">
                                 <ul className="info">
-                                    <li>By: <a href="#">Adam Smith</a></li>
+                                    <li>By: <Link to="/">Adam Smith</Link></li>
                                     <li>October 07, 2020</li>
                                     <li>2 Comments</li>
                                 </ul>
@@ -100,10 +100,8 @@ const BlogDetails = () => {
                                             </li>
                                             <li>
                                                 <h3>How Design Became Fun In My Life</h3>
-                                                <Link href="#">
-                                                    <a>
-                                                        Read More <i className="flaticon-right-arrow"></i>
-                                                    </a>
+                                                <Link to="/">
+                                                    Read More <i className="flaticon-right-arrow"></i>
                                                 </Link>
                                             </li>
                                         </ul>
@@ -116,10 +114,8 @@ const BlogDetails = () => {
                                             </li>
                                             <li>
                                                 <h3>How Graphic Design Take The Place Of Next Generation</h3>
-                                                <Link href="#">
-                                                    <a>
-                                                        Read More <i className="flaticon-right-arrow"></i>
-                                                    </a>
+                                                <Link to="/">
+                                                    Read More <i className="flaticon-right-arrow"></i>
                                                 </Link>
                                             </li>
                                         </ul>
@@ -133,10 +129,8 @@ const BlogDetails = () => {
                                             <li>
                                                 <h3>Old Tradition Of Art Are Changed Throughout These</h3>
 
-                                                <Link href="#">
-                                                    <a>
-                                                        Read More <i className="flaticon-right-arrow"></i>
-                                                    </a>
+                                                <Link to="/">
+                                                    Read More <i className="flaticon-right-arrow"></i>
                                                 </Link>
                                             </li>
                                         </ul>
@@ -147,22 +141,22 @@ const BlogDetails = () => {
                                     <h3>Tags</h3>
                                     <ul>
                                         <li>
-                                            <a href="#">Design</a>
+                                            <Link to="/">Design</Link>
                                         </li>
                                         <li>
-                                            <a href="#">Graphic Design</a>
+                                            <Link to="/">Graphic Design</Link>
                                         </li>
                                         <li>
-                                            <a href="#">Art</a>
+                                            <Link to="/">Art</Link>
                                         </li>
                                         <li>
-                                            <a href="#">Success</a>
+                                            <Link to="/">Success</Link>
                                         </li>
                                         <li>
-                                            <a href="#">Trend</a>
+                                            <Link to="/">Trend</Link>
                                         </li>
                                         <li>
-                                            <a href="#">Skills</a>
+                                            <Link to="/">Skills</Link>
                                         </li>
                                     </ul>
                                 </div>

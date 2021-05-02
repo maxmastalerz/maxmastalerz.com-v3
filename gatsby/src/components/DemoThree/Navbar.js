@@ -170,9 +170,21 @@ const Navbar = () => {
                                 Download CV <i className='bx bxs-download'></i>
                             </a>
                             <ul className="social">
-                                <li><a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank"><i className='bx bxl-linkedin'></i></a></li>
-                                <li><a href="https://github.com/maxmastalerz" target="_blank"><i className='bx bxl-github'></i></a></li>
-                                <li><a href="https://stackoverflow.com/users/3960404/max" target="_blank"><i className='bx bxl-stack-overflow'></i></a></li>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank" rel="noopener noreferrer">
+                                        <i className='bx bxl-linkedin'></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/maxmastalerz" target="_blank" rel="noopener noreferrer">
+                                        <i className='bx bxl-github'></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://stackoverflow.com/users/3960404/max" target="_blank" rel="noopener noreferrer">
+                                        <i className='bx bxl-stack-overflow'></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

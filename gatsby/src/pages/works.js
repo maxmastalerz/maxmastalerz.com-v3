@@ -25,8 +25,8 @@ const Works = () => {
                                     <img src="/images/work/work1.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Pancake Logo</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Pancake Logo
                                             </Link>
                                         </h3>
                                     </div>
@@ -38,8 +38,8 @@ const Works = () => {
                                     <img src="/images/work/work2.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Business Card</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Business Card
                                             </Link>
                                         </h3>
                                     </div>
@@ -51,8 +51,8 @@ const Works = () => {
                                     <img src="/images/work/work3.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Brochure</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Brochure
                                             </Link>
                                         </h3>
                                     </div>
@@ -66,8 +66,8 @@ const Works = () => {
                                     <img src="/images/work/work4.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Flyer</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Flyer
                                             </Link>
                                         </h3>
                                     </div>
@@ -79,8 +79,8 @@ const Works = () => {
                                     <img src="/images/work/work5.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Packaging</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Packaging
                                             </Link>
                                         </h3>
                                     </div>
@@ -92,8 +92,8 @@ const Works = () => {
                                     <img src="/images/work/work6.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Illustration</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Illustration
                                             </Link>
                                         </h3>
                                     </div>
@@ -107,8 +107,8 @@ const Works = () => {
                                     <img src="/images/work/work7.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">UX/UI</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                UX/UI
                                             </Link>
                                         </h3>
                                     </div>
@@ -120,8 +120,8 @@ const Works = () => {
                                     <img src="/images/work/work8.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Web Design</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Web Design
                                             </Link>
                                         </h3>
                                     </div>
@@ -133,8 +133,8 @@ const Works = () => {
                                     <img src="/images/work/work9.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Web Development</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Web Development
                                             </Link>
                                         </h3>
                                     </div>
@@ -146,8 +146,8 @@ const Works = () => {
                                     <img src="/images/work/work10.jpg" alt="Work" />
                                     <div className="inner">
                                         <h3>
-                                            <Link href="/work-details">
-                                                <a target="_blank">Animation</a>
+                                            <Link to="/work-details" target="_blank" rel="noopener noreferrer">
+                                                Animation
                                             </Link>
                                         </h3>
                                     </div>

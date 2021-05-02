@@ -1,6 +1,6 @@
 import React from 'react'
 import aboutImg from '../../components/App/assets/images/about4.jpg'
-import { Link, graphql, useStaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 const query = graphql`
   {
@@ -46,11 +46,11 @@ const About = () => {
                                         <ul>
                                             <li>
                                                 <span>LinkedIn:</span>
-                                                <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank">LinkedIn.com/in/Max-Mastalerz</a>
+                                                <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank" rel="noopener noreferrer">LinkedIn.com/in/Max-Mastalerz</a>
                                             </li>
                                             <li>
                                                 <span>GitHub:</span>
-                                                <a href="https://github.com/maxmastalerz" target="_blank">GitHub.com/MaxMastalerz</a>
+                                                <a href="https://github.com/maxmastalerz" target="_blank" rel="noopener noreferrer">GitHub.com/MaxMastalerz</a>
                                             </li>
                                         </ul>
                                     </div>

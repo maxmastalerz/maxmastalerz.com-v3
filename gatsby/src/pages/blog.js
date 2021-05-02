@@ -2,13 +2,11 @@ import React from 'react'
 import TopHeader from '../components/Blog/TopHeader'
 import PageBanner from '../components/Common/PageBanner'
 import Footer from "../components/DemoThree/Footer";
-import { Link, useStaticQuery, graphql } from 'gatsby';
-import Image from 'gatsby-image';
+import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";
 
 const Blog = ({ data, location }) => {
-    //const {allStrapiBlogs: { nodes }} = useStaticQuery(query);
     const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
     const params = new URLSearchParams(location.search.slice(1))
@@ -68,8 +66,7 @@ const Blog = ({ data, location }) => {
                                         <div className="blog-item">
                                             <div className="top">
                                                 <Link to={`/blogs/${blog.slug}`}>
-                                                    <img src={'/api'+blog.image.formats.small.url} />
-                                                    {/*<Image fluid={blog.image.childImageSharp.fluid} alt="Blog" />*/}
+                                                    <img src={'/api'+blog.image.formats.small.url} alt={blog.image.alternativeText} />
                                                 </Link>
                                                 
                                                 <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>

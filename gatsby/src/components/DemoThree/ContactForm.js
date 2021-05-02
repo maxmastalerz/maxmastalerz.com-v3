@@ -188,17 +188,17 @@ const ContactForm = () => {
                             <div className="bottom">
                                 <ul>
                                     <li>
-                                        <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank">
+                                        <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank" rel="noopener noreferrer">
                                             <i className='bx bxl-linkedin'></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://github.com/maxmastalerz" target="_blank">
+                                        <a href="https://github.com/maxmastalerz" target="_blank" rel="noopener noreferrer">
                                             <i className='bx bxl-github'></i>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="https://stackoverflow.com/users/3960404/max" target="_blank">
+                                        <a href="https://stackoverflow.com/users/3960404/max" target="_blank" rel="noopener noreferrer">
                                             <i className='bx bxl-stack-overflow'></i>
                                         </a>
                                     </li>
