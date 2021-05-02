@@ -3596,6 +3596,33 @@ button:focus {
   color: #171717;
 }
 
+.search {
+  position: relative;
+}
+.search .form-control {
+  height: 50px;
+  padding-left: 20px;
+  font-size: 15px;
+  background-color: #fafafa;
+  border: 0;
+  border-radius: 0;
+}
+.search .form-control:focus {
+  box-shadow: none;
+  border: 0;
+}
+.search .btn {
+  padding: 0;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  transition: 0.5s all ease;
+}
+.search .btn:hover {
+  color: #33CC80;
+}
+
 .widget-area {
   margin-top: 30px;
 }
@@ -3608,32 +3635,6 @@ button:focus {
 }
 .widget-area .widget-item:last-child {
   margin-bottom: 0;
-}
-.widget-area .search {
-  position: relative;
-}
-.widget-area .search .form-control {
-  height: 50px;
-  padding-left: 20px;
-  font-size: 15px;
-  background-color: #fafafa;
-  border: 0;
-  border-radius: 0;
-}
-.widget-area .search .form-control:focus {
-  box-shadow: none;
-  border: 0;
-}
-.widget-area .search .btn {
-  padding: 0;
-  position: absolute;
-  top: 10px;
-  right: 15px;
-  font-size: 22px;
-  transition: 0.5s all ease;
-}
-.widget-area .search .btn:hover {
-  color: #F68338;
 }
 .widget-area .recent .recent-inner {
   margin-bottom: 30px;

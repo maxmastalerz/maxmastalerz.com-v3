@@ -16,11 +16,14 @@
     "gatsby-source-filesystem": "^2.3.37",
     "gatsby-source-strapi": "0.0.12",
     "gatsby-transformer-sharp": "^2.5.21",
+    "graphql-type-json": "^0.3.2",
+    "lunr": "^2.3.9",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-datepicker": "^3.3.0",
     "react-dom": "^16.12.0",
+    "react-google-recaptcha": "2.1.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^6.10.1",
     "react-markdown": "^5.0.2",
@@ -28,8 +31,7 @@
     "react-owl-carousel3": "^2.2.5",
     "recoil": "^0.1.2",
     "sweetalert2": "^10.9.0",
-    "sweetalert2-react-content": "^3.2.1",
-    "react-google-recaptcha": "2.1.0"
+    "sweetalert2-react-content": "^3.2.1"
   },
   "devDependencies": {
     "prettier": "2.1.2"

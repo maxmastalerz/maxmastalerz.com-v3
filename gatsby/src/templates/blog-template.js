@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import TopHeader from '../components/Blog/TopHeader'
 import Footer from "../components/DemoThree/Footer";
-import {Link, graphql} from 'gatsby';
+import { Link, graphql/*, navigate*/ } from 'gatsby';
+import { navigate } from "@reach/router"
 import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'
-import { globalHistory } from '@reach/router';
+import BlogSearch from "../components/Blog/BlogSearch";
 
 const insertScript = (src, id, parentElement) => {
     const script = window.document.createElement('script');
@@ -133,13 +134,15 @@ const BlogDetails = ({ data, pageContext }) => {
 
                         <div className="col-lg-4">
                             <div className="widget-area">
-                                <div className="search widget-item">
-                                    <form>
-                                        <input type="text" className="form-control" placeholder="Search..." />
+                                <div className="widget-item">
+                                    {/*<form onSubmit={handleSearchSubmit}>
+                                        <input name="search" type="text" className="form-control" placeholder="Search..." />
                                         <button type="submit" className="btn">
                                             <i className='bx bx-search-alt'></i>
                                         </button>
-                                    </form>
+                                    </form>*/}
+                                
+                                    <BlogSearch />
                                 </div>
 
                                 <div className="recent widget-item">
@@ -149,7 +152,6 @@ const BlogDetails = ({ data, pageContext }) => {
                                                 <div className="recent-inner" key={recentBlogPost.id}>
                                                     <ul className="align-items-center">
                                                         <li>
-                                                            {/*<img src={blogImg5} alt="Details" />*/}
                                                             <Image fluid={recentBlogPost.image.childImageSharp.fluid} />
                                                         </li>
                                                         <li>
@@ -164,28 +166,13 @@ const BlogDetails = ({ data, pageContext }) => {
                                                 </div>
                                             );
                                         })}
-                                </div>  
+                                </div>
                                 {/*
                                 <div className="tags widget-item">
                                     <h3>Tags</h3>
                                     <ul>
                                         <li>
                                             <a href="#">Design</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Graphic Design</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Art</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Success</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Trend</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Skills</a>
                                         </li>
                                     </ul>
                                 </div>

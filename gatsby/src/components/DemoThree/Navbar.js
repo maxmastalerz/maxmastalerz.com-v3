@@ -166,14 +166,13 @@ const Navbar = () => {
                         </ul>
 
                         <div className="aside-footer">
-                            <Link to="#" className="common-btn three">
+                            <a href="/api/downloads/Max%20Mastalerz%20Resume.pdf" className="common-btn three">
                                 Download CV <i className='bx bxs-download'></i>
-                            </Link>
+                            </a>
                             <ul className="social">
-                                <li><a href="#" target="_blank"><i className='bx bxl-facebook'></i></a></li>
-                                <li><a href="#" target="_blank"><i className='bx bxl-twitter'></i></a></li>
-                                <li><a href="#" target="_blank"><i className='bx bxl-linkedin'></i></a></li>
-                                <li><a href="#" target="_blank"><i className='bx bxl-behance'></i></a></li>
+                                <li><a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank"><i className='bx bxl-linkedin'></i></a></li>
+                                <li><a href="https://github.com/maxmastalerz" target="_blank"><i className='bx bxl-github'></i></a></li>
+                                <li><a href="https://stackoverflow.com/users/3960404/max" target="_blank"><i className='bx bxl-stack-overflow'></i></a></li>
                             </ul>
                         </div>
                     </div>
