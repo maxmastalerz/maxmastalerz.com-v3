@@ -7,7 +7,6 @@
 // You can delete this file if you're not using it
 const path = require("path")
 const { GraphQLJSONObject } = require(`graphql-type-json`);
-const striptags = require(`striptags`);
 const lunr = require(`lunr`);
 
 const createIndex = async (blogNodes, type, cache) => {
