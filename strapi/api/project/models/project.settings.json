@@ -1,8 +1,9 @@
 {
   "kind": "collectionType",
-  "collectionName": "portfolios",
+  "collectionName": "projects",
   "info": {
-    "name": "portfolio"
+    "name": "project",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -25,16 +26,24 @@
       "required": true,
       "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor"
     },
-    "image": {
-      "model": "file",
-      "via": "related",
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
+    "projects_page_colum_location": {
+      "type": "enumeration",
+      "enum": [
+        "Column1",
+        "Column2",
+        "Column3"
       ],
-      "plugin": "upload",
       "required": true
+    },
+    "featured_projects_column_location": {
+      "type": "enumeration",
+      "enum": [
+        "Column1",
+        "Column2",
+        "NotFeatured"
+      ],
+      "required": true,
+      "default": "NotFeatured"
     }
   }
 }

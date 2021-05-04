@@ -2120,44 +2120,51 @@ button:focus {
   color: #fff;
 }
 
-/*-- Work --*/
-.work-item {
+/*-- Small and large masonry grids --*/
+.masonry-sm, .masonry-lg {
+  /*For debugging masonry layout*/
+  /*.grid {
+      background: #DDD;
+  }*/
+  /* clear fix */
+}
+.masonry-sm .grid-item, .masonry-lg .grid-item {
   position: relative;
   margin-bottom: 30px;
 }
-.work-item:hover:before {
+.masonry-sm .grid-item:hover:before, .masonry-lg .grid-item:hover:before {
   opacity: 0.5;
 }
-.work-item:hover .inner {
+.masonry-sm .grid-item:hover .inner, .masonry-lg .grid-item:hover .inner {
   opacity: 1;
   visibility: visible;
 }
-.work-item:hover .overlay:before {
+.masonry-sm .grid-item:hover .overlay:before, .masonry-lg .grid-item:hover .overlay:before {
   width: 80%;
   height: 90%;
   opacity: 1;
 }
-.work-item:hover .overlay:after {
+.masonry-sm .grid-item:hover .overlay:after, .masonry-lg .grid-item:hover .overlay:after {
   width: 80%;
   height: 90%;
   opacity: 1;
 }
-.work-item:before {
+.masonry-sm .grid-item:before, .masonry-lg .grid-item:before {
   position: absolute;
   content: "";
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-color: #5C2CFF;
+  background-color: #4BFFA5;
   opacity: 0;
   z-index: 1;
   transition: 0.5s all ease;
 }
-.work-item img {
+.masonry-sm .grid-item img, .masonry-lg .grid-item img {
   width: 100%;
 }
-.work-item .inner {
+.masonry-sm .grid-item .inner, .masonry-lg .grid-item .inner {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -2167,20 +2174,20 @@ button:focus {
   visibility: hidden;
   transition: 0.5s all ease;
 }
-.work-item .inner h3 {
+.masonry-sm .grid-item .inner h3, .masonry-lg .grid-item .inner h3 {
   margin-bottom: 0;
   font-size: 20px;
 }
-.work-item .inner h3 a {
+.masonry-sm .grid-item .inner h3 a, .masonry-lg .grid-item .inner h3 a {
   color: #fff;
 }
-.work-item .inner h3 a:hover {
+.masonry-sm .grid-item .inner h3 a:hover, .masonry-lg .grid-item .inner h3 a:hover {
   letter-spacing: 1px;
 }
-.work-item .overlay {
+.masonry-sm .grid-item .overlay, .masonry-lg .grid-item .overlay {
   position: relative;
 }
-.work-item .overlay:before {
+.masonry-sm .grid-item .overlay:before, .masonry-lg .grid-item .overlay:before {
   position: absolute;
   content: "";
   width: 0%;
@@ -2193,7 +2200,7 @@ button:focus {
   opacity: 0;
   transition: 0.5s all ease;
 }
-.work-item .overlay:after {
+.masonry-sm .grid-item .overlay:after, .masonry-lg .grid-item .overlay:after {
   position: absolute;
   content: "";
   width: 0%;
@@ -2205,6 +2212,18 @@ button:focus {
   z-index: 2;
   opacity: 0;
   transition: 0.5s all ease;
+}
+.masonry-sm .grid:after, .masonry-lg .grid:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.masonry-sm .grid-item, .masonry-lg .grid-item {
+  float: left;
+}
+.masonry-sm .grid-item img, .masonry-lg .grid-item img {
+  display: block;
+  max-width: 100%;
 }
 
 /*-- Case Study --*/

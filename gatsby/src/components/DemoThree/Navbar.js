@@ -128,9 +128,9 @@ const Navbar = () => {
                                     onClick={toggleNavbar}
                                     offset={() => -1} 
                                     className="nav-link" 
-                                    href="#portfolio"
+                                    href="#projects"
                                 >
-                                    Portfolio
+                                    Projects
                                 </AnchorLink>
                             </li>
                             <li className="nav-item">
