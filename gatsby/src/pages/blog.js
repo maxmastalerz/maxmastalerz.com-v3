@@ -1,7 +1,7 @@
 import React from 'react' 
 import TopHeader from '../components/Blog/TopHeader'
 import PageBanner from '../components/Common/PageBanner'
-import Footer from "../components/DemoThree/Footer";
+import Footer from "../components/Footer";
 import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";

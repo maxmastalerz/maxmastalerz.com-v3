@@ -1,21 +1,13 @@
 import React from 'react'
 import {Link} from 'gatsby'
-import { useRecoilState } from 'recoil'
-import {sModalState} from '../../utils/recoil-atoms'
-import SidebarDemosModal from '../App/SidebarDemosModal'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import logo from '../../components/App/assets/images/logo-four.png'
+import logo from '../../components/App/assets/images/logo.png';
 
 const Navbar = () => {
     const [collapsed, setCollapsed] = React.useState(true)
-    const [sidebarModal, setSidebarModal] = useRecoilState(sModalState)
 
     const toggleNavbar = () => {
         setCollapsed(!collapsed)
-    }
-
-    const toggleModal = () => {
-        setSidebarModal(!sidebarModal)
     }
 
     React.useEffect(() => {
@@ -190,17 +182,6 @@ const Navbar = () => {
                     </div>
                 </div>
             </nav>
-
-            {/* Sidebar Demos Modal */}
-            <div className="demo-side-icon">
-                <button type="button" className="modal-btn" 
-                    onClick={toggleModal}
-                >
-                    <span>Demos</span>
-                </button>
-            </div>
-
-            <SidebarDemosModal />
         </React.Fragment>
     )
 }

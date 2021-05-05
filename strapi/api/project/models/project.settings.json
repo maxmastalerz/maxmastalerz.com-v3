@@ -16,34 +16,54 @@
       "default": "Restaurant App",
       "required": true
     },
-    "category": {
-      "type": "string",
-      "default": "APP DESIGN",
+    "clients": {
+      "type": "text"
+    },
+    "roles": {
+      "type": "text"
+    },
+    "date_start": {
+      "type": "date"
+    },
+    "date_end": {
+      "type": "date"
+    },
+    "description": {
+      "type": "richtext",
       "required": true
     },
-    "desc": {
-      "type": "string",
+    "categories": {
+      "type": "text",
       "required": true,
-      "default": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor"
+      "default": "software"
     },
-    "projects_page_colum_location": {
-      "type": "enumeration",
-      "enum": [
-        "Column1",
-        "Column2",
-        "Column3"
+    "slug": {
+      "type": "string"
+    },
+    "thumnail_img": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
       ],
+      "plugin": "upload",
       "required": true
     },
-    "featured_projects_column_location": {
-      "type": "enumeration",
-      "enum": [
-        "Column1",
-        "Column2",
-        "NotFeatured"
+    "main_img": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
       ],
+      "plugin": "upload",
+      "required": true
+    },
+    "ordering": {
+      "type": "integer",
+      "min": 1,
+      "default": 100,
       "required": true,
-      "default": "NotFeatured"
+      "unique": true
     }
   }
 }

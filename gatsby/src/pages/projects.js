@@ -2,8 +2,28 @@ import React, { useEffect } from 'react';
 import useScript from 'react-script-hook';
 import TopHeader from '../components/Projects/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
-import Footer from '../components/Projects/Footer'; 
-import { Link } from 'gatsby';
+import Footer from '../components/Footer'; 
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
+
+const projectsQuery = graphql`
+    {
+        allStrapiProjects(sort: {fields: ordering, order: ASC}) {
+            nodes {
+                id
+                name
+                slug
+                thumnail_img {
+                    childImageSharp {
+                        fluid {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
 
 const Projects = () => {
     const [loadingMasonry, ] = useScript({ src: 'masonry.pkgd.min.js' });
@@ -28,6 +48,8 @@ const Projects = () => {
         });
     }, [loadingImagesLoaded, loadingMasonry]);
 
+    const {allStrapiProjects: { nodes }} = useStaticQuery(projectsQuery);
+
     return (
         <React.Fragment>  
             <TopHeader />
@@ -43,114 +65,22 @@ const Projects = () => {
                 <div className="masonry-lg work-area pt-100 pb-70">
                     <div className="grid">
                         <div className="grid-sizer"></div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/orange-tree.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
+                        {nodes.map((project, i) => {
+                            return (
+                                <div className="grid-item">
+                                    <div className="overlay">
+                                        <Image fluid={project.thumnail_img.childImageSharp.fluid} alt="Portfolio piece" />
+                                        <div className="inner">
+                                            <h3>
+                                                <Link to={`/projects/${project.slug}`}>
+                                                    {project.name}
+                                                </Link>
+                                            </h3>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/submerged.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/look-out.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/one-world-trade.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/drizzle.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/cat-nose.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/contrail.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/golden-hour.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/82/flight-formation.jpg" alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>

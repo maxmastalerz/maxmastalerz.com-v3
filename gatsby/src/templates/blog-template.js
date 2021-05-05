@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import TopHeader from '../components/Blog/TopHeader'
-import Footer from "../components/DemoThree/Footer";
+import Footer from "../components/Footer";
 import { Link, graphql } from 'gatsby';
 import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'

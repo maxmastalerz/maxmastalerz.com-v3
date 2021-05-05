@@ -33,11 +33,7 @@ export const query = graphql`
         position
         desc
         images {
-          childImageSharp {
-            fixed(width: 100) {
-              ...GatsbyImageSharpFixed
-            }
-          }
+          publicURL
         }
       }
     }
@@ -71,7 +67,7 @@ const Testimonials = () => {
                             <div className="review-item" key={testimonial.id}>
                                 <i className='bx bxs-quote-right'></i>
                                 <p>{testimonial.desc}</p>
-                                <Image alt="Review" fixed={testimonial.images.childImageSharp.fixed} />
+                                <img alt="Review" src={testimonial.images.publicURL} />
                                 <h3>{testimonial.name}</h3>
                                 <span>{testimonial.position}</span>
                             </div>

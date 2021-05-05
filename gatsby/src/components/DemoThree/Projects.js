@@ -1,10 +1,26 @@
 import React, {useEffect} from 'react'
 import useScript from 'react-script-hook';
-import { Link } from 'gatsby'
-import project1 from '../../components/App/assets/images/projects/project1.jpg'
-import project2 from '../../components/App/assets/images/projects/project2.jpg'
-import project3 from '../../components/App/assets/images/projects/project3-accurate.jpg'
-import project4 from '../../components/App/assets/images/projects/project4-accurate.jpg'
+import { Link, graphql, useStaticQuery } from 'gatsby';
+import Image from 'gatsby-image';
+
+const featuredProjectsQuery = graphql`
+    {
+        allStrapiProjects(limit: 4, sort: {fields: ordering, order: ASC}) {
+            nodes {
+                id
+                name
+                slug
+                thumnail_img {
+                    childImageSharp {
+                        fluid {
+                            ...GatsbyImageSharpFluid
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
 
 const Projects = () => {
     const [loadingMasonry, ] = useScript({ src: 'masonry.pkgd.min.js' });
@@ -30,6 +46,8 @@ const Projects = () => {
 
     }, [loadingImagesLoaded, loadingMasonry]);
 
+    const {allStrapiProjects: { nodes }} = useStaticQuery(featuredProjectsQuery);
+
     return (
         <div id="projects" className="projects-area border-bottom-two ptb-100">
             <div className="container">
@@ -46,54 +64,23 @@ const Projects = () => {
                 <div className="masonry-sm work-area">
                     <div className="grid">
                         <div className="grid-sizer"></div>
-                        <div className="grid-item grid-item--width7-12ths">
-                            <div className="overlay">
-                                <img src={project1} alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
+
+                        {nodes.map((project, i) => {
+                            return (
+                                <div className={"grid-item "+(i%2===0 ? "grid-item--width7-12ths" : "")}>
+                                    <div className="overlay">
+                                        <Image fluid={project.thumnail_img.childImageSharp.fluid} alt="Portfolio piece" />
+                                        <div className="inner">
+                                            <h3>
+                                                <Link to={`/projects/${project.slug}`}>
+                                                    {project.name}
+                                                </Link>
+                                            </h3>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src={project3} alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item grid-item--width7-12ths">
-                            <div className="overlay">
-                                <img src={project2} alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="grid-item">
-                            <div className="overlay">
-                                <img src={project4} alt="Work"/>
-                                <div className="inner">
-                                    <h3>
-                                        <Link to="/work-details" target="_blank" rel="noopener noreferrer">
-                                            Pancake Logo
-                                        </Link>
-                                    </h3>
-                                </div>
-                            </div>
-                        </div>
+                            );
+                        })}
                     </div>
                 </div>
 

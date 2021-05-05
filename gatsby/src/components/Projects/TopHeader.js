@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import logo from '../../components/App/assets/images/logo.png';
 
 const TopHeader = () => {
     return (
@@ -8,15 +9,17 @@ const TopHeader = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-6">
                         <div className="logo">
-                            <img src="images/logo.png" alt="Logo" />
+                            <Link to="/">
+                                <img src={logo} alt="Logo" />
+                            </Link>
                         </div>
                     </div>
 
                     <div className="col-lg-6">
                         <ul>
                             <li>
-                                <Link to="#works">
-                                    Works
+                                <Link to="/">
+                                    Home
                                 </Link>
                             </li>
                         </ul>
