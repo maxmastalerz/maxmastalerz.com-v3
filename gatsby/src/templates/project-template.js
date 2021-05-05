@@ -1,183 +1,162 @@
 import React from 'react';
-import TopHeader from '../components/Projects/TopHeader';
+import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
-import Footer from '../components/Projects/Footer'; 
+import Footer from '../components/Common/Footer'; 
 import { Link } from 'gatsby'
-import ContactForm from '../components/ServiceDetails/ContactForm';
+import Image from 'gatsby-image';
 
-const WorkDetails = () => {
+const ProjectDetails = ({ data, pageContext }) => {
+    const previousProject = pageContext.previous;
+    const { name, main_img, clients, date_start, date_end, categories, roles, description } = data.project;
+    const nextProject = pageContext.next;
+
+    const monthNames = ["January","February","March","April","May","June",
+                        "July","August","September","October","November","December"];
+    let monthStart, yearStart, monthEnd, yearEnd = null;
+    if(date_start !== null) {
+        const fullDateStart = new Date(date_start);
+        monthStart = monthNames[fullDateStart.getMonth()];
+        yearStart = fullDateStart.getFullYear();
+    }
+    if(date_end !== null) {
+        const fullDateEnd = new Date(date_start);
+        monthEnd = monthNames[fullDateEnd.getMonth()];
+        yearEnd = fullDateEnd.getFullYear();
+    }
+
+    //Calculates the amount of bootstrap columns we need to display our data.
+    let numCols = 0;
+    const colGroups = [clients, [date_start, date_end], categories, roles];
+    colGroups.forEach((colGroup) => {
+        let isValid = true;
+
+        if(colGroup !== null) {
+
+            //If one of the columns is a group of values, check if all those values are non-null.
+            //If one of the values in the group is null mark the whole column as invalid so we don't count it.
+            if(Array.isArray(colGroup)) {
+                colGroup.forEach((col) => {
+                    if(col === null) {
+                        isValid = false;
+                        return;
+                    }
+                });
+            }
+            
+            if(isValid) {
+                numCols++; //column value or column group is valid. count it.
+            }
+        }
+    });
+    const columnSize = 12/numCols;
+
     return (
-        <React.Fragment>  
-            <TopHeader />
+        <React.Fragment>
+            <TopHeader seondLinkName="Projects" secondLinkUrl="/projects"/>
             <PageBanner 
-                bgText="Pancake Logo" 
-                pageTitle="Pancake Logo" 
+                bgText={name} 
+                pageTitle={name}
                 homePageUrl="/" 
                 homePageText="Home" 
-                activePageText="Pancake Logo" 
+                activePageText={name}
             /> 
 
-            <div id="works" className="work-details-area pt-100">
+            <div id="project" className="work-details-area pt-100">
                 <div className="container">
                     <div className="details-img">
-                        <img src="/images/work/work-details1.jpg" alt="Details" />
+                        <Image fluid={main_img.childImageSharp.fluid} />
 
-                        <div className="row">
-                            <div className="col-sm-6 col-lg-3">
-                                <div className="details-img-inner">
-                                    <h3>Client</h3>
-                                    <ul>
-                                        <li>Furnish Furniture Co.</li>
-                                        <li>152 san Francisco, USA</li>
-                                    </ul>
+                        <div id="project-brief-info" className="row">
+                            {clients && (
+                                <div className={`col-sm-6 col-lg-${columnSize}`}>
+                                    <div className="details-img-inner">
+                                        <h3>Client</h3>
+                                        <ul>
+                                            {clients.split('\n').map((client) => {
+                                                return (
+                                                    <li>{client}</li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
-                            <div className="col-sm-6 col-lg-3">
-                                <div className="details-img-inner">
-                                    <h3>Date</h3>
-                                    <ul>
-                                        <li>15th, September 2020</li>
-                                        <li>6th, October 2020</li>
-                                    </ul>
+                            {(date_start && date_end) && (
+                                <div className={`col-sm-6 col-lg-${columnSize}`}>
+                                    <div className="details-img-inner">
+                                        <h3>Date</h3>
+                                        <ul>
+                                            <li>{monthStart} {yearStart} -</li>
+                                            <li>{monthEnd} {yearEnd}</li>
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
-                            <div className="col-sm-6 col-lg-3">
-                                <div className="details-img-inner">
-                                    <h3>Categories</h3>
-                                    <ul>
-                                        <li>Website Design</li>
-                                        <li>Website Development</li>
-                                    </ul>
+                            {categories && (
+                                <div className={`col-sm-6 col-lg-${columnSize}`}>
+                                    <div className="details-img-inner">
+                                        <h3>Type / Classification</h3>
+                                        <ul>
+                                            {categories.split('\n').map((category) => {
+                                                return (
+                                                    <li>{category}</li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
 
-                            <div className="col-sm-6 col-lg-3">
-                                <div className="details-img-inner">
-                                    <h3>Working Role</h3>
-                                    <ul>
-                                        <li>User Interface & UX Design</li>
-                                        <li>User Interface & UI Design</li>
-                                    </ul>
+                            {roles && (
+                                <div className={`col-sm-6 col-lg-${columnSize}`}>
+                                    <div className="details-img-inner">
+                                        <h3>Role</h3>
+                                        <ul>
+                                            {roles.split('\n').map((role) => {
+                                                return (
+                                                    <li>{role}</li>
+                                                );
+                                            })}
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
+                            )}
                         </div>
                     </div>
                     
                     <div className="details-description">
                         <h3>Description</h3>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ips um dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore mag na aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est</p>
-
-                        <div className="row">
-                            <div className="col-sm-6 col-lg-6">
-                                <div className="img">
-                                    <img src="/images/work/work-details2.jpg" alt="Details" />
-                                </div>
-                            </div>
-                            <div className="col-sm-6 col-lg-6">
-                                <div className="img">
-                                    <img src="/images/work/work-details3.jpg" alt="Details" /> 
-                                </div>
-                            </div>
-                        </div>
-
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy tempor invidunt ut labore et dolore</p>
+                        {description}
                     </div>
 
                     <div className="details-pages">
                         <div className="row align-items-center">
                             <div className="col-sm-4 col-lg-4">
-                                <div className="pages-item">
-                                    <a className="pre-project" href="#">
-                                        <i className="flaticon-right-arrow"></i> Previous Project
-                                    </a>
-                                </div>
+                                {previousProject && (
+                                    <div className="pages-item">
+                                        <Link to={`/projects/${previousProject.slug}`} className="pre-project">
+                                            <i className="flaticon-right-arrow"></i> Previous Project
+                                        </Link>
+                                    </div>
+                                )}
                             </div>
 
                             <div className="col-sm-4 col-lg-4">
                                 <div className="pages-item two">
-                                    <Link href="/works">
-                                        <a className="common-btn">Go Back To Work</a>
-                                    </Link>
+                                    <Link to="/projects" className="common-btn">Go Back To Projects</Link>
                                 </div>
                             </div>
 
                             <div className="col-sm-4 col-lg-4">
-                                <div className="pages-item three">
-                                    <a className="next-project" href="#">
-                                        Next Project <i className="flaticon-right-arrow"></i>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="contact-area pb-70">
-                        <div className="container">
-                            <div className="section-title">
-                                <h2>Have Any Project? Just <span>Drop A Line</span>. I Always Love To Hear From You</h2>
-                            </div>
-
-                            <div className="row align-items-center">
-                                <div className="col-lg-7">
-                                    <ContactForm />
-                                </div>
-
-                                <div className="col-lg-5">
-                                    <div className="contact-content">
-                                        <div className="top">
-                                            <ul>
-                                                <li>
-                                                    <span>Phone:</span>
-                                                    <a href="tel:+00932123456">+009 321 23456</a>
-                                                </li>
-                                                <li>
-                                                    <span>Email:</span>
-                                                    <a href="mailto:hello@reton.com">hello@reton.com</a>
-                                                </li>
-                                                <li>
-                                                    <span>Website:</span>
-                                                    <a href="#" target="_blank">www.reton.com</a>
-                                                </li>
-                                                <li>
-                                                    <span>Address:</span>
-                                                    <a href="#">12/7, Mc Street, Canada</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <div className="bottom">
-                                            <ul>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i className='bx bxl-facebook'></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i className='bx bxl-twitter'></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i className='bx bxl-linkedin'></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i className='bx bxl-behance'></i>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#" target="_blank">
-                                                        <i className='bx bxl-dribbble'></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                {nextProject && (
+                                    <div className="pages-item three">
+                                        <Link to={`/projects/${nextProject.slug}`} className="next-project">
+                                            Next Project <i className="flaticon-right-arrow"></i>
+                                        </Link>
                                     </div>
-                                </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -189,4 +168,25 @@ const WorkDetails = () => {
     )
 }
 
-export default WorkDetails;
+export const query = graphql`
+  query GetSingleProject($slug: String) {
+    project: strapiProjects(slug: { eq: $slug }) {
+      name
+      main_img {
+        childImageSharp {
+          fluid {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+      clients
+      date_start
+      date_end
+      categories
+      roles
+      description
+    }
+  }
+`;
+
+export default ProjectDetails;

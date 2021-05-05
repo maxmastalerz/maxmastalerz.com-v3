@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import TopHeader from '../components/Blog/TopHeader'
-import Footer from "../components/Footer";
+import TopHeader from '../components/Common/TopHeader';
+import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
 import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'
@@ -51,7 +51,7 @@ const BlogDetails = ({ data, pageContext }) => {
     return (
         <React.Fragment>
             <div id="blog" className="blog-details-area">
-                <TopHeader />
+                <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
                 <div className="container ptb-100">
                     <div className="details-img">
                         <Image fluid={banner_image.childImageSharp.fluid} />

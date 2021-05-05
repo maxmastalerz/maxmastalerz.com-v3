@@ -67,6 +67,20 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+
+      projects: allStrapiProjects(sort: {fields: ordering, order: ASC}) {
+        edges {
+          previous {
+            slug
+          }
+          node {
+            slug
+          }
+          next {
+            slug
+          }
+        }
+      }
     }
   `)
 
@@ -74,6 +88,18 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/blogs/${node.slug}`,
       component: path.resolve(`src/templates/blog-template.js`),
+      context: {
+        previous: previous,
+        slug: node.slug,
+        next: next
+      },
+    })
+  });
+
+  result.data.projects.edges.forEach(({previous, node, next}) => {
+    createPage({
+      path: `/projects/${node.slug}`,
+      component: path.resolve(`src/templates/project-template.js`),
       context: {
         previous: previous,
         slug: node.slug,

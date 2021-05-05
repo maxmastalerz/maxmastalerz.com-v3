@@ -1,7 +1,7 @@
 import React from 'react' 
-import TopHeader from '../components/Blog/TopHeader'
+import TopHeader from '../components/Common/TopHeader'
 import PageBanner from '../components/Common/PageBanner'
-import Footer from "../components/Footer";
+import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";
@@ -38,7 +38,7 @@ const Blog = ({ data, location }) => {
 
     return (
         <React.Fragment>  
-            <TopHeader hideBlog={true} />
+            <TopHeader/>
 
             <PageBanner
                 bgText={title}

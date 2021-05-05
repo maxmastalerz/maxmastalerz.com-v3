@@ -22,10 +22,10 @@ const TopHeader = (props) => {
                                     Home
                                 </Link>
                             </li>
-                            {!props.hideBlog && (
+                            {props.seondLinkName && (
                                 <li>
-                                    <Link to="/blog">
-                                        Blog
+                                    <Link to={props.secondLinkUrl ? props.secondLinkUrl : "#"}>
+                                        {props.seondLinkName}
                                     </Link>
                                 </li>
                             )}

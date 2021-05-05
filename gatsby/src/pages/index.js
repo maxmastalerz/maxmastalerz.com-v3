@@ -10,7 +10,7 @@ import Projects from "../components/DemoThree/Projects"
 import BlogPost from "../components/DemoThree/BlogPost"
 import Testimonials from "../components/DemoThree/Testimonials"
 import ContactForm from "../components/DemoThree/ContactForm"
-import Footer from "../components/Footer"
+import Footer from "../components/Common/Footer"
 
 const IndexPage = ({data}) => {
     

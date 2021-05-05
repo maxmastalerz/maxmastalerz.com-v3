@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import useScript from 'react-script-hook';
-import TopHeader from '../components/Projects/TopHeader';
+import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
-import Footer from '../components/Footer'; 
+import Footer from '../components/Common/Footer'; 
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import Image from 'gatsby-image';
 
