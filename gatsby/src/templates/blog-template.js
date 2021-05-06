@@ -28,21 +28,31 @@ const BlogDetails = ({ data, pageContext }) => {
     const nextBlog = pageContext.next;
     const recentBlogPosts = data.recentBlogs.nodes;
 
+    const monthNames = ["January","February","March","April","May","June","July",
+                        "August","September","October","November","December"];
+    const fullDate = new Date(date);
+    const dateNum = fullDate.getDate();
+    const month = monthNames[fullDate.getMonth()];
+    const year = fullDate.getFullYear();
+
     useEffect(() => {
         if (!window) { // If there's no window there's nothing to do for us
             return;
         }
         window.remark_config = {
-            host: "http://remark42.dev.maxmastalerz.com",
+            host: `${process.env.GATSBY_SITE_PROTOCOL}://remark42.${process.env.GATSBY_BASE_URL}`,
             site_id: 'dev.maxmastalerz.com',
             components: ['embed'],
-            max_shown_comments: 10,
-            page_title: 'Moving to Remark42'
+            max_shown_comments: 10
         };
         const document = window.document;
 
         if (document.getElementById('remark42')) {
-            insertScript(`http://remark42.dev.maxmastalerz.com/web/embed.js`, `remark42-script`, document.body);
+            insertScript(
+                `${process.env.GATSBY_SITE_PROTOCOL}://remark42.${process.env.GATSBY_BASE_URL}/web/embed.js`,
+                `remark42-script`,
+                document.body
+            );
         }
 
         return () => removeScript(`remark42-script`, document.body);
@@ -62,8 +72,7 @@ const BlogDetails = ({ data, pageContext }) => {
                             <div className="details-img-info">
                                 <ul className="info">
                                     <li>By: <Link to="/">Max Mastalerz</Link></li>
-                                    <li>{date}</li>
-                                    <li>2 Comments</li>
+                                    <li>{month} {dateNum}, {year}</li>
                                 </ul>
                                 <h2>{title}</h2>
                                 <ReactMarkdown source={long_desc} />

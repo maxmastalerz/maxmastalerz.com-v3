@@ -10,8 +10,8 @@ const ProjectDetails = ({ data, pageContext }) => {
     const { name, main_img, clients, date_start, date_end, categories, roles, description } = data.project;
     const nextProject = pageContext.next;
 
-    const monthNames = ["January","February","March","April","May","June",
-                        "July","August","September","October","November","December"];
+    const monthNames = ["January","February","March","April","May","June","July",
+                        "August","September","October","November","December"];
     let monthStart, yearStart, monthEnd, yearEnd = null;
     if(date_start !== null) {
         const fullDateStart = new Date(date_start);

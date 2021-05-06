@@ -81,6 +81,12 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+
+      services: allStrapiServices {
+        nodes {
+          slug
+        }
+      }
     }
   `)
 
@@ -106,7 +112,17 @@ exports.createPages = async ({ graphql, actions }) => {
         next: next
       },
     })
-  })
+  });
+
+  result.data.services.nodes.forEach((node) => {
+    createPage({
+      path: `/services/${node.slug}`,
+      component: path.resolve(`src/templates/service-template.js`),
+      context: {
+        slug: node.slug
+      },
+    })
+  });
 }
 
 exports.createResolvers = ({ cache, createResolvers }) => {

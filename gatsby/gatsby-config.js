@@ -33,7 +33,7 @@ module.exports = {
       options: {
         apiURL: `http://strapi:${process.env.STRAPI_PORT}`,
         queryLimit: 1000, // Default to 100
-        contentTypes: [`blogs`, `projects`, `testimonials`],
+        contentTypes: [`blogs`, `projects`, `services`,`testimonials`],
         singleTypes: [`banner`, `award`, `experience`, `about-me`, `logo`, 'skill']
         // singleTypes: [`award`, `experience`, `about-me`,]
       },

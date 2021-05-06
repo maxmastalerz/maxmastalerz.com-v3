@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_certification_certifications",
+  "info": {
+    "name": "certifications",
+    "icon": "arrow-circle-down"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

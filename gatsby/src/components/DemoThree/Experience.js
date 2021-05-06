@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { graphql, useStaticQuery } from 'gatsby';
 
 const query = graphql`
   {
@@ -13,6 +13,9 @@ const query = graphql`
           desc
           id
         }
+        certifications {
+          name
+        }
         id
       }
     }
@@ -25,7 +28,7 @@ const Experience = () => {
     return (
         <div id="experience" className="experience-area three border-bottom-two ptb-100">
             {nodes.map((experienceSet) => {
-                const {experiences} = experienceSet
+                const {experiences, certifications} = experienceSet
                 return (
                     <div className="container" key={experienceSet.id}>
                         <div className="section-title three">
@@ -53,13 +56,18 @@ const Experience = () => {
                                     </div>
                                 )
                             })}
-
-                            <div className="text-center">
-                                <Link to="/portfolio" className="common-btn three">
-                                    See My Portfolio
-                                </Link>
+                        
+                            <div className="mb-4">
+                                <h3>Certifications</h3>
                             </div>
+
+                            <ul>
+                            {certifications.map((certification) => (
+                                <li>{certification.name}</li>
+                            ))}
+                            </ul>
                         </div>
+                        
                     </div>
                 )
             })}

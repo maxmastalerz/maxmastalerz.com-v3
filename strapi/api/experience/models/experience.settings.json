@@ -2,7 +2,8 @@
   "kind": "singleType",
   "collectionName": "experiences",
   "info": {
-    "name": "experience"
+    "name": "experience",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -24,6 +25,11 @@
       "type": "component",
       "repeatable": true,
       "component": "experience.experience"
+    },
+    "certifications": {
+      "type": "component",
+      "repeatable": true,
+      "component": "certification.certifications"
     }
   }
 }

@@ -693,6 +693,9 @@ button:focus {
   top: 375px;
   right: -310px;
 }
+.experience-area .experience-content h3 {
+  color: #fff;
+}
 .experience-area .experience-content .experience-inner {
   margin-bottom: 30px;
 }
