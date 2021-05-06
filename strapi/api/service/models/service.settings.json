@@ -33,6 +33,25 @@
       "type": "richtext",
       "default": "Service details go here.",
       "required": true
+    },
+    "short_desc": {
+      "type": "string"
+    },
+    "ordering": {
+      "type": "integer",
+      "required": true,
+      "unique": true,
+      "min": 1,
+      "default": 100
+    },
+    "icon": {
+      "type": "string",
+      "required": true
+    },
+    "has_dedicated_page": {
+      "type": "boolean",
+      "default": true,
+      "required": true
     }
   }
 }

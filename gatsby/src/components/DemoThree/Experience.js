@@ -14,6 +14,7 @@ const query = graphql`
           id
         }
         certifications {
+          id
           name
         }
         id
@@ -63,7 +64,7 @@ const Experience = () => {
 
                             <ul>
                             {certifications.map((certification) => (
-                                <li>{certification.name}</li>
+                                <li key={certification.id}>{certification.name}</li>
                             ))}
                             </ul>
                         </div>

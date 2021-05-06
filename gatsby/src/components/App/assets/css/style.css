@@ -660,6 +660,9 @@ button:focus {
 .what-item h3 a:hover {
   color: #F68338;
 }
+.what-item span {
+  color: #fff;
+}
 .what-item p {
   margin-bottom: 12px;
 }

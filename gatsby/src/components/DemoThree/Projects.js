@@ -67,7 +67,7 @@ const Projects = () => {
 
                         {nodes.map((project, i) => {
                             return (
-                                <div className={"grid-item "+(i%2===0 ? "grid-item--width7-12ths" : "")}>
+                                <div className={"grid-item "+(i%2===0 ? "grid-item--width7-12ths" : "")} key={project.id}>
                                     <div className="overlay">
                                         <Image fluid={project.thumnail_img.childImageSharp.fluid} alt="Portfolio piece" />
                                         <div className="inner">

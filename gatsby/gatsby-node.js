@@ -82,7 +82,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
 
-      services: allStrapiServices {
+      services: allStrapiServices(filter: {has_dedicated_page: {eq: true}}) {
         nodes {
           slug
         }

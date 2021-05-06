@@ -1,7 +1,24 @@
 import React from 'react'
-import {Link} from 'gatsby'
+import { Link, graphql, useStaticQuery } from 'gatsby';
+
+export const query = graphql`
+  {
+    allStrapiServices(sort: {fields: ordering, order: ASC}) {
+      nodes {
+        id
+        icon
+        title
+        slug
+        short_desc
+        has_dedicated_page
+      }
+    }
+  }
+`;
 
 const Services = () => {
+    const {allStrapiServices: { nodes }} = useStaticQuery(query);
+
     return (
         <div id="services" className="what-area three border-bottom-two pt-100 pb-70">
             <div className="container">
@@ -12,68 +29,28 @@ const Services = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col-sm-6 col-lg-6 mb-4">
-                        <div className="what-item">
-                            <i className='bx bx-globe icon'></i>
-                            <h3>
-                                <Link to="/service-details">
-                                    Frontend / Backend Web Development
-                                </Link>
-                            </h3>
-                            <p>Responsive, Accessible, & Search-Optimized design. Your backend will also be secure and extendable.</p>
+                    {nodes.map((service) => {
+                        return (
+                            <div className="col-sm-6 col-lg-6 mb-4" key={service.id}>
+                                <div className="what-item">
+                                    <i className={`bx ${service.icon} icon`}></i>
+                                    <h3>
+                                        {service.has_dedicated_page
+                                        ? <Link to={`/services/${service.slug}`}>{service.title}</Link>
+                                        : <span>{service.title}</span>
+                                        }
+                                    </h3>
+                                    <p>{service.short_desc}</p>
 
-                            <Link to="/service-details" className="what-btn">
-                                Learn More <i className="flaticon-right-arrow"></i>
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="col-sm-6 col-lg-6 mb-4">
-                        <div className="what-item">
-                            <i className='bx bx-mobile icon'></i>
-                            <h3>
-                                <Link to="/service-details">
-                                    App Development & Design
-                                </Link>
-                            </h3>
-                            <p>Android and iOS compatible apps! Built using Cross-Platform or Hybrid approaches. (React Native / Cordova / PhoneGap)</p>
-                            
-                            <Link to="/service-details"className="what-btn">
-                                Learn More <i className="flaticon-right-arrow"></i>
-                            </Link>
-                        </div>
-                    </div>
-                    <div className="col-sm-6 col-lg-6 mb-4">
-                        <div className="what-item">
-                            <i className='bx bx-desktop icon'></i>
-                            <h3>
-                                <Link to="/service-details">
-                                    Desktop Applications
-                                </Link>
-                            </h3>
-                            <p>A desktop app may be best suited for your needs. Let me know what you're looking for and I can help make it happen.</p>
-                            
-                            <Link to="/service-details" className="what-btn">
-                                Learn More <i className="flaticon-right-arrow"></i>
-                            </Link>
-                        </div>
-                    </div>
-
-                    <div className="col-sm-6 col-lg-6 mb-4">
-                        <div className="what-item">
-                            <i className='bx bx-dots-horizontal-rounded icon'></i>
-                            <h3>
-                                <Link to="/service-details">
-                                    Other
-                                </Link>
-                            </h3>
-                            <p>Programming a microcontroller or working with integrated circuits? Maybe you're looking for someone to fill a DevOps role? Let's get in touch.</p>
-                            
-                            <Link to="/service-details" className="what-btn">
-                                Learn More <i className="flaticon-right-arrow"></i>
-                            </Link>
-                        </div>
-                    </div>
+                                    {service.has_dedicated_page &&
+                                    <Link to={`/services/${service.slug}`} className="what-btn">
+                                        Learn More <i className="flaticon-right-arrow"></i>
+                                    </Link>
+                                    }
+                                </div>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>
