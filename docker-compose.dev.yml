@@ -101,9 +101,10 @@ services:
           - AUTH_ANON=true
           - ANON_VOTE=true
       volumes:
-          - ./remark42/var:/srv/var                        # persistent volume to store all remark42 data
+          - remark42:/srv/var                        # persistent volume to store all remark42 data
 
 volumes:
   db:
   strapi_node_modules:
   gatsby_node_modules:
+  remark42:
