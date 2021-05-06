@@ -2,7 +2,7 @@ import React from 'react';
 import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer'; 
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 
 const ProjectDetails = ({ data, pageContext }) => {

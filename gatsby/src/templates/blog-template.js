@@ -41,7 +41,7 @@ const BlogDetails = ({ data, pageContext }) => {
         }
         window.remark_config = {
             host: `${process.env.GATSBY_SITE_PROTOCOL}://remark42.${process.env.GATSBY_BASE_URL}`,
-            site_id: 'dev.maxmastalerz.com',
+            site_id: process.env.GATSBY_BASE_URL,
             components: ['embed'],
             max_shown_comments: 10
         };

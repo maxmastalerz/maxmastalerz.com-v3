@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
