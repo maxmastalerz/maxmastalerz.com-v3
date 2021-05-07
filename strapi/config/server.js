@@ -1,5 +1,10 @@
 module.exports = ({ env }) => {
-	const base_url_lookup = env('ENV')+'_BASE_URL';
+	let baseUrlLookupPrefix = "DEV";
+	if(env('NODE_ENV') === "production") {
+		baseUrlLookupPrefix = "PROD";
+	}
+
+	const base_url_lookup = baseUrlLookupPrefix+'_BASE_URL';
 	const base_url = env(base_url_lookup);
 
 	return ({
