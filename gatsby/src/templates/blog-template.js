@@ -40,7 +40,7 @@ const BlogDetails = ({ data, pageContext }) => {
             return;
         }
         window.remark_config = {
-            host: `${process.env.GATSBY_SITE_PROTOCOL}://remark42.${process.env.GATSBY_BASE_URL}`,
+            host: `${window.location.protocol}//remark42.${process.env.GATSBY_BASE_URL}`,
             site_id: process.env.GATSBY_BASE_URL,
             components: ['embed'],
             max_shown_comments: 10
@@ -49,7 +49,7 @@ const BlogDetails = ({ data, pageContext }) => {
 
         if (document.getElementById('remark42')) {
             insertScript(
-                `${process.env.GATSBY_SITE_PROTOCOL}://remark42.${process.env.GATSBY_BASE_URL}/web/embed.js`,
+                `${window.location.protocol}//remark42.${process.env.GATSBY_BASE_URL}/web/embed.js`,
                 `remark42-script`,
                 document.body
             );

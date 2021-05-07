@@ -44,7 +44,6 @@ services:
      - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
      - HOST=${GATSBY_HOST}
      - PORT=${GATSBY_PORT}
-     - GATSBY_SITE_PROTOCOL=http
      - GATSBY_BASE_URL=${DEV_BASE_URL}
      - GATSBY_RECAPTCHA_SITE_KEY=${GATSBY_RECAPTCHA_SITE_KEY}
      - STRAPI_PORT=${STRAPI_PORT}
@@ -54,9 +53,9 @@ services:
   nginx:
     build:
       context: ./nginx/
-      dockerfile: Dockerfile.dev
+      dockerfile: Dockerfile
     volumes:
-      - ./nginx/templates:/etc/nginx/templates
+      - ./nginx/dev/templates:/etc/nginx/templates
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
       - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"

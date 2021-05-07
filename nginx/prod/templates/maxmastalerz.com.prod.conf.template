@@ -1,0 +1,102 @@
+# Strapi server
+upstream strapi {
+    server strapi:${STRAPI_PORT};
+}
+
+#redirect www to http://
+server {
+    server_name www.${BASE_URL};
+    listen ${NGINX_PORT};
+
+    return 301 http://${BASE_URL}$request_uri;
+}
+
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+}
+
+server {
+    listen ${NGINX_PORT};
+    server_name ${BASE_URL};
+    #server_name ${BASE_URL};
+
+    #The gatsby web server for maxmastalerz.com
+    location / {
+        proxy_pass http://gatsby:${GATSBY_PORT};
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_redirect off;
+    }
+
+    # Strapi API and Admin
+    location /api/ {
+        rewrite ^/api/?(.*)$ /$1 break;
+        proxy_pass http://strapi;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Server $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Host $http_host;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "Upgrade";
+        proxy_pass_request_headers on;
+    }
+
+    #location /web-orig/ {
+    #    proxy_pass http://remark42:${REMARK42_PORT}/web/;
+    #}
+}
+
+#server {
+#    listen 80;
+#    server_name remark42.${BASE_URL};
+#    return      301 https://remark42.${BASE_URL}$request_uri;
+#}
+
+server {
+    listen      80;
+    server_name remark42.${BASE_URL};
+
+    gzip on;
+    gzip_types text/plain application/json text/css application/javascript application/x-javascript text/javascript text/xml application/xml application/rss+xml application/atom+xml application/rdf+xml;
+    gzip_min_length 1000;
+    gzip_proxied any;
+
+    location ~ /\.git {
+        deny all;
+    }
+
+    location /index.html {
+        proxy_redirect          off;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        Host $http_host;
+        proxy_pass              http://remark42:${REMARK42_PORT}/web/index.html;
+     }
+
+    location / {
+        proxy_redirect          off;
+        proxy_set_header        X-Real-IP $remote_addr;
+        proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header        Host $http_host;
+        proxy_pass              http://remark42:${REMARK42_PORT}/;
+    }
+
+    location = /web/remark.css {
+        #Expected to fail on AWS ELB because of unknown base url.
+        proxy_pass http://${BASE_URL}/remark-updated.css;
+    }
+
+    location /web-orig/ {
+        proxy_pass http://remark42:${REMARK42_PORT}/web/;
+    }
+
+    access_log   /var/log/nginx/remark42.log;
+}

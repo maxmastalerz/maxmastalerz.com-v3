@@ -1,5 +1,6 @@
-module.exports = ({ env }) => ({
-  email: {
+module.exports = ({ env }) => {
+
+  const emailSettings = {
     provider: 'amazon-ses',
     providerOptions: {
       key: env('AWS_SES_KEY'),
@@ -9,5 +10,28 @@ module.exports = ({ env }) => ({
     settings: {
       defaultFrom: 'contact@maxmastalerz.com',
     },
-  },
-});
+  };
+
+  if(env('NODE_ENV') === "development") {
+    return {
+      email: emailSettings
+    };
+  } else if(env('NODE_ENV') === "production") {
+    return {
+      email: emailSettings,
+      upload: {
+        provider: 'aws-s3',
+        providerOptions: {
+          accessKeyId: env('AWS_S3_KEY'),
+          secretAccessKey: env('AWS_S3_SECRET'),
+          region: env('AWS_S3_REGION'),
+          params: {
+            Bucket: env('AWS_S3_BUCKET'),
+          },
+        },
+      },
+    };
+  } else { //Nothing else right now...
+    return {};
+  }
+}

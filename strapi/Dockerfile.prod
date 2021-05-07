@@ -1,5 +1,7 @@
 FROM node:12
 
+ENV NODE_ENV=production
+
 WORKDIR /strapi-app
 
 COPY ./package.json .
@@ -8,4 +10,6 @@ COPY . .
 
 RUN ls -l
 
-CMD ["npm", "run", "develop"]
+RUN npm run build
+
+CMD ["npm", "run", "start"]

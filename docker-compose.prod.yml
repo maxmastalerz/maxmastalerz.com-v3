@@ -1,30 +1,87 @@
 version: '3'
 services:
   strapi:
-    build:      
+    build:
       context: ./strapi/
       dockerfile: Dockerfile.prod
-    ports:
-      - "${STRAPI_PORT}:${STRAPI_PORT}"
+    volumes:
+      - ./strapi:/strapi-app
+      - strapi_node_modules:/strapi-app/node_modules/
     environment:
+     - NODE_ENV=production
      - HOST=${STRAPI_HOST}
      - PORT=${STRAPI_PORT}
      - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
+     - MYSQL_HOST=${MYSQL_HOST}
+     - MYSQL_PORT=${MYSQL_PORT}
+     - MYSQL_DATABASE=${MYSQL_DATABASE}
+     - MYSQL_USER=${MYSQL_USER}
+     - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+     - AWS_SES_KEY=${STRAPI_AWS_SES_USER_KEY}
+     - AWS_SES_SECRET=${STRAPI_AWS_SES_USER_SECRET}
+     - AWS_S3_REGION=${STRAPI_AWS_S3_REGION}
+     - AWS_S3_BUCKET=${STRAPI_AWS_S3_BUCKET}
+     - AWS_S3_KEY=${STRAPI_AWS_S3_KEY}
+     - AWS_S3_SECRET=${STRAPI_AWS_S3_SECRET}
+     - ENV=${ENV}
+     - DEV_BASE_URL=${DEV_BASE_URL}
+     - PROD_BASE_URL=${PROD_BASE_URL}
+     - RECAPTCHA_SECRET_KEY=${STRAPI_RECAPTCHA_SECRET_KEY}
 
   gatsby:
-    build:      
+    build:
       context: ./gatsby/
       dockerfile: Dockerfile.prod
-    ports:
-      - "${GATSBY_PORT}:${GATSBY_PORT}"
-      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
     volumes:
-      - ./gatsby:/app
+      - ./gatsby:/gatsby-app
+      - gatsby_node_modules:/gatsby-app/node_modules/
     depends_on:
-      - 'strapi'
+      - strapi
     #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
     environment:
-     - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
      - HOST=${GATSBY_HOST}
-     - GATSBY_PORT=${GATSBY_PORT}
+     - PORT=${GATSBY_PORT}
+     - GATSBY_BASE_URL=${PROD_BASE_URL}
+     - GATSBY_RECAPTCHA_SITE_KEY=${GATSBY_RECAPTCHA_SITE_KEY}
      - STRAPI_PORT=${STRAPI_PORT}
+     - NODE_ENV=production
+
+  nginx:
+    build:
+      context: ./nginx/
+      dockerfile: Dockerfile
+    volumes:
+      - ./nginx/prod/templates:/etc/nginx/templates
+    ports:
+      - ${NGINX_PORT}:${NGINX_PORT}
+    environment:
+      - NGINX_PORT=${NGINX_PORT}
+      - GATSBY_PORT=${GATSBY_PORT}
+      - STRAPI_PORT=${STRAPI_PORT}
+      - REMARK42_PORT=${REMARK42_PORT}
+      - BASE_URL=${PROD_BASE_URL}
+    depends_on:
+      - strapi
+      - gatsby
+
+  remark42:
+      image: umputun/remark42:latest
+      restart: always
+      container_name: "remark42"
+      environment:
+          - REMARK_PORT=${REMARK42_PORT}
+          - REMARK_URL=https://remark42.${PROD_BASE_URL}  # url pointing to your remark42 server
+          - SITE=${REMARK42_SITE_ID}                     # site ID, same as used for `site_id`, see "Setup on your website"
+          - SECRET=${REMARK42_SECRET}           # secret key
+          - AUTH_GITHUB_CID=${REMARK42_GITHUB_OAUTH_CLIENT_ID}           # oauth2 client ID
+          - AUTH_GITHUB_CSEC=${REMARK42_GITHUB_OAUTH_CLIENT_SECRET}      # oauth2 client secret
+          - AUTH_ANON=true
+          - ANON_VOTE=true
+      volumes:
+          - remark42:/srv/var                        # persistent volume to store all remark42 data
+
+volumes:
+  db:
+  strapi_node_modules:
+  gatsby_node_modules:
+  remark42:

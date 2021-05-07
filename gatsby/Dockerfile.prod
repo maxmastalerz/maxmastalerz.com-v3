@@ -2,6 +2,8 @@ FROM node:12
 
 WORKDIR /gatsby-app
 
+RUN apt-get -q update && apt-get -qy install netcat
+
 RUN npm install -g gatsby-cli
 
 COPY ./package.json .
@@ -10,6 +12,7 @@ COPY . .
 
 RUN ls -l
 
-#Running with -- passes on the paramters to the npm run scripts
+RUN chmod +x ./wait-for
 
-CMD ["sh", "-c", "npm run build && npm run serve -- --host=${HOST} --port=${PORT}"]
+#Running npm run build && npm run serve with -- passes on the paramters to the npm run scripts
+CMD ["sh", "-c", "./wait-for -t 60 strapi:${STRAPI_PORT} -- npm run build && npm run serve -- --host=${HOST} --port=${PORT}"]
