@@ -66,7 +66,7 @@ const Blog = ({ data, location }) => {
                                         <div className="blog-item">
                                             <div className="top">
                                                 <Link to={`/blogs/${blog.slug}`}>
-                                                    <img src={'/api'+blog.image.formats.small.url} alt={blog.image.alternativeText} />
+                                                    <img src={blog.image.formats.small.url} alt={blog.image.alternativeText} />
                                                 </Link>
                                                 
                                                 <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
