@@ -40,11 +40,6 @@ server {
         proxy_set_header Connection "Upgrade";
         proxy_pass_request_headers on;
     }
-
-    #location /web-orig/ {
-    #    proxy_pass http://remark42:${REMARK42_PORT}/web/;
-    #}
-
 }
 
 server {
@@ -86,7 +81,7 @@ server {
     }
 
     location = /web/remark.css {
-        proxy_pass $scheme://${BASE_URL}/remark-updated.css;
+        proxy_pass http://${GATSBY_SERVICE_HOSTNAME}:${GATSBY_PORT}/remark-updated.css;
     }
 
     location /web-orig/ {
