@@ -22,7 +22,7 @@ const ServiceDetails = ({data}) => {
             <div id="service-details" className="service-details-area pt-100 pb-70">
                 <div className="container">
                     <div className="details-item">
-                        <Image fluid={image.childImageSharp.fluid} />
+                        <Image fluid={image.localFile.childImageSharp.fluid} />
 
                         {long_desc}
                     </div>
@@ -40,10 +40,12 @@ export const query = graphql`
         title
         long_desc
         image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+            localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
             }
         }
     }

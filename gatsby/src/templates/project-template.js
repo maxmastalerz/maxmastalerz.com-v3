@@ -64,7 +64,7 @@ const ProjectDetails = ({ data, pageContext }) => {
             <div id="project" className="work-details-area pt-100">
                 <div className="container">
                     <div className="details-img">
-                        <Image fluid={main_img.childImageSharp.fluid} />
+                        <Image fluid={main_img.localFile.childImageSharp.fluid} />
 
                         <div id="project-brief-info" className="row">
                             {clients && (
@@ -173,10 +173,12 @@ export const query = graphql`
     project: strapiProjects(slug: { eq: $slug }) {
       name
       main_img {
-        childImageSharp {
-          fluid {
-            ...GatsbyImageSharpFluid
-          }
+        localFile {
+            childImageSharp {
+              fluid {
+                ...GatsbyImageSharpFluid
+              }
+            }
         }
       }
       clients

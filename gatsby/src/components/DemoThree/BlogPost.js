@@ -12,11 +12,13 @@ export const query = graphql`
         id
         date
         image {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
+            localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
-          }
         }
       }
     }
@@ -47,7 +49,7 @@ const BlogPost = () => {
                                 <div className="blog-item">
                                     <div className="top">
                                         <Link to={`/blogs/${blog.slug}`}>
-                                            <Image fluid={blog.image.childImageSharp.fluid} alt="Blog" />
+                                            <Image fluid={blog.image.localFile.childImageSharp.fluid} alt="Blog" />
                                         </Link>
                                         <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
                                     </div>

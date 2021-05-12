@@ -64,7 +64,7 @@ const BlogDetails = ({ data, pageContext }) => {
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
                 <div className="container ptb-100">
                     <div className="details-img">
-                        <Image fluid={banner_image.childImageSharp.fluid} />
+                        <Image fluid={banner_image.localFile.childImageSharp.fluid} />
                     </div>
 
                     <div className="row">
@@ -160,7 +160,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                                 <div className="recent-inner" key={recentBlogPost.id}>
                                                     <ul className="align-items-center">
                                                         <li>
-                                                            <Image fluid={recentBlogPost.image.childImageSharp.fluid} />
+                                                            <Image fluid={recentBlogPost.image.localFile.childImageSharp.fluid} />
                                                         </li>
                                                         <li>
                                                             <Link to={`/blogs/${recentBlogPost.slug}`}>
@@ -204,10 +204,12 @@ export const query = graphql`
         date
         long_desc
         banner_image {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
+            localFile {
+                childImageSharp {
+                  fluid {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
             }
         }
     }
@@ -219,10 +221,12 @@ export const query = graphql`
         slug
         created_at
         image {
-          childImageSharp {
-            fluid {
-              ...GatsbyImageSharpFluid
-            }
+          localFile {
+              childImageSharp {
+                fluid {
+                  ...GatsbyImageSharpFluid
+                }
+              }
           }
         }
       }

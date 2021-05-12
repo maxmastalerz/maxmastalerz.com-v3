@@ -1,14 +1,6 @@
 # Strapi server
 upstream strapi {
-    server strapi:${STRAPI_PORT};
-}
-
-#redirect www to http://
-server {
-    server_name www.${BASE_URL};
-    listen ${NGINX_PORT};
-
-    return 301 http://${BASE_URL}$request_uri;
+    server ${STRAPI_SERVICE_HOSTNAME}:${STRAPI_PORT};
 }
 
 map $http_upgrade $connection_upgrade {
@@ -23,7 +15,7 @@ server {
 
     #The gatsby web server for maxmastalerz.com
     location / {
-        proxy_pass http://gatsby:${GATSBY_PORT};
+        proxy_pass http://${GATSBY_SERVICE_HOSTNAME}:${GATSBY_PORT};
 
         proxy_set_header Host $host;
         proxy_set_header X-Forwarded-Proto $scheme;
@@ -52,13 +44,17 @@ server {
     #location /web-orig/ {
     #    proxy_pass http://remark42:${REMARK42_PORT}/web/;
     #}
+
 }
 
-#server {
-#    listen 80;
-#    server_name remark42.${BASE_URL};
-#    return      301 https://remark42.${BASE_URL}$request_uri;
-#}
+server {
+    listen 80 default_server;
+    location /elb-status {
+        access_log off;
+        return 200;
+        add_header Content-Type text/plain;
+    }
+}
 
 server {
     listen      80;
@@ -78,7 +74,7 @@ server {
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header        Host $http_host;
-        proxy_pass              http://remark42:${REMARK42_PORT}/web/index.html;
+        proxy_pass              http://${REMARK42_SERVICE_HOSTNAME}:${REMARK42_PORT}/web/index.html;
      }
 
     location / {
@@ -86,7 +82,7 @@ server {
         proxy_set_header        X-Real-IP $remote_addr;
         proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header        Host $http_host;
-        proxy_pass              http://remark42:${REMARK42_PORT}/;
+        proxy_pass              http://${REMARK42_SERVICE_HOSTNAME}:${REMARK42_PORT}/;
     }
 
     location = /web/remark.css {
@@ -95,7 +91,7 @@ server {
     }
 
     location /web-orig/ {
-        proxy_pass http://remark42:${REMARK42_PORT}/web/;
+        proxy_pass http://${REMARK42_SERVICE_HOSTNAME}:${REMARK42_PORT}/web/;
     }
 
     access_log   /var/log/nginx/remark42.log;

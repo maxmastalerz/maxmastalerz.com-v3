@@ -9,3 +9,5 @@ RUN apt-get update && apt-get -y install
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
+
+COPY prod/templates /etc/nginx/templates

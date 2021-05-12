@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/App/layout"
-import SEO from "../components/App/seo"
+import Seo from "../components/App/seo"
 import Navbar from "../components/DemoThree/Navbar"
 import MainBanner from "../components/DemoThree/MainBanner"
 import About from "../components/DemoThree/About"
@@ -19,7 +19,7 @@ const IndexPage = ({data}) => {
             <div className="body-bg-five">
                 <div className="main-area two">
                     <Navbar />
-                    <SEO title="Home" />
+                    <Seo title="Home" />
                     <div className="main-content two">
                         <MainBanner />
                         <About />

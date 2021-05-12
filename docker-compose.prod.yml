@@ -1,12 +1,9 @@
 version: '3'
 services:
-  strapi:
+  cms-service.maxmastalerz.com-private:
     build:
       context: ./strapi/
       dockerfile: Dockerfile.prod
-    volumes:
-      - ./strapi:/strapi-app
-      - strapi_node_modules:/strapi-app/node_modules/
     environment:
      - NODE_ENV=production
      - HOST=${STRAPI_HOST}
@@ -26,30 +23,26 @@ services:
      - PROD_BASE_URL=${PROD_BASE_URL}
      - RECAPTCHA_SECRET_KEY=${STRAPI_RECAPTCHA_SECRET_KEY}
 
-  gatsby:
+  gatsby-service.maxmastalerz.com-private:
     build:
       context: ./gatsby/
       dockerfile: Dockerfile.prod
-    volumes:
-      - ./gatsby:/gatsby-app
-      - gatsby_node_modules:/gatsby-app/node_modules/
     depends_on:
-      - strapi
+      - cms-service.maxmastalerz.com-private
     #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
     environment:
      - HOST=${GATSBY_HOST}
      - PORT=${GATSBY_PORT}
      - GATSBY_BASE_URL=${PROD_BASE_URL}
      - GATSBY_RECAPTCHA_SITE_KEY=${GATSBY_RECAPTCHA_SITE_KEY}
+     - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
      - STRAPI_PORT=${STRAPI_PORT}
      - NODE_ENV=production
 
   nginx:
     build:
       context: ./nginx/
-      dockerfile: Dockerfile
-    volumes:
-      - ./nginx/prod/templates:/etc/nginx/templates
+      dockerfile: Dockerfile.prod
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
     environment:
@@ -58,14 +51,16 @@ services:
       - STRAPI_PORT=${STRAPI_PORT}
       - REMARK42_PORT=${REMARK42_PORT}
       - BASE_URL=${PROD_BASE_URL}
+      - GATSBY_SERVICE_HOSTNAME=${GATSBY_SERVICE_HOSTNAME}
+      - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
+      - REMARK42_SERVICE_HOSTNAME=${REMARK42_SERVICE_HOSTNAME}
     depends_on:
-      - strapi
-      - gatsby
+      - cms-service.maxmastalerz.com-private
+      - gatsby-service.maxmastalerz.com-private
 
-  remark42:
+  remark42-service.maxmastalerz.com-private:
       image: umputun/remark42:latest
       restart: always
-      container_name: "remark42"
       environment:
           - REMARK_PORT=${REMARK42_PORT}
           - REMARK_URL=https://remark42.${PROD_BASE_URL}  # url pointing to your remark42 server
@@ -79,7 +74,4 @@ services:
           - remark42:/srv/var                        # persistent volume to store all remark42 data
 
 volumes:
-  db:
-  strapi_node_modules:
-  gatsby_node_modules:
   remark42:

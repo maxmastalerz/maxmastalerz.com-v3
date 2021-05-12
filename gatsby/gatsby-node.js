@@ -141,3 +141,17 @@ exports.createResolvers = ({ cache, createResolvers }) => {
     },
   })
 };
+
+/*exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type StrapiProjectsMain_img implements Node {
+      childImageSharp: File
+    }
+
+    type StrapiLogoImage implements Node {
+      childImageSharp: File
+    }
+  `
+  createTypes(typeDefs)
+}*/

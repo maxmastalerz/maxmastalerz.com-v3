@@ -11,9 +11,11 @@ const featuredProjectsQuery = graphql`
                 name
                 slug
                 thumnail_img {
-                    childImageSharp {
-                        fluid {
-                            ...GatsbyImageSharpFluid
+                    localFile {
+                        childImageSharp {
+                            fluid {
+                                ...GatsbyImageSharpFluid
+                            }
                         }
                     }
                 }
@@ -69,7 +71,7 @@ const Projects = () => {
                             return (
                                 <div className={"grid-item "+(i%2===0 ? "grid-item--width7-12ths" : "")} key={project.id}>
                                     <div className="overlay">
-                                        <Image fluid={project.thumnail_img.childImageSharp.fluid} alt="Portfolio piece" />
+                                        <Image fluid={project.thumnail_img.localFile.childImageSharp.fluid} alt="Portfolio piece" />
                                         <div className="inner">
                                             <h3>
                                                 <Link to={`/projects/${project.slug}`}>

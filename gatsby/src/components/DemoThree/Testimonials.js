@@ -32,7 +32,7 @@ export const query = graphql`
         position
         desc
         images {
-          publicURL
+          url
         }
       }
     }
@@ -66,7 +66,7 @@ const Testimonials = () => {
                             <div className="review-item" key={testimonial.id}>
                                 <i className='bx bxs-quote-right'></i>
                                 <p>{testimonial.desc}</p>
-                                <img alt="Review" src={testimonial.images.publicURL} />
+                                <img alt="Review" src={testimonial.images.url} />
                                 <h3>{testimonial.name}</h3>
                                 <span>{testimonial.position}</span>
                             </div>
