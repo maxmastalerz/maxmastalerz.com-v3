@@ -86,8 +86,7 @@ server {
     }
 
     location = /web/remark.css {
-        #Expected to fail on AWS ELB because of unknown base url.
-        proxy_pass http://${BASE_URL}/remark-updated.css;
+        proxy_pass $scheme://${BASE_URL}/remark-updated.css;
     }
 
     location /web-orig/ {
