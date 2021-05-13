@@ -20,7 +20,7 @@ module.exports = ({ env }) => {
     return {
       email: emailSettings,
       upload: {
-        provider: 'aws-s3',
+        provider: 'aws-s3-cloudfront',
         providerOptions: {
           accessKeyId: env('AWS_S3_KEY'),
           secretAccessKey: env('AWS_S3_SECRET'),
@@ -28,6 +28,7 @@ module.exports = ({ env }) => {
           params: {
             Bucket: env('AWS_S3_BUCKET'),
           },
+          cdn: env('AWS_CLOUDFRONT')
         },
       },
     };

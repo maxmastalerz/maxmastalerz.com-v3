@@ -7,7 +7,7 @@ const TopHeader = (props) => {
         <div className="top-header">
             <div className="container">
                 <div className="row align-items-center">
-                    <div className="col-lg-6">
+                    <div className="col-6">
                         <div className="logo">
                             <Link to="/">
                                 <img src={logo} alt="Logo" />
@@ -15,7 +15,7 @@ const TopHeader = (props) => {
                         </div>
                     </div>
 
-                    <div className="col-lg-6">
+                    <div className="col-6">
                         <ul>
                             <li>
                                 <Link to="/">

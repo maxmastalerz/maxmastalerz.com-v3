@@ -20,6 +20,7 @@ services:
      - AWS_S3_BUCKET=${STRAPI_AWS_S3_BUCKET}
      - AWS_S3_KEY=${STRAPI_AWS_S3_KEY}
      - AWS_S3_SECRET=${STRAPI_AWS_S3_SECRET}
+     - AWS_CLOUDFRONT=${STRAPI_AWS_CLOUDFRONT}
      - PROD_BASE_URL=${PROD_BASE_URL}
      - RECAPTCHA_SECRET_KEY=${STRAPI_RECAPTCHA_SECRET_KEY}
 
@@ -70,6 +71,7 @@ services:
           - AUTH_GITHUB_CSEC=${REMARK42_GITHUB_OAUTH_CLIENT_SECRET}      # oauth2 client secret
           - AUTH_ANON=true
           - ANON_VOTE=true
+          - ADMIN_SHARED_ID=github_ce2d4e381aa49ffbf800f7d6527e2b774a1be617
       volumes:
           - remark42:/srv/var                        # persistent volume to store all remark42 data
 

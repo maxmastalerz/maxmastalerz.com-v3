@@ -10,3 +10,6 @@ body {
 .root__copyright {
 	display: none;
 }
+#remark42 div.root.user-info {
+	top: 66px;
+}

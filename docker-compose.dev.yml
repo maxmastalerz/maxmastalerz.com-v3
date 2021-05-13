@@ -94,6 +94,7 @@ services:
           - AUTH_GITHUB_CSEC=${REMARK42_GITHUB_OAUTH_CLIENT_SECRET}      # oauth2 client secret
           - AUTH_ANON=true
           - ANON_VOTE=true
+          - ADMIN_SHARED_ID=github_ce2d4e381aa49ffbf800f7d6527e2b774a1be617
       volumes:
           - remark42:/srv/var                        # persistent volume to store all remark42 data
 
