@@ -84,7 +84,6 @@ services:
   remark42-service.maxmastalerz.com-private:
       image: umputun/remark42:latest
       restart: always
-      container_name: "remark42"
       environment:
           - REMARK_PORT=${REMARK42_PORT}
           - REMARK_URL=http://remark42.${DEV_BASE_URL}  # url pointing to your remark42 server

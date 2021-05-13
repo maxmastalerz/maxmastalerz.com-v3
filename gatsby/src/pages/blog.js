@@ -61,12 +61,17 @@ const Blog = ({ data, location }) => {
                                 let date = fullDate.getDate();
                                 let month = monthNames[fullDate.getMonth()];
 
+                                let blogImg = blog.image.formats.small.url;
+                                if(blogImg[0] === "/") {
+                                    blogImg = `/api${blogImg}`;
+                                }
+
                                 return (
                                     <div className="col-sm-6 col-lg-4" key={blog.id}>
                                         <div className="blog-item">
                                             <div className="top">
-                                                <Link to={`/blogs/${blog.slug}`}>
-                                                    <img src={blog.image.formats.small.url} alt={blog.image.alternativeText} />
+                                                <Link to={`/blog/${blog.slug}`}>
+                                                    <img src={blogImg} alt={blog.image.alternativeText} />
                                                 </Link>
                                                 
                                                 <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
@@ -74,13 +79,13 @@ const Blog = ({ data, location }) => {
 
                                             <div className="bottom">
                                                 <h3>
-                                                    <Link to={`/blogs/${blog.slug}`}>
+                                                    <Link to={`/blog/${blog.slug}`}>
                                                         {blog.title}
                                                     </Link>
                                                 </h3>
                                                 <p>{blog.short_desc}</p>
 
-                                                <Link to={`/blogs/${blog.slug}`} className="blog-btn">
+                                                <Link to={`/blog/${blog.slug}`} className="blog-btn">
                                                     Read More <i className="flaticon-right-arrow"></i>
                                                 </Link>
                                             </div>

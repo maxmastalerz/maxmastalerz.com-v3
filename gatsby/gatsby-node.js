@@ -92,7 +92,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   result.data.blogs.edges.forEach(({previous, node, next}) => {
     createPage({
-      path: `/blogs/${node.slug}`,
+      path: `/blog/${node.slug}`,
       component: path.resolve(`src/templates/blog-template.js`),
       context: {
         previous: previous,
@@ -141,17 +141,3 @@ exports.createResolvers = ({ cache, createResolvers }) => {
     },
   })
 };
-
-/*exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
-  const typeDefs = `
-    type StrapiProjectsMain_img implements Node {
-      childImageSharp: File
-    }
-
-    type StrapiLogoImage implements Node {
-      childImageSharp: File
-    }
-  `
-  createTypes(typeDefs)
-}*/

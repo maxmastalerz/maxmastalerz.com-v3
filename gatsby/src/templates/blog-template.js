@@ -83,7 +83,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                     <div className="col-6 col-lg-6">
                                         {previousBlog && (
                                             <div className="pages-item">
-                                                <Link className="pre-project" to={`/blogs/${previousBlog.slug}`}>
+                                                <Link className="pre-project" to={`/blog/${previousBlog.slug}`}>
                                                     <i className="flaticon-right-arrow"></i> Previous Article
                                                 </Link>
                                             </div>
@@ -93,7 +93,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                     <div className="col-6 col-lg-6">
                                         {nextBlog && (
                                             <div className="pages-item three">
-                                                <Link className="next-project" to={`/blogs/${nextBlog.slug}`}>
+                                                <Link className="next-project" to={`/blog/${nextBlog.slug}`}>
                                                     Next Article <i className="flaticon-right-arrow"></i>
                                                 </Link>
                                             </div>
@@ -163,10 +163,10 @@ const BlogDetails = ({ data, pageContext }) => {
                                                             <Image fluid={recentBlogPost.image.localFile.childImageSharp.fluid} />
                                                         </li>
                                                         <li>
-                                                            <Link to={`/blogs/${recentBlogPost.slug}`}>
+                                                            <Link to={`/blog/${recentBlogPost.slug}`}>
                                                                 <h3>{recentBlogPost.title}</h3>
                                                             </Link>
-                                                            <Link to={`/blogs/${recentBlogPost.slug}`}>
+                                                            <Link to={`/blog/${recentBlogPost.slug}`}>
                                                                 Read More <i className="flaticon-right-arrow"></i>
                                                             </Link>
                                                         </li>

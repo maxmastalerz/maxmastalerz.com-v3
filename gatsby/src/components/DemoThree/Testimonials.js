@@ -11,9 +11,9 @@ const options = {
     margin: 0,
     nav: true,
     dots: false,
-    smartSpeed: 1000,
+    smartSpeed: 250,
     autoplay: true,
-    autoplayTimeout: 3000,
+    autoplayTimeout: 12000,
     autoplayHoverPause: true,
     animateOut: 'fadeOut',
     animateIn: 'fadeIn',
@@ -62,11 +62,16 @@ const Testimonials = () => {
                     {...options}
                 > 
                     {nodes.map((testimonial) => {
+                        let testimonialImg = testimonial.images.url;
+                        if(testimonialImg[0] === "/") {
+                            testimonialImg = `/api${testimonialImg}`;
+                        }
+
                         return (
                             <div className="review-item" key={testimonial.id}>
                                 <i className='bx bxs-quote-right'></i>
                                 <p>{testimonial.desc}</p>
-                                <img alt="Review" src={testimonial.images.url} />
+                                <img alt="Review" src={testimonialImg} />
                                 <h3>{testimonial.name}</h3>
                                 <span>{testimonial.position}</span>
                             </div>

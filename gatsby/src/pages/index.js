@@ -1,5 +1,4 @@
 import React from "react"
-import Layout from "../components/App/layout"
 import Seo from "../components/App/seo"
 import Navbar from "../components/DemoThree/Navbar"
 import MainBanner from "../components/DemoThree/MainBanner"
@@ -15,26 +14,23 @@ import Footer from "../components/Common/Footer"
 const IndexPage = ({data}) => {
     
     return (
-        <Layout>
-            <div className="body-bg-five">
-                <div className="main-area two">
-                    <Navbar />
-                    <Seo title="Home" />
-                    <div className="main-content two">
-                        <MainBanner />
-                        <About />
-                        <Services />
-                        <Experience />
-                        {/*<Skills />*/}
-                        <Projects />
-                        <BlogPost />
-                        <Testimonials />
-                        <ContactForm />
-                        <Footer />
-                    </div>
+        <div className="body-bg-five">
+            <div className="main-area two">
+                <Navbar />
+                <Seo title="Home" />
+                <div className="main-content two">
+                    <MainBanner />
+                    <About />
+                    <Services />
+                    <Experience />
+                    <Projects />
+                    <BlogPost />
+                    <Testimonials />
+                    <ContactForm />
+                    <Footer />
                 </div>
             </div>
-        </Layout>
+        </div>
     );
 
 }

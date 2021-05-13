@@ -48,7 +48,7 @@ const BlogPost = () => {
                             <div className="col-sm-6 col-lg-6" key={blog.id}>
                                 <div className="blog-item">
                                     <div className="top">
-                                        <Link to={`/blogs/${blog.slug}`}>
+                                        <Link to={`/blog/${blog.slug}`}>
                                             <Image fluid={blog.image.localFile.childImageSharp.fluid} alt="Blog" />
                                         </Link>
                                         <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
@@ -56,13 +56,13 @@ const BlogPost = () => {
 
                                     <div className="bottom">
                                         <h3>
-                                            <Link to={`/blogs/${blog.slug}`}>
+                                            <Link to={`/blog/${blog.slug}`}>
                                                 {blog.title}
                                             </Link>
                                         </h3>
                                         <p>{blog.short_desc}</p>
 
-                                        <Link to={`/blogs/${blog.slug}`} className="blog-btn">
+                                        <Link to={`/blog/${blog.slug}`} className="blog-btn">
                                             Read More <i className="flaticon-right-arrow"></i>
                                         </Link>
                                     </div>
