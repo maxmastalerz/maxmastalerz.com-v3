@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import TopHeader from '../components/Common/TopHeader';
 import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
-import ReactMarkdown from "react-markdown"
 import Image from 'gatsby-image'
 import BlogSearch from "../components/Blog/BlogSearch";
+import useScript from 'react-script-hook';
+import { Helmet } from "react-helmet";
 
 const insertScript = (src, id, parentElement) => {
     const script = window.document.createElement('script');
@@ -35,6 +36,15 @@ const BlogDetails = ({ data, pageContext }) => {
     const month = monthNames[fullDate.getMonth()];
     const year = fullDate.getFullYear();
 
+    useScript({ src: '/oEmbed-init.js' });
+
+    const [loadingHighlightJS, ] = useScript({ src: '/highlight/highlight.pack.js' });
+    useEffect(() => {
+        if(!loadingHighlightJS) {
+            window.hljs.highlightAll();
+        }
+    }, [loadingHighlightJS]);
+
     useEffect(() => {
         if (!window) { // If there's no window there's nothing to do for us
             return;
@@ -60,6 +70,9 @@ const BlogDetails = ({ data, pageContext }) => {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css"/>
+            </Helmet>
             <div id="blog" className="blog-details-area">
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
                 <div className="container ptb-100">
@@ -75,7 +88,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                     <li>{month} {dateNum}, {year}</li>
                                 </ul>
                                 <h2>{title}</h2>
-                                <ReactMarkdown source={long_desc} />
+                                <div class="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
                             </div>
 
                             <div className="details-pages">

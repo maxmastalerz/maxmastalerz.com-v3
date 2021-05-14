@@ -3453,6 +3453,15 @@ button:focus {
 }
 
 /*----- End Case Study Details CSS -----*/
+/*----- CMS content -----*/
+div.cms-content {
+  /*Added to avoid creating my own ckeditor build simply to remove post titles.*/
+}
+div.cms-content h1:first-of-type {
+  display: none;
+}
+
+/*----- End CMS content -----*/
 /*----- Blog Details CSS -----*/
 .blog-details-area .details-img {
   margin-bottom: 30px;

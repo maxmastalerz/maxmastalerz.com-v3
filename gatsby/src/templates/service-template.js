@@ -4,13 +4,14 @@ import Image from 'gatsby-image';
 import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer';
-import ReactMarkdown from "react-markdown";
+import useScript from 'react-script-hook';
 
 const ServiceDetails = ({data}) => {
+    useScript({ src: '/oEmbed-init.js' });
     const { title, long_desc, image } = data.service;
 
     return (
-        <React.Fragment>  
+        <React.Fragment>
             <TopHeader />
             <PageBanner 
                 bgText={title}
@@ -24,8 +25,7 @@ const ServiceDetails = ({data}) => {
                 <div className="container">
                     <div className="details-item">
                         <Image fluid={image.localFile.childImageSharp.fluid} />
-
-                        <ReactMarkdown source={long_desc} />
+                        <div class="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
                     </div>
                 </div>
             </div>

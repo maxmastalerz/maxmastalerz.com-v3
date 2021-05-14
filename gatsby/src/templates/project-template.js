@@ -4,9 +4,11 @@ import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer'; 
 import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
-import ReactMarkdown from "react-markdown";
+import useScript from 'react-script-hook';
 
 const ProjectDetails = ({ data, pageContext }) => {
+    useScript({ src: '/oEmbed-init.js' });
+
     const previousProject = pageContext.previous;
     const { name, main_img, clients, date_start, date_end, categories, roles, description } = data.project;
     const nextProject = pageContext.next;
@@ -129,8 +131,7 @@ const ProjectDetails = ({ data, pageContext }) => {
                     
                     <div className="details-description">
                         <h3>Description</h3>
-
-                        <ReactMarkdown source={description} />
+                        <div class="cms-content" dangerouslySetInnerHTML={{__html: description}} />
                     </div>
 
                     <div className="details-pages">
