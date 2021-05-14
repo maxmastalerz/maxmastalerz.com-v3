@@ -4,6 +4,7 @@ import Image from 'gatsby-image';
 import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer';
+import ReactMarkdown from "react-markdown";
 
 const ServiceDetails = ({data}) => {
     const { title, long_desc, image } = data.service;
@@ -24,7 +25,7 @@ const ServiceDetails = ({data}) => {
                     <div className="details-item">
                         <Image fluid={image.localFile.childImageSharp.fluid} />
 
-                        {long_desc}
+                        <ReactMarkdown source={long_desc} />
                     </div>
                 </div>
             </div>

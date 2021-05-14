@@ -4,6 +4,7 @@ import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer'; 
 import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
+import ReactMarkdown from "react-markdown";
 
 const ProjectDetails = ({ data, pageContext }) => {
     const previousProject = pageContext.previous;
@@ -128,7 +129,8 @@ const ProjectDetails = ({ data, pageContext }) => {
                     
                     <div className="details-description">
                         <h3>Description</h3>
-                        {description}
+
+                        <ReactMarkdown source={description} />
                     </div>
 
                     <div className="details-pages">
