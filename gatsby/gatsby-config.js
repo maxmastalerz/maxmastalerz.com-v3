@@ -1,5 +1,6 @@
 module.exports = {
   siteMetadata: {
+    siteUrl: `https://maxmastalerz.com`,
     title: `maxmastalerz.com`,
     description: `Looking to hire a software developer or interested in software development? Checkout my portfolio, blog, and more.`,
     author: `@envy_theme`,
@@ -41,5 +42,20 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [
+          "UA-82332830-1", // Google Analytics / GA
+        ],
+        gtagConfig: {
+          cookie_expires: 0,
+        },
+        pluginConfig: {
+          head: false,
+        },
+      },
+    }
   ],
 }

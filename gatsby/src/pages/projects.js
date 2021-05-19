@@ -69,18 +69,20 @@ const Projects = () => {
                         <div className="grid-sizer"></div>
                         {nodes.map((project, i) => {
                             return (
-                                <div className="grid-item">
-                                    <div className="overlay">
-                                        <Image fluid={project.thumnail_img.localFile.childImageSharp.fluid} alt="Portfolio piece" />
-                                        <div className="inner">
-                                            <h3>
-                                                <Link to={`/projects/${project.slug}`}>
-                                                    {project.name}
-                                                </Link>
-                                            </h3>
+                                <Link to={`/projects/${project.slug}`}>
+                                    <div className="grid-item">
+                                        <div className="overlay">
+                                            <Image fluid={project.thumnail_img.localFile.childImageSharp.fluid} alt="Portfolio piece" />
+                                            <div className="inner">
+                                                <h3>
+                                                    <Link to={`/projects/${project.slug}`}>
+                                                        {project.name}
+                                                    </Link>
+                                                </h3>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             );
                         })}
                     </div>

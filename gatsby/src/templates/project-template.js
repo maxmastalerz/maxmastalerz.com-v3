@@ -17,12 +17,12 @@ const ProjectDetails = ({ data, pageContext }) => {
                         "August","September","October","November","December"];
     let monthStart, yearStart, monthEnd, yearEnd = null;
     if(date_start !== null) {
-        const fullDateStart = new Date(date_start);
+        const fullDateStart = new Date(`${date_start} EST`);
         monthStart = monthNames[fullDateStart.getMonth()];
         yearStart = fullDateStart.getFullYear();
     }
     if(date_end !== null) {
-        const fullDateEnd = new Date(date_start);
+        const fullDateEnd = new Date(`${date_end} EST`);
         monthEnd = monthNames[fullDateEnd.getMonth()];
         yearEnd = fullDateEnd.getFullYear();
     }
