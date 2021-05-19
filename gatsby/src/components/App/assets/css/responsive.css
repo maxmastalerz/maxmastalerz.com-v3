@@ -1149,6 +1149,11 @@
     max-width: 1475px;
   }
 }
+@media only screen and (max-height: 896px) {
+  .pufo-aside .navbar-nav li {
+    margin-bottom: 0px;
+  }
+}
 @media only screen and (max-width: 991px) {
   .banner-area.three {
     padding-top: 75px;
