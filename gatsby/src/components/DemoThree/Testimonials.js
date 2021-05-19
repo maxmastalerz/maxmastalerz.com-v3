@@ -54,7 +54,7 @@ const Testimonials = () => {
                 <div className="section-title three">
                     <span className="sub-title">TESTIMONIALS</span>
                     <h2>Here's What Some People Had to Say</h2>
-                    <p>These are a few of the testimonials I received from people I worked with.</p>
+                    <p>These are a few of the testimonials I received from people I have worked with.</p>
                 </div>
 
                 {display ? <OwlCarousel 

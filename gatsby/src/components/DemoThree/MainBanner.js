@@ -7,7 +7,7 @@ const MainBanner = () => {
     return (
         <div id="home" className="banner-area border-bottom-two three">
             <div className="common-right-text-two">
-                <span>Max <br /> Mastalerz <br /> SOFTWARE <br /> ENGINEER <br /> FULL STACK <br /> DEVELOPER</span>
+                <span>Max <br /> Mastalerz <br /> Software <br /> Engineer <br /> Full Stack <br /> Developer</span>
             </div>
             
             <div className="d-table">
