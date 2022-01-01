@@ -7,7 +7,7 @@
   "dependencies": {
     "@loadable/component": "^5.14.1",
     "axios": "^0.21.0",
-    "gatsby": "3.4.2",
+    "gatsby": "3.14.6",
     "gatsby-image": "3.4.0",
     "gatsby-plugin-manifest": "3.4.0",
     "gatsby-plugin-offline": "^3.2.38",
@@ -16,7 +16,7 @@
     "gatsby-plugin-sitemap": "3.3.0",
     "gatsby-plugin-google-gtag": "3.5.0",
     "gatsby-source-filesystem": "3.4.0",
-    "gatsby-source-strapi": "1.0.0-alpha.0",
+    "gatsby-source-strapi": "1.0.2",
     "gatsby-transformer-sharp": "3.4.0",
     "graphql-type-json": "^0.3.2",
     "lunr": "^2.3.9",
