@@ -61,7 +61,7 @@ const Blog = ({ data, location }) => {
                                 let date = fullDate.getDate();
                                 let month = monthNames[fullDate.getMonth()];
 
-                                let blogImg = blog.image.formats.small.url;
+                                let blogImg = (blog.image.formats.small !== undefined ? blog.image.formats.small.url : blog.image.formats.thumbnail.url);
                                 if(blogImg[0] === "/") {
                                     blogImg = `/api${blogImg}`;
                                 }

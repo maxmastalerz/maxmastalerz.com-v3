@@ -12,6 +12,7 @@ services:
     environment:
      - HOST=${STRAPI_HOST}
      - PORT=${STRAPI_PORT}
+     - JWT_SECRET=${STRAPI_JWT_SECRET}
      - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
      - MYSQL_HOST=${MYSQL_HOST}
      - MYSQL_PORT=${MYSQL_PORT}

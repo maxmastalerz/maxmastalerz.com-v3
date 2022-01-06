@@ -14,11 +14,30 @@ $ sudo docker-compose --env-file .env.dev -f docker-compose.dev.yml build
 
 $ sudo docker-compose --env-file .env.dev -f docker-compose.dev.yml up
 
-### To run locally with gatsby production build:
+Go to http://dev.maxmastalerz.com
+Go to http://dev.maxmastalerz.com/api/admin
+Go to http://dev.maxmastalerz.com/__graphql
+
+### To run locally with a gatsby production build(As I currently don't have a staging environment):
+
+Temporarily change the resolver in maxmastalerzcom/nginx/nginx.prod.conf from 10.0.0.2 to 127.0.0.11.
+IMPORTANT: Make sure to change this back before a real production deployment.
+
+Temporarily edit your computer's /etc/hosts to contain:
+
+127.0.0.1       maxmastalerz.com
 
 $ sudo docker-compose --env-file .env.prod -f docker-compose.prod.yml build
 
 $ sudo docker-compose --env-file .env.prod -f docker-compose.prod.yml up
+
+Go to http://maxmastalerz.com
+Go to http://maxmastalerz.com/api/admin (Won't work locally due to strapi config saying https. Read below)
+
+TODO or unfixable: /api/admin does not seem to work due to http/https reasons?
+Check/Update maxmastalerz.com/strapi/config/server.js baseUrlWithProto variable to temporarily "fix".
+
+TODO or unfixable: Note that remark42 comments will not work properly due to https/http reasons?
 
 ### Login:
 
@@ -29,6 +48,10 @@ John Doe <johndoe@gmail.com> Password123
 ### Retrieve auth token and authenticate your Docker client to the registry.
 
 $ aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 244252657288.dkr.ecr.us-east-2.amazonaws.com
+
+### Build the PROD images locally
+
+$ sudo docker-compose --env-file .env.prod -f docker-compose.prod.yml build
 
 ### Deploy strapi image
 
@@ -75,3 +98,10 @@ Set the desired capacity of the autoscaling group ( https://us-east-2.console.aw
 Deploy/Update the service twice so that the service jumps to the new instance and then back to the old instance.
 
 Set the desired capacity of the autoscaling group ( https://us-east-2.console.aws.amazon.com/ec2autoscaling/home?region=us-east-2#/details/EC2ContainerService-maxmastalerzcom-cluster-EcsInstanceAsg-1C0YFKEAYY25V?view=details ) back to 2 when the 3rd instance has no tasks on it. This is to avoid incurring extra costs.
+
+### Once deployed...
+
+Once deployed, you can visit:
+
+https://maxmastalerz.com
+https://maxmastalerz.com/api/admin
