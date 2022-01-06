@@ -1,17 +1,13 @@
-const axios = require('axios');
+const { verify } = require('hcaptcha');
 
 const processRequest = async (postedData, ctx) => {
   try {
-    const res = await axios.post('https://www.google.com/recaptcha/api/siteverify', null, {
-      params: {
-        secret: process.env.RECAPTCHA_SECRET_KEY,
-        response: postedData.recaptchaValue
-      }
-    });
+    const secret = process.env.HCAPTCHA_SECRET_KEY;
+    const token = postedData.hCaptchaValue;
 
-    let data = res.data || {};
+    let { success } = await verify(secret, token);
 
-    if(data.success === true) {
+    if(success) {
       strapi.services.email.send(postedData.email, "contact@maxmastalerz.com", postedData.name, postedData.subject, postedData.number, postedData.text);
 
       ctx.send({data: {
@@ -50,7 +46,7 @@ const isValidRequest = (postedData) => {
     isValid = false;
   }
 
-  if(!(postedData.recaptchaValue !== undefined && postedData.recaptchaValue.length > 0)) {
+  if(!(postedData.hCaptchaValue !== undefined && postedData.hCaptchaValue.length > 0)) {
     isValid = false;
   }
 

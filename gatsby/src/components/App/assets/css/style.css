@@ -1115,7 +1115,8 @@ button:focus {
   padding-top: 13px;
   height: auto !important;
 }
-.contact-area #contactForm .form-group #contact-recaptcha > div > div {
+.contact-area #contactForm .form-group #contact-hcaptcha > iframe {
+  display: block;
   margin: auto;
 }
 .contact-area #contactForm .common-btn {
@@ -2184,10 +2185,11 @@ button:focus {
   margin-bottom: 0;
   font-size: 20px;
 }
-.masonry-sm .grid-item .inner h3 a, .masonry-lg .grid-item .inner h3 a {
+.masonry-sm .grid-item .inner h3 p, .masonry-lg .grid-item .inner h3 p {
+  transition: 0.5s all ease;
   color: #fff;
 }
-.masonry-sm .grid-item .inner h3 a:hover, .masonry-lg .grid-item .inner h3 a:hover {
+.masonry-sm .grid-item .inner h3 p:hover, .masonry-lg .grid-item .inner h3 p:hover {
   letter-spacing: 1px;
 }
 .masonry-sm .grid-item .overlay, .masonry-lg .grid-item .overlay {

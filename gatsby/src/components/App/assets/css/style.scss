@@ -1242,7 +1242,8 @@ button {
                 padding-top: 13px;
                 height: auto !important;
             }
-            #contact-recaptcha > div > div {
+            #contact-hcaptcha > iframe {
+                display: block;
                 margin: auto;
             }
         }
@@ -2532,7 +2533,8 @@ button {
                 margin-bottom: 0;
                 font-size: 20px;
 
-                a {
+                p {
+                    transition: 0.5s all ease;
                     color: $white-color;
 
                     &:hover {

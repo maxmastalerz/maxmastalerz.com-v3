@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import axios from 'axios'
 import baseUrl from '../../utils/baseUrl'
 import { useForm } from 'react-hook-form'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
-import ReCAPTCHA from "react-google-recaptcha";
-const recaptchaRef = React.createRef();
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 const MySwal = withReactContent(Swal)
 
 const alertSuccessful = () => {
@@ -41,6 +40,10 @@ const INITIAL_STATE = {
 
 const ContactForm = () => {
     const [contact, setContact] = useState(INITIAL_STATE);
+    const [hCaptchaValue, setHCaptchaValue] = useState(null);
+
+    const hCaptchaRef = useRef(null);
+
     const { register, handleSubmit, errors } = useForm();
 
     const handleChange = e => {
@@ -51,12 +54,10 @@ const ContactForm = () => {
 
     const onSubmit = async e => {
         // e.preventDefault();
-        
-        const recaptchaValue = recaptchaRef.current.getValue();
         const { name, email, number, subject, text } = contact;
 
         const url = `${baseUrl}/api/contact`;
-        const payload = { name, email, number, subject, text, recaptchaValue };
+        const payload = { name, email, number, subject, text, hCaptchaValue };
 
         try {
             let axiosRes = await axios.post(url, payload);
@@ -72,7 +73,7 @@ const ContactForm = () => {
             alertFailure();
         }
 
-        recaptchaRef.current.reset();
+        hCaptchaRef.current.resetCaptcha();
     };
 
     return (
@@ -160,10 +161,12 @@ const ContactForm = () => {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <ReCAPTCHA
-                                    id="contact-recaptcha"
-                                    sitekey={process.env.GATSBY_RECAPTCHA_SITE_KEY}
-                                    ref={recaptchaRef}
+                                <HCaptcha
+                                    id="contact-hcaptcha"
+                                    sitekey={process.env.GATSBY_HCAPTCHA_SITE_KEY}
+                                    onVerify={setHCaptchaValue}
+                                    ref={hCaptchaRef}
+                                    reCaptchaCompat={false}
                                 />
                             </div>
                             <button type="submit" className="btn common-btn three">Send Message <span></span></button>
