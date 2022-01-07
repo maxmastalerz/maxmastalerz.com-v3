@@ -67,7 +67,7 @@ const ContactForm = () => {
 
     const { register, handleSubmit, errors } = useForm({reValidateMode: 'onBlur'});
 
-    const [loadingHCaptcha, hCaptchaLoadingError] = useScript({
+    const [, hCaptchaLoadingError] = useScript({
         src: contactFormFieldChanged===true ? 'https://js.hcaptcha.com/1/api.js' : null,
         onload: () => {
             setLoadedHCaptcha(true);
