@@ -67,17 +67,15 @@ const Projects = () => {
                 <div className="masonry-lg work-area pt-100 pb-70">
                     <div className="grid">
                         <div className="grid-sizer"></div>
-                        {nodes.map((project, i) => {
+                        {nodes.map((project) => {
                             return (
-                                <Link to={`/projects/${project.slug}`}>
+                                <Link key={project.id} to={`/projects/${project.slug}`}>
                                     <div className="grid-item">
                                         <div className="overlay">
                                             <Image fluid={project.thumnail_img.localFile.childImageSharp.fluid} alt="Portfolio piece" />
                                             <div className="inner">
                                                 <h3>
-                                                    <Link to={`/projects/${project.slug}`}>
-                                                        {project.name}
-                                                    </Link>
+                                                    <p>{project.name}</p>
                                                 </h3>
                                             </div>
                                         </div>

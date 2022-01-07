@@ -88,7 +88,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                     <li>{month} {dateNum}, {year}</li>
                                 </ul>
                                 <h2>{title}</h2>
-                                <div class="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
+                                <div className="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
                             </div>
 
                             <div className="details-pages">

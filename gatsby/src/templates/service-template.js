@@ -25,7 +25,7 @@ const ServiceDetails = ({data}) => {
                 <div className="container">
                     <div className="details-item">
                         <Image fluid={image.localFile.childImageSharp.fluid} />
-                        <div class="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
+                        <div className="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
                     </div>
                 </div>
             </div>

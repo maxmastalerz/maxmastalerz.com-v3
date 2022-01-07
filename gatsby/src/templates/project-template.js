@@ -104,7 +104,7 @@ const ProjectDetails = ({ data, pageContext }) => {
                                         <ul>
                                             {categories.split('\n').map((category) => {
                                                 return (
-                                                    <li>{category}</li>
+                                                    <li key={category}>{category}</li>
                                                 );
                                             })}
                                         </ul>
@@ -119,7 +119,7 @@ const ProjectDetails = ({ data, pageContext }) => {
                                         <ul>
                                             {roles.split('\n').map((role) => {
                                                 return (
-                                                    <li>{role}</li>
+                                                    <li key={role}>{role}</li>
                                                 );
                                             })}
                                         </ul>
@@ -131,7 +131,7 @@ const ProjectDetails = ({ data, pageContext }) => {
                     
                     <div className="details-description">
                         <h3>Description</h3>
-                        <div class="cms-content" dangerouslySetInnerHTML={{__html: description}} />
+                        <div className="cms-content" dangerouslySetInnerHTML={{__html: description}} />
                     </div>
 
                     <div className="details-pages">
