@@ -51,7 +51,7 @@ services:
       dockerfile: Dockerfile.dev
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
-      - "${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}"
+      - ${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}
     environment:
       - NGINX_PORT=${NGINX_PORT}
       - GATSBY_INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}

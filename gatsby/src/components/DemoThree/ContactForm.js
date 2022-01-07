@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import baseUrl from '../../utils/baseUrl'
 import { useForm } from 'react-hook-form'
 import withReactContent from 'sweetalert2-react-content'
 import Swal from 'sweetalert2'
-import HCaptcha from "@hcaptcha/react-hcaptcha";
+import useScript from "react-script-hook";
 const MySwal = withReactContent(Swal)
 
 const alertSuccessful = () => {
@@ -29,6 +29,28 @@ const alertFailure = () => {
     })
 }
 
+const alertHCaptchaLoadingError = () => {
+    MySwal.fire({
+        title: 'Error',
+        text: "We couldn't load our captcha service. Refresh the page to try again.",
+        icon: 'error',
+        timer: 10000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+    });
+}
+
+const alertHCaptchaStillLoading = () => {
+    MySwal.fire({
+        title: 'Sorry!',
+        text: "We are still loading our captcha service to check if you're able to send your message. You can try submitting the form again.",
+        icon: 'error',
+        timer: 10000,
+        timerProgressBar: true,
+        showConfirmButton: false,
+    });
+}
+
 // Form initial state
 const INITIAL_STATE = {
     name: "",
@@ -40,20 +62,38 @@ const INITIAL_STATE = {
 
 const ContactForm = () => {
     const [contact, setContact] = useState(INITIAL_STATE);
-    const [hCaptchaValue, setHCaptchaValue] = useState(null);
+    const [contactFormFieldChanged, setContactFormFieldChanged] = useState(false);
+    const [loadedHCaptcha, setLoadedHCaptcha] = useState(false);
 
-    const hCaptchaRef = useRef(null);
+    const { register, handleSubmit, errors } = useForm({reValidateMode: 'onBlur'});
 
-    const { register, handleSubmit, errors } = useForm();
+    const [loadingHCaptcha, hCaptchaLoadingError] = useScript({
+        src: contactFormFieldChanged===true ? 'https://js.hcaptcha.com/1/api.js' : null,
+        onload: () => {
+            setLoadedHCaptcha(true);
+            window.hcaptcha.render('captcha');
+        }
+    });
 
-    const handleChange = e => {
-        const { name, value } = e.target;
-        setContact(prevState => ({ ...prevState, [name]: value }));
-        // console.log(contact)
-    }
+    //This onSubmit is only hit if the useForm checks passed.
+    const onSubmit = () => {
+        if(hCaptchaLoadingError) {
+            alertHCaptchaLoadingError();
+        } else if(loadedHCaptcha === false) {
+            alertHCaptchaStillLoading();
+        } else {
+            window.hcaptcha.execute({ async: true })
+            .then(({ response }) => {
+                sendContactFormForProcessing(response);
+                window.hcaptcha.reset();
+            })
+            .catch(err => {
+                console.error(err);
+            });
+        }
+    };
 
-    const onSubmit = async e => {
-        // e.preventDefault();
+    const sendContactFormForProcessing = async (hCaptchaValue) => {
         const { name, email, number, subject, text } = contact;
 
         const url = `${baseUrl}/api/contact`;
@@ -72,9 +112,13 @@ const ContactForm = () => {
         } catch (error) {
             alertFailure();
         }
+    }
 
-        hCaptchaRef.current.resetCaptcha();
-    };
+    const contactFormFieldChange = e => {
+        setContactFormFieldChanged(true);
+        const { name, value } = e.target;
+        setContact(prevState => ({ ...prevState, [name]: value }));
+    }
 
     return (
         <div id="contact" className="contact-area three border-bottom-two pt-100 pb-100">
@@ -90,86 +134,85 @@ const ContactForm = () => {
                         <form id="contactForm" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <input 
-                                    type="text" 
-                                    name="name" 
-                                    className="form-control" 
-                                    placeholder="Name" 
+                                    type="text"
+                                    name="name"
+                                    className="form-control"
+                                    placeholder="Name"
                                     value={contact.name}
-                                    onChange={handleChange}
+                                    onChange={contactFormFieldChange}
                                     ref={register({ required: true })}
                                 />
                                 <div className='invalid-feedback' style={{display: 'block'}}>
                                     {errors.name && 'Name is required.'}
                                 </div>
                             </div>
-                                 
+                            
                             <div className="form-group">
                                 <input 
-                                    type="text" 
-                                    name="email" 
-                                    className="form-control" 
-                                    placeholder="Email" 
+                                    type="text"
+                                    name="email"
+                                    className="form-control"
+                                    placeholder="Email"
                                     value={contact.email}
-                                    onChange={handleChange}
+                                    onChange={contactFormFieldChange}
                                     ref={register({ required: true, pattern: /^\S+@\S+$/i })}
                                 />
                                 <div className='invalid-feedback' style={{display: 'block'}}>
                                     {errors.email && 'Email is required.'}
                                 </div>
                             </div>
-                
+                            
                             <div className="form-group">
                                 <input 
-                                    type="text" 
-                                    name="subject" 
-                                    className="form-control" 
-                                    placeholder="Subject" 
+                                    type="text"
+                                    name="subject"
+                                    className="form-control"
+                                    placeholder="Subject"
                                     value={contact.subject}
-                                    onChange={handleChange}
+                                    onChange={contactFormFieldChange}
                                     ref={register({ required: true })}
                                 />
                                 <div className='invalid-feedback' style={{display: 'block'}}>
                                     {errors.subject && 'Subject is required.'}
                                 </div>
                             </div>
-                              
+                            
                             <div className="form-group">
                                 <input 
-                                    type="text" 
-                                    name="number" 
-                                    className="form-control" 
-                                    placeholder="Phone (Optional)" 
+                                    type="text"
+                                    name="number"
+                                    className="form-control"
+                                    placeholder="Phone (Optional)"
                                     value={contact.number}
-                                    onChange={handleChange}
+                                    onChange={contactFormFieldChange}
                                     ref={register({ required: false })}
                                 />
                             </div>
-                        
+                            
                             <div className="form-group">
                                 <textarea 
-                                    name="text" 
-                                    className="form-control" 
+                                    name="text"
+                                    className="form-control"
                                     cols="30" 
                                     rows="6" 
-                                    placeholder="Your Message" 
+                                    placeholder="Your Message"
                                     value={contact.text}
-                                    onChange={handleChange}
+                                    onChange={contactFormFieldChange}
                                     ref={register({ required: true })}
                                 />
                                 <div className='invalid-feedback' style={{display: 'block'}}>
                                     {errors.text && 'Text body is required.'}
                                 </div>
                             </div>
-                            <div className="form-group">
-                                <HCaptcha
-                                    id="contact-hcaptcha"
-                                    sitekey={process.env.GATSBY_HCAPTCHA_SITE_KEY}
-                                    onVerify={setHCaptchaValue}
-                                    ref={hCaptchaRef}
-                                    reCaptchaCompat={false}
-                                />
+                            <div
+                                id="captcha"
+                                data-size="invisible"
+                                data-sitekey={process.env.GATSBY_HCAPTCHA_SITE_KEY}
+                            >    
                             </div>
-                            <button type="submit" className="btn common-btn three">Send Message <span></span></button>
+                            <button type="submit" className="btn common-btn three">
+                                Send Message <span></span>
+                            </button>
                         </form>
                     </div>
 
