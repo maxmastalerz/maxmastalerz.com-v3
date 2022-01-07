@@ -1083,6 +1083,10 @@ button:focus {
   color: #fff !important;
   background-color: #F68338 !important;
 }
+.review-area #carousel-placeholder {
+  height: 716px;
+  background-color: #B7B7B7;
+}
 
 /*-- Contact --*/
 .contact-area {

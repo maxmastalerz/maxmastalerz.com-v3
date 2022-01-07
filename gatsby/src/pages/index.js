@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState, useRef } from "react"
 import Seo from "../components/App/seo"
 import Navbar from "../components/DemoThree/Navbar"
 import MainBanner from "../components/DemoThree/MainBanner"
@@ -13,6 +13,25 @@ import Footer from "../components/Common/Footer"
 
 const IndexPage = ({data}) => {
     
+    const experienceRef = useRef();
+
+    const [displayCarousel, setDisplayCarousel] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleWindowScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleWindowScroll);
+        }
+    }, []);
+
+    const handleWindowScroll = () => {
+        let distanceTilDiv = experienceRef.current.offsetTop - window.scrollY;
+        if(distanceTilDiv <= 0) {
+            setDisplayCarousel(true);
+        }
+    }
+
     return (
         <div className="body-bg-five">
             <div className="main-area two">
@@ -22,10 +41,12 @@ const IndexPage = ({data}) => {
                     <MainBanner />
                     <About />
                     <Services />
-                    <Experience />
+                    <div ref={experienceRef}> {/*When we pass the experience div, load in the carousel*/}
+                        <Experience />
+                    </div>
                     <Projects />
                     <BlogPost />
-                    <Testimonials />
+                    <Testimonials displayCarousel={displayCarousel}/>
                     <ContactForm />
                     <Footer />
                 </div>

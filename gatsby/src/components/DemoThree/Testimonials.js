@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 import { graphql, useStaticQuery } from 'gatsby';
 
-import Loadable from "@loadable/component"
-const OwlCarousel = Loadable(() => import("react-owl-carousel3"))
+import Loadable from "@loadable/component";
+const OwlCarousel = Loadable(() => import("react-owl-carousel3"), {
+  fallback: <div id="carousel-placeholder"></div>
+});
 
 const options = {
     items: 1,
@@ -39,14 +41,8 @@ export const query = graphql`
   }
 `;
 
-const Testimonials = () => {
+const Testimonials = (props) => {
     const {allStrapiTestimonials: { nodes }} = useStaticQuery(query);
-
-    const [display, setDisplay] = React.useState(false);
-
-    React.useEffect(() => {
-        setDisplay(true);
-    }, [])
 
     return (
         <div id="testimonials" className="review-area two three five border-bottom-two ptb-100">
@@ -57,27 +53,29 @@ const Testimonials = () => {
                     <p>These are a few of the testimonials I received from people I have worked with.</p>
                 </div>
 
-                {display ? <OwlCarousel 
-                    className="review-slider owl-carousel owl-theme"
-                    {...options}
-                > 
-                    {nodes.map((testimonial) => {
-                        let testimonialImg = testimonial.images.url;
-                        if(testimonialImg[0] === "/") {
-                            testimonialImg = `/api${testimonialImg}`;
-                        }
+                { props.displayCarousel &&
+                    <OwlCarousel 
+                        className="review-slider owl-carousel owl-theme"
+                        {...options}
+                    > 
+                        {nodes.map((testimonial) => {
+                            let testimonialImg = testimonial.images.url;
+                            if(testimonialImg[0] === "/") {
+                                testimonialImg = `/api${testimonialImg}`;
+                            }
 
-                        return (
-                            <div className="review-item" key={testimonial.id}>
-                                <i className='bx bxs-quote-right'></i>
-                                <p>{testimonial.desc}</p>
-                                <img alt="Review" src={testimonialImg} />
-                                <h3>{testimonial.name}</h3>
-                                <span>{testimonial.position}</span>
-                            </div>
-                        )
-                    })}
-                </OwlCarousel> : ''}
+                            return (
+                                <div className="review-item" key={testimonial.id}>
+                                    <i className='bx bxs-quote-right'></i>
+                                    <p>{testimonial.desc}</p>
+                                    <img alt="Review" src={testimonialImg} />
+                                    <h3>{testimonial.name}</h3>
+                                    <span>{testimonial.position}</span>
+                                </div>
+                            )
+                        })}
+                    </OwlCarousel>
+                }
             </div>
         </div>
     )
