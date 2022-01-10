@@ -140,7 +140,7 @@ const ProjectDetails = ({ data, pageContext }) => {
                                 {previousProject && (
                                     <div className="pages-item">
                                         <Link to={`/projects/${previousProject.slug}`} className="pre-project">
-                                            <i className="flaticon-right-arrow"></i> Previous Project
+                                            <i className="bx bxs-right-arrow"></i> Previous Project
                                         </Link>
                                     </div>
                                 )}
@@ -156,7 +156,7 @@ const ProjectDetails = ({ data, pageContext }) => {
                                 {nextProject && (
                                     <div className="pages-item three">
                                         <Link to={`/projects/${nextProject.slug}`} className="next-project">
-                                            Next Project <i className="flaticon-right-arrow"></i>
+                                            Next Project <i className="bx bxs-right-arrow"></i>
                                         </Link>
                                     </div>
                                 )}

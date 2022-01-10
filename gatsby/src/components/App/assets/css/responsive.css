@@ -37,44 +37,6 @@
     font-size: 25px;
   }
 
-  .common-right-text {
-    display: none;
-  }
-
-  /*----- Home Demo One CSS -----*/
-  /*-- Navbar --*/
-  .navbar-light {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .navbar-light .navbar-collapse {
-    background-color: #1f1e1e;
-    padding-top: 15px;
-    padding-bottom: 35px;
-    margin-top: 15px;
-  }
-  .navbar-light .navbar-nav {
-    text-align: center;
-  }
-  .navbar-light .navbar-nav .nav-link {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #fff;
-  }
-  .navbar-light .navbar-toggler {
-    background: #fff;
-    font-size: 15px;
-  }
-  .navbar-light .side-nav {
-    margin-left: 0;
-    text-align: center;
-    margin-top: 10px;
-  }
-  .navbar-light .side-nav .common-btn {
-    padding: 8px 15px;
-    font-size: 13px;
-  }
-
   /*-- Main Area --*/
   .main-area .container {
     max-width: 540px;
@@ -108,14 +70,6 @@
     max-width: 100%;
   }
 
-  /*-- About --*/
-  .about-area {
-    text-align: center;
-  }
-  .about-area .about-content .left {
-    margin-bottom: 12px;
-  }
-
   /*-- Experience --*/
   .experience-area {
     text-align: center;
@@ -137,27 +91,6 @@
     margin-left: 0;
   }
 
-  /*-- Awards --*/
-  .awards-area {
-    text-align: center;
-  }
-  .awards-area .awards-inner {
-    margin-bottom: 30px;
-  }
-  .awards-area .awards-inner ul li:nth-child(1) {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-bottom: 15px;
-  }
-  .awards-area .awards-inner ul li:nth-child(2) {
-    flex: 0 0 100%;
-    max-width: 100%;
-    margin-left: 0;
-  }
-  .awards-area .awards-inner ul li h3 {
-    margin-bottom: 8px;
-  }
-
   /*-- Blog --*/
   .blog-area {
     text-align: center;
@@ -177,52 +110,12 @@
   }
 
   /*----- End Home Demo One CSS -----*/
-  /*----- Home Demo Two CSS -----*/
-  /*-- Banner --*/
-  .banner-area-two {
-    height: 100%;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-  .banner-area-two .banner-shape-img {
-    position: relative;
-    top: 0;
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-  .banner-area-two .banner-content {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  .banner-area-two .banner-content span {
-    font-size: 18px;
-    margin-bottom: 7px;
-  }
-  .banner-area-two .banner-content h1 {
-    font-size: 35px;
-  }
-
-  /*-- About --*/
-  .about-area.two .about-img img:nth-child(1) {
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-  .about-area.two .about-img img:nth-child(2) {
-    max-width: 100%;
-    margin-left: 0;
-    margin-top: 0;
-  }
-
-  /*-- Ticket --*/
-  .ticket-area .ticket-item {
-    padding: 25px 15px 30px;
-  }
-
   /*-- Review --*/
-  .review-area.two .review-item {
+  .review-area.three .review-item {
     border: 5px solid #fff;
     margin: 15px;
     padding: 30px 15px 30px;
+    border: 0 !important;
   }
 
   /*----- Home Demo Three CSS -----*/
@@ -253,198 +146,7 @@
     height: 100%;
   }
 
-  /*-- Review --*/
-  .review-area.three .review-item {
-    border: 0 !important;
-  }
-
   /*----- End Home Demo Three CSS -----*/
-  /*----- Home Demo Four CSS -----*/
-  /*-- Banner --*/
-  .banner-area.four {
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 150px;
-    padding-bottom: 95px;
-  }
-  .banner-area.four .banner-img img {
-    position: relative;
-    bottom: 0;
-    right: 0;
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-  .banner-area.four .banner-content .sub-head {
-    font-size: 20px;
-  }
-  .banner-area.four .banner-content h1 {
-    font-size: 35px;
-    margin-bottom: 15px;
-  }
-
-  /*-- Case Study --*/
-  .case-study-area .case-study-img {
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  .case-study-area .case-study-content {
-    padding: 30px 15px 25px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  .case-study-area .common-btn {
-    margin-top: 0;
-  }
-
-  /*-- About --*/
-  .about-area.four .section-title.four {
-    text-align: center;
-  }
-  .about-area.four .section-title.four h2 {
-    font-size: 30px;
-  }
-  .about-area.four .about-img-two {
-    margin-top: 30px;
-  }
-  .about-area.four .about-img-two:before {
-    display: none;
-  }
-
-  /*-- Review --*/
-  .review-area.four .owl-prev {
-    display: none !important;
-  }
-  .review-area.four .owl-next {
-    display: none !important;
-  }
-
-  /*----- Home Demo Five CSS -----*/
-  /*-- Banner --*/
-  .banner-area.five {
-    padding-top: 75px;
-    padding-bottom: 80px;
-  }
-  .banner-area.five .banner-content {
-    padding: 50px 15px 50px;
-    margin-top: 0;
-  }
-  .banner-area.five .banner-content .sub-head {
-    font-size: 20px;
-  }
-  .banner-area.five .banner-content h1 {
-    font-size: 50px;
-  }
-  .banner-area.five .banner-content p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .banner-area.five .banner-content .banner-btn-area .common-btn {
-    padding: 8px 15px;
-  }
-  .banner-area.five .banner-content .banner-img {
-    position: relative;
-    right: 0;
-    max-width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  .banner-area.five .banner-content .banner-social-text {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 30px;
-  }
-  .banner-area.five .banner-content .banner-social-text ul li {
-    margin-left: 5px;
-    margin-right: 5px;
-    display: inline-block;
-    margin-bottom: 0;
-  }
-  .banner-area.five .banner-content .banner-social-text ul li a {
-    font-size: 16px;
-  }
-  .banner-area.five .banner-content .banner-email {
-    position: relative;
-    top: 0;
-    right: 0;
-    transform: rotate(0deg);
-  }
-
-  /*-- What --*/
-  .what-area.two .what-item {
-    text-align: center;
-  }
-
-  /*-- About --*/
-  .about-area.five .section-title.five {
-    text-align: center;
-  }
-
-  /*-- Counter --*/
-  .counter-item {
-    padding: 30px 15px 35px;
-  }
-  .counter-item img {
-    max-width: 145px;
-  }
-  .counter-item.mt5 {
-    margin-top: 0;
-  }
-
-  /*-- Pricing --*/
-  .pricing-item.mt5 {
-    margin-top: 0;
-  }
-
-  /*-- Blog --*/
-  .blog-area.five .blog-thumb-item {
-    text-align: left;
-  }
-  .blog-area.five .blog-thumb-item ul li:nth-child(1) {
-    flex: 0 0 40%;
-    max-width: 40%;
-    text-align: center;
-  }
-  .blog-area.five .blog-thumb-item ul li:nth-child(2) {
-    flex: 0 0 50%;
-    max-width: 50%;
-    margin-left: 10px;
-  }
-  .blog-area.five .blog-thumb-item ul li span {
-    font-size: 10px;
-    padding: 0 4px;
-  }
-  .blog-area.five .blog-thumb-item ul li h3 {
-    font-size: 15px;
-  }
-
-  .creation-item {
-    text-align: center;
-  }
-
-  /*----- Home Demo Six CSS -----*/
-  /*-- Banner --*/
-  .banner-area.six {
-    padding-top: 185px;
-    padding-bottom: 120px;
-  }
-  .banner-area.six .banner-content .sub-head {
-    font-size: 20px;
-  }
-  .banner-area.six .banner-content h1 {
-    font-size: 40px;
-  }
-
-  /*-- About --*/
-  .about-area.six .section-title.six {
-    text-align: center;
-  }
-
-  /*-- Services --*/
-  .what-area.six .what-item {
-    text-align: center;
-  }
-
   /*----- Work Details CSS -----*/
   .page-title-area {
     height: 370px;
@@ -482,21 +184,6 @@
   }
 
   /*----- End Work Details CSS -----*/
-  /*----- Case Study Details CSS -----*/
-  .case-study-details-area .details-img {
-    text-align: center;
-  }
-  .case-study-details-area .details-about {
-    text-align: center;
-  }
-  .case-study-details-area .details-goal {
-    text-align: center;
-  }
-  .case-study-details-area .details-problem {
-    text-align: center;
-  }
-
-  /*----- End Case Study Details CSS -----*/
   /*----- Blog Details CSS -----*/
   .blog-details-area .details-img-info .info li {
     margin-right: 10px;
@@ -516,34 +203,6 @@
   }
 
   /*----- End Service Details CSS -----*/
-  .portfolio-item .bottom {
-    padding: 15px 15px 15px;
-  }
-  .portfolio-item .bottom .bottom-one {
-    padding-left: 15px;
-    margin-bottom: 10px;
-  }
-  .portfolio-item .bottom .bottom-one h3 {
-    font-size: 17px;
-  }
-  .portfolio-item .bottom .bottom-one span {
-    font-size: 12px;
-  }
-  .portfolio-item .bottom .bottom-two p {
-    font-size: 13px;
-    margin-bottom: 10px;
-  }
-  .portfolio-item .bottom .bottom-two a {
-    font-size: 13px;
-  }
-
-  .modal-video-body {
-    padding: 0 15px;
-  }
-  .modal-video-body .modal-video-close-btn {
-    right: 0;
-  }
-
   .what-item h3 {
     font-size: 17px;
   }
@@ -557,16 +216,6 @@
 
   .review-area .review-item h3 {
     font-size: 17px;
-  }
-
-  .go-top {
-    width: 35px;
-    height: 35px;
-  }
-
-  .case-study-area .case-study-content h3 {
-    font-size: 17px;
-    line-height: 1.4;
   }
 
   .about-area.three .about-img-three {
@@ -657,40 +306,7 @@
     padding-right: 15px;
   }
 
-  .common-right-text {
-    display: none;
-  }
-
   /*----- Home Demo One CSS -----*/
-  /*-- Navbar --*/
-  .navbar-light {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-  .navbar-light .navbar-nav {
-    text-align: center;
-  }
-  .navbar-light .navbar-nav .nav-link {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #fff;
-  }
-  .navbar-light .navbar-toggler {
-    background: #fff;
-    font-size: 15px;
-  }
-  .navbar-light .side-nav {
-    margin-left: 10px;
-    text-align: center;
-  }
-  .navbar-light .side-nav .common-btn {
-    padding: 8px 15px;
-    font-size: 13px;
-  }
-  .navbar-light.four .navbar-nav .nav-link {
-    color: #171717;
-  }
-
   /*-- Main Area --*/
   .main-area .container {
     max-width: 720px;
@@ -728,11 +344,6 @@
     padding-right: 15px;
   }
 
-  /*-- About --*/
-  .about-area {
-    text-align: center;
-  }
-
   /*-- Blog --*/
   .blog-area {
     text-align: center;
@@ -744,28 +355,8 @@
   }
 
   /*----- Home Demo Two CSS -----*/
-  /*-- Banner --*/
-  .banner-area-two {
-    height: 100%;
-    padding-top: 150px;
-    padding-bottom: 100px;
-  }
-  .banner-area-two .banner-shape-img {
-    position: relative;
-    top: 0;
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-  .banner-area-two .banner-content span {
-    font-size: 24px;
-    margin-bottom: 7px;
-  }
-  .banner-area-two .banner-content h1 {
-    font-size: 65px;
-  }
-
   /*-- Review --*/
-  .review-area.two .review-item {
+  .review-area.three .review-item {
     border: 5px solid #fff;
     margin: 15px;
     padding: 30px 15px 30px;
@@ -804,189 +395,6 @@
   }
 
   /*----- End Home Demo Three CSS -----*/
-  /*----- Home Demo Four CSS -----*/
-  /*-- Banner --*/
-  .banner-area.four {
-    margin-left: 0;
-    margin-right: 0;
-    padding-top: 150px;
-    padding-bottom: 95px;
-  }
-  .banner-area.four .banner-img img {
-    position: relative;
-    bottom: 0;
-    right: 0;
-    max-width: 100%;
-    margin-bottom: 30px;
-  }
-  .banner-area.four .banner-content .sub-head {
-    font-size: 35px;
-  }
-  .banner-area.four .banner-content h1 {
-    font-size: 60px;
-    margin-bottom: 10px;
-  }
-  .banner-area.four .banner-content p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /*-- Case Study --*/
-  .case-study-area .case-study-img {
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  .case-study-area .case-study-content {
-    padding: 30px 15px 25px;
-    margin-bottom: 30px;
-    text-align: center;
-  }
-  .case-study-area .common-btn {
-    margin-top: 0;
-  }
-
-  /*-- About --*/
-  .about-area.four .section-title.four {
-    text-align: center;
-  }
-  .about-area.four .section-title.four h2 {
-    font-size: 30px;
-  }
-  .about-area.four .about-img-two {
-    margin-top: 30px;
-  }
-  .about-area.four .about-img-two:before {
-    display: none;
-  }
-
-  /*-- Review --*/
-  .review-area.four .owl-prev {
-    top: 45%;
-  }
-  .review-area.four .owl-next {
-    top: 45%;
-  }
-
-  /*----- Home Demo Five CSS -----*/
-  /*-- Banner --*/
-  .banner-area.five {
-    padding-top: 75px;
-    padding-bottom: 80px;
-  }
-  .banner-area.five .banner-content {
-    padding: 60px 30px 50px;
-    margin-top: 0;
-  }
-  .banner-area.five .banner-content .sub-head {
-    font-size: 20px;
-  }
-  .banner-area.five .banner-content h1 {
-    font-size: 80px;
-  }
-  .banner-area.five .banner-content p {
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .banner-area.five .banner-content .banner-btn-area .common-btn {
-    padding: 10px 12px;
-  }
-  .banner-area.five .banner-content .banner-img {
-    position: relative;
-    right: 0;
-    max-width: 100%;
-    margin-top: 30px;
-    margin-bottom: 30px;
-  }
-  .banner-area.five .banner-content .banner-social-text {
-    position: relative;
-    top: 0;
-    left: 0;
-    margin-bottom: 30px;
-  }
-  .banner-area.five .banner-content .banner-social-text ul li {
-    margin-left: 5px;
-    margin-right: 5px;
-    display: inline-block;
-    margin-bottom: 0;
-  }
-  .banner-area.five .banner-content .banner-social-text ul li a {
-    font-size: 16px;
-  }
-  .banner-area.five .banner-content .banner-email {
-    position: relative;
-    top: 0;
-    right: 0;
-    transform: rotate(0deg);
-  }
-
-  /*-- What --*/
-  .what-area.two .what-item {
-    text-align: center;
-  }
-
-  /*-- About --*/
-  .about-area.five .section-title.five {
-    text-align: center;
-  }
-
-  /*-- Counter --*/
-  .counter-item.mt5 {
-    margin-top: 0;
-  }
-
-  /*-- Pricing --*/
-  .pricing-item.mt5 {
-    margin-top: 0;
-  }
-
-  /*-- Blog --*/
-  .blog-area.five .blog-thumb-item {
-    text-align: left;
-  }
-  .blog-area.five .blog-thumb-item ul li:nth-child(1) {
-    flex: 0 0 15%;
-    max-width: 15%;
-  }
-  .blog-area.five .blog-thumb-item ul li:nth-child(2) {
-    flex: 0 0 50%;
-    max-width: 50%;
-    margin-left: 10px;
-  }
-  .blog-area.five .blog-thumb-item ul li span {
-    font-size: 12px;
-  }
-  .blog-area.five .blog-thumb-item ul li h3 {
-    font-size: 18px;
-  }
-
-  /*----- Home Demo Six CSS -----*/
-  /*-- Banner --*/
-  .banner-area.six {
-    padding-top: 185px;
-    padding-bottom: 120px;
-  }
-  .banner-area.six .banner-content .sub-head {
-    font-size: 20px;
-  }
-  .banner-area.six .banner-content h1 {
-    font-size: 60px;
-    margin-bottom: 15px;
-  }
-
-  /*-- About --*/
-  .about-area.six .section-title.six {
-    text-align: center;
-  }
-
-  /*-- Services --*/
-  .what-area.six .what-item {
-    text-align: center;
-  }
-
-  .creation-item {
-    text-align: center;
-  }
-
   /*----- Work Details CSS -----*/
   .page-title-area {
     height: 370px;
@@ -1010,21 +418,6 @@
   }
 
   /*----- End Work Details CSS -----*/
-  /*----- Case Study Details CSS -----*/
-  .case-study-details-area .details-img {
-    text-align: center;
-  }
-  .case-study-details-area .details-about {
-    text-align: center;
-  }
-  .case-study-details-area .details-goal {
-    text-align: center;
-  }
-  .case-study-details-area .details-problem {
-    text-align: center;
-  }
-
-  /*----- End Case Study Details CSS -----*/
   /*----- Blog Details CSS -----*/
   .blog-details-area .details-img-info .info li {
     margin-right: 10px;
@@ -1048,15 +441,17 @@
   }
 
   /*----- End Service Details CSS -----*/
-  .modal-video-body {
-    padding: 0 30px;
-  }
-  .modal-video-body .modal-video-close-btn {
-    right: 0;
-  }
-
   .about-area.three .about-img-three {
     margin-bottom: 30px;
+  }
+}
+@media only screen and (max-width: 991px) {
+  /*-- About --*/
+  .about-area {
+    text-align: center;
+  }
+  .about-area .about-content .left {
+    margin-bottom: 12px;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
@@ -1086,55 +481,6 @@
   .section-title h2 {
     font-size: 35px;
   }
-
-  .banner-area.four .banner-img img {
-    max-width: 410px;
-  }
-
-  .banner-area.five .banner-content {
-    padding-left: 70px;
-  }
-  .banner-area.five .banner-content .sub-head {
-    font-size: 20px;
-  }
-  .banner-area.five .banner-content h1 {
-    font-size: 70px;
-  }
-  .banner-area.five .banner-content .banner-social-text {
-    top: 20px;
-    left: 10px;
-  }
-  .banner-area.five .banner-content .banner-social-text ul li a {
-    font-size: 15px;
-  }
-  .banner-area.five .banner-content .banner-img {
-    right: 0;
-    max-width: 560px;
-  }
-  .banner-area.five .banner-content .banner-email {
-    top: unset;
-    right: unset;
-    transform: rotate(0deg);
-    left: 70px;
-    bottom: 48px;
-  }
-
-  .modal-video-body {
-    padding: 0 40px;
-  }
-
-  .about-area.two .about-img img:nth-child(2) {
-    margin-left: 20px;
-  }
-
-  .banner-area.four .banner-content {
-    padding-left: 20px;
-    margin: 0;
-  }
-  .banner-area.four .banner-content h1 {
-    font-size: 65px;
-    margin-bottom: 10px;
-  }
 }
 @media only screen and (min-width: 1800px) {
   .main-area .main-left-img {
@@ -1142,11 +488,6 @@
   }
   .main-area .main-content {
     padding-left: 650px;
-  }
-}
-@media only screen and (min-width: 2500px) {
-  .navbar-light .container {
-    max-width: 1475px;
   }
 }
 @media only screen and (max-height: 896px) {
@@ -1157,10 +498,6 @@
 @media only screen and (max-width: 991px) {
   .banner-area.three {
     padding-top: 75px;
-  }
-
-  .navbar-light.four.is-sticky .navbar-nav .nav-link {
-    color: #171717;
   }
 
   .pufo-aside {

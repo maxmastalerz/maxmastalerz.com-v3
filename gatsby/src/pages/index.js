@@ -33,8 +33,8 @@ const IndexPage = ({data}) => {
     }
 
     return (
-        <div className="body-bg-five">
-            <div className="main-area two">
+        <div className="body-bg-three">
+            <div className="main-area">
                 <Navbar />
                 <Seo title="Home" />
                 <div className="main-content two">

@@ -63,7 +63,7 @@ const BlogPost = () => {
                                         <p>{blog.short_desc}</p>
 
                                         <Link to={`/blog/${blog.slug}`} className="blog-btn">
-                                            Read More <i className="flaticon-right-arrow"></i>
+                                            Read More <i className="bx bxs-right-arrow"></i>
                                         </Link>
                                     </div>
                                 </div>

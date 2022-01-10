@@ -97,7 +97,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                         {previousBlog && (
                                             <div className="pages-item">
                                                 <Link className="pre-project" to={`/blog/${previousBlog.slug}`}>
-                                                    <i className="flaticon-right-arrow"></i> Previous Article
+                                                    <i className="bx bxs-right-arrow"></i> Previous Article
                                                 </Link>
                                             </div>
                                         )}
@@ -107,7 +107,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                         {nextBlog && (
                                             <div className="pages-item three">
                                                 <Link className="next-project" to={`/blog/${nextBlog.slug}`}>
-                                                    Next Article <i className="flaticon-right-arrow"></i>
+                                                    Next Article <i className="bx bxs-right-arrow"></i>
                                                 </Link>
                                             </div>
                                         )}
@@ -180,7 +180,7 @@ const BlogDetails = ({ data, pageContext }) => {
                                                                 <h3>{recentBlogPost.title}</h3>
                                                             </Link>
                                                             <Link to={`/blog/${recentBlogPost.slug}`}>
-                                                                Read More <i className="flaticon-right-arrow"></i>
+                                                                Read More <i className="bx bxs-right-arrow"></i>
                                                             </Link>
                                                         </li>
                                                     </ul>

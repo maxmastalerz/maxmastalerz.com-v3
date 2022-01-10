@@ -20,7 +20,7 @@ Go to http://dev.maxmastalerz.com/__graphql
 
 ### To run locally with a gatsby production build(As I currently don't have a staging environment):
 
-Temporarily change the resolver in maxmastalerzcom/nginx/nginx.prod.conf from 10.0.0.2 to 127.0.0.11.
+Temporarily change the resolver in maxmastalerzcom/nginx/nginx.prod.conf from 10.0.0.2 to 127.0.0.11
 IMPORTANT: Make sure to change this back before a real production deployment.
 
 Temporarily edit your computer's /etc/hosts to contain:

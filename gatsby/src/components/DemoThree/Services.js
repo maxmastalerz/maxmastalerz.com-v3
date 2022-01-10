@@ -44,7 +44,7 @@ const Services = () => {
 
                                     {service.has_dedicated_page &&
                                     <Link to={`/services/${service.slug}`} className="what-btn">
-                                        Learn More <i className="flaticon-right-arrow"></i>
+                                        Learn More <i className="bx bxs-right-arrow"></i>
                                     </Link>
                                     }
                                 </div>
