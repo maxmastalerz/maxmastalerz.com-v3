@@ -47,7 +47,10 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "build-css": "node-sass --output-style compressed --source-map true --source-map-contents true --precision 6 src/components/App/assets/scss/application -o src/components/App/assets/css/",
+    "//": "<!!!!!!!TROUBLESHOOTING the build-css command!!!!!!!>",
+    "//": "The build-css command will only work if globally installed: $ npm install -g node-sass"
   },
   "repository": {
     "type": "git",
