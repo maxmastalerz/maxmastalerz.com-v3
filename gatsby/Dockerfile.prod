@@ -2,11 +2,11 @@ FROM node:12-buster
 
 WORKDIR /gatsby-app
 
-RUN apt-get -q update && apt-get -qy install netcat
+RUN apt-get -q update && apt-get -qy install netcat nasm
 
 RUN npm install -g gatsby-cli
 
-COPY ./package.json .
+COPY ./package*.json ./
 RUN npm install
 COPY . .
 

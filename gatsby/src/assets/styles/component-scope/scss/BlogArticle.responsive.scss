@@ -1,0 +1,60 @@
+@media only screen and (max-width : 767px) {
+    /*----- Blog Details CSS -----*/
+    .blog-details-area {
+        .details-img-info {
+
+            .info {
+                
+                li {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            h2 {
+                font-size: 25px;
+            }
+        }
+    }
+    /*----- End Blog Details CSS -----*/
+}
+
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+    /*----- Blog Details CSS -----*/
+    .blog-details-area {
+        .details-img-info {
+
+            .info {
+                li {
+                    margin-right: 10px;
+                    margin-bottom: 10px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            h2 {
+                font-size: 30px;
+            }
+        }
+        .widget-area {
+            .recent {
+                .recent-inner {
+                    ul {
+                        li {
+                            &:nth-child(1) {
+                                flex: 0 0 15%;
+                                max-width: 15%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    /*----- End Blog Details CSS -----*/
+}

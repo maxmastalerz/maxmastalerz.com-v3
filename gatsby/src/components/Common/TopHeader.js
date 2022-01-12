@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import logo from '../../components/App/assets/images/logo.png';
+import logo from '../../assets/images/logo.png';
 
 const TopHeader = (props) => {
     return (

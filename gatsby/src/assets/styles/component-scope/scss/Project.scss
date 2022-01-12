@@ -1,0 +1,66 @@
+@import '../../global-scope/scss/variables';
+
+/*----- Work Details CSS -----*/
+#project-brief-info > div {
+    margin: auto;
+    text-align: center;
+}
+/*----- End Work Details CSS -----*/
+
+.work-details-area {
+    .details-img { 
+        .gatsby-image-wrapper {
+            width: 100%;
+            margin-bottom: 30px;
+        }
+        .details-img-inner {
+            margin-bottom: 30px;
+
+            h3 {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+            ul {
+                padding: 0;
+                margin: 0;
+                li {
+                    list-style-type: none;
+                    display: block;
+                    margin-bottom: 3px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+    .details-description {
+        padding-bottom: 30px;
+
+        h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        p {
+            margin-bottom: 25px;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        .img {
+            margin-bottom: 30px;
+        }
+    }
+    .contact-area {
+        margin-top: -5px;
+
+        .section-title {
+            text-align: center;
+            max-width: 730px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}

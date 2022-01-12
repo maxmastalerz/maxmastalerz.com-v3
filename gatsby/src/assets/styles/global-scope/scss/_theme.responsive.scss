@@ -1,0 +1,174 @@
+@media only screen and (max-width : 767px) {
+
+    /*----- Default CSS -----*/
+    $all-size: 15px;
+
+    body {
+        font-size: $all-size;
+    }
+    .ptb-100 {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .pt-100 {
+        padding-top: 50px;
+    }
+    .pb-70 {
+        padding-bottom: 20px;
+    }
+    .common-btn {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    /*-- Blog --*/
+    .blog-area {
+        text-align: center;
+    }
+
+    /*----- End Home Demo One CSS -----*/
+
+    /*----- Work Details CSS -----*/
+    .page-title-area {
+        height: 370px;
+
+        .title-content {
+            margin-top: 100px;
+
+            span {
+                font-size: 30px;
+                top: 175px;
+            }
+            h1 {
+                font-size: 30px;
+            }
+            
+        }
+    }
+    .details-pages {
+        text-align: center;
+
+        .pages-item {
+            text-align: center;
+
+            &.two {
+                margin-top: 15px;
+                margin-bottom: 15px;
+            }
+            &.three {
+                text-align: center;
+            }
+        }
+    }
+    /*----- End Work Details CSS -----*/
+
+    .blog-item {
+        .bottom {
+            h3 {
+                font-size: 17px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width : 540px) { /*540 works but 575 seems to break masonry. */
+    /*1 full width column*/
+    .masonry-sm {
+        .grid-sizer, .grid-item {
+            width: 100%;
+        }
+    }
+}
+@media only screen and (min-width : 541px) and (max-width : 991px) { /*541-991 works but 576-991 seems to break masonry. */
+    /*2 equal width columns*/
+    .masonry-sm {
+        .grid-sizer, .grid-item {
+            width: calc( ( 100% - 30px ) / 2 );
+        }
+    }
+}
+
+@media only screen and (max-width : 575px) {
+    .masonry-lg {
+        .grid-sizer, .grid-item {
+            width: 100%;
+        }
+    }
+}
+@media only screen and (min-width : 576px) and (max-width : 991px) {
+    .masonry-lg {
+        .grid-sizer, .grid-item {
+            width: calc( ( 100% - 30px ) / 2 );
+        }
+    }
+}
+
+@media only screen and (min-width : 992px) {
+    .masonry-sm {
+        /*5/12 and 7/12 split*/
+        .grid-sizer {
+            width: calc( (100% - 330px) / 12);
+        }
+        .grid-item {
+            width: calc( (( 100% - 40px ) / 12)*5 );
+        }
+        .grid-item--width7-12ths {
+            width: calc( (( 100% - 20px ) / 12)*7 );
+        }
+    }
+    .masonry-lg {
+        .grid-sizer, .grid-item {
+            width: calc( ( 100% - 60px ) / 3 );
+        }
+    }
+}
+
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    /*----- Default CSS -----*/
+    $all-size: 15px;
+
+    body {
+        font-size: $all-size;
+    }
+    .ptb-100 {
+        padding-top: 70px;
+        padding-bottom: 70px;
+    }
+    .pt-100 {
+        padding-top: 70px;
+    }
+    .pb-70 {
+        padding-bottom: 40px;
+    }
+    .common-btn {
+        padding: 10px 20px;
+    }
+
+    /*-- Blog --*/
+    .blog-area {
+        text-align: center;
+    }
+
+    /*----- Home Demo Two CSS -----*/
+
+    /*----- Work Details CSS -----*/
+    .page-title-area {
+        height: 370px;
+
+        .title-content {
+            margin-top: 100px;
+
+            span {
+                font-size: 50px;
+                top: 155px;
+            }
+            h1 {
+                font-size: 50px;
+            }
+            
+        }
+    }
+    /*----- End Work Details CSS -----*/
+    
+}

@@ -5,7 +5,9 @@
  */
 
 // You can delete this file if you're not using it
-import './src/components/App/assets/css/bootstrap-overrides.css';
-import './src/components/App/assets/css/boxicons.min.css';
-import './src/components/App/assets/css/style.css';
-import './src/components/App/assets/css/responsive.css';
+//import './src/assets/styles/global-scope/css/bootstrap-overrides.css';
+//import './src/assets/styles/global-scope/css/boxicons.min.css';
+
+//import './src/assets/styles/global-scope/css/shared.css';
+//import './src/assets/styles/global-scope/css/style.css';
+//import './src/assets/styles/global-scope/css/responsive.css';

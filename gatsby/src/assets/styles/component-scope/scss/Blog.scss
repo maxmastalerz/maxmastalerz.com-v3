@@ -1,0 +1,18 @@
+@import '../../global-scope/scss/variables';
+
+#blog.blog-area.three {
+    .blog-item {
+        .bottom {
+            h3 a {
+                color: $dark-black-color;
+            }
+            .blog-btn {
+                color: $dark-green-color;
+
+                &:hover {
+                    color: $main-color;
+                }
+            }
+        }
+    }
+}

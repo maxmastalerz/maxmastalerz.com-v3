@@ -1,0 +1,23 @@
+@import '../../global-scope/scss/variables';
+
+/*----- Custom 404 Page -----*/
+
+#four-o-four-wrapper {
+    display: table;
+    width: 100%;
+    height: 100vh;
+    background-color: $dark-black-color;
+
+    #four-o-four-content {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+
+        h1 {
+            color: $white-color;
+        }
+        a {
+            color: $green-color;
+        }
+    }
+}

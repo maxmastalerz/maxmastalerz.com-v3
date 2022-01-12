@@ -28,8 +28,8 @@ const projectsQuery = graphql`
 `;
 
 const Projects = () => {
-    const [loadingMasonry, ] = useScript({ src: 'masonry.pkgd.min.js' });
-    const [loadingImagesLoaded, ] = useScript({ src: 'imagesloaded.pkgd.min.js'});
+    const [loadingMasonry, ] = useScript({ src: '/masonry.pkgd.min.js' });
+    const [loadingImagesLoaded, ] = useScript({ src: '/imagesloaded.pkgd.min.js'});
 
     useEffect(() => {
         if(loadingImagesLoaded || loadingMasonry) { //If still loading js libraries, skip
