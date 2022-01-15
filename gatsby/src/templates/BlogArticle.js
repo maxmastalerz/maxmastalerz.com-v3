@@ -7,8 +7,8 @@ import BlogSearch from "../components/Blog/BlogSearch";
 import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
 
-import "../assets/styles/component-scope/css/BlogArticle.css";
-import "../assets/styles/component-scope/css/BlogArticle.responsive.css";
+import "../assets/styles/component-scope/BlogArticle.scss";
+import "../assets/styles/component-scope/BlogArticle.responsive.scss";
 
 const insertScript = (src, id, parentElement) => {
     const script = window.document.createElement('script');

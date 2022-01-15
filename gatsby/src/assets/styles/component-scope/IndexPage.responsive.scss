@@ -21,17 +21,6 @@
         .container {
             max-width: 540px;
         }
-        .main-left-img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background-image: unset;
-
-            img {
-                display: block;
-                width: 100%;
-            }
-        }
         .main-content {
             padding-left: 0;
         }
@@ -141,17 +130,6 @@
             text-align: center;
             padding: 20px 15px 20px;
         }
-    }   
-
-    /*-- Projects --*/
-    .projects-area {
-        .projects-item {
-            &.two {
-                img {
-                    height: 100%;
-                }
-            }
-        }
     }
 
     /*----- End Home Demo Three CSS -----*/
@@ -207,17 +185,6 @@
     .main-area {
         .container {
             max-width: 720px;
-        }
-        .main-left-img {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            background-image: unset;
-
-            img {
-                display: block;
-                width: 100%;
-            }
         }
         .main-content {
             padding-left: 0;
@@ -292,17 +259,6 @@
         }
     }
 
-    /*-- Projects --*/
-    .projects-area {
-        .projects-item {
-            &.two {
-                img {
-                    height: 100%;
-                }
-            }
-        }
-    }
-
     /*-- Review --*/
     .review-area.three {
         .review-item {
@@ -348,9 +304,6 @@
         }
     }
     .main-area {
-        .main-left-img {
-            width: 365px;
-        }
         .main-content {
             padding-left: 365px;
         }
@@ -365,9 +318,6 @@
 @media only screen and (min-width: 1800px) {
 
     .main-area {
-        .main-left-img {
-            width: 650px;
-        }
         .main-content {
             padding-left: 650px;
         }

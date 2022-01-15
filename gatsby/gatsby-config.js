@@ -57,13 +57,24 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-split-css`,
     {
-      resolve: `gatsby-plugin-global-styles`,
+      resolve: `gatsby-plugin-sass`,
       options: {
-        pathToConfigModule: `src/utils/GlobalStyleComponent`,
-        props: {}
+        sassOptions: {
+          includePaths: ["src/assets/styles/component-scope"],
+          sourceMap: "true",
+          precision: 6
+        }
       }
-    }
+    },
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: {
+        printRejected: true,
+        develop: true,
+        purgeOnly: ['src/assets/styles/global-scope/_bootstrap-overrides.scss']
+      }
+    },
+    `gatsby-plugin-split-css`
   ],
 }

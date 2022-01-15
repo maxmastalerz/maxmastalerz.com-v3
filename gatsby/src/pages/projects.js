@@ -53,7 +53,7 @@ const Projects = () => {
     const {allStrapiProjects: { nodes }} = useStaticQuery(projectsQuery);
 
     return (
-        <React.Fragment>  
+        <React.Fragment>
             <TopHeader />
             <PageBanner 
                 bgText="Projects" 

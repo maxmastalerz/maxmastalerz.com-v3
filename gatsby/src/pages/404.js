@@ -2,7 +2,7 @@ import React from "react";
 import Seo from "../components/App/seo";
 import { Link } from "gatsby";
 
-import "../assets/styles/component-scope/css/NotFoundPage.css";
+import "../assets/styles/component-scope/NotFoundPage.scss";
 
 const NotFoundPage = () => (
 	<div id="four-o-four-wrapper">

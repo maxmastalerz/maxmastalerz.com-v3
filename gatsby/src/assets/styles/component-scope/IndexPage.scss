@@ -1,4 +1,4 @@
-@import '../../global-scope/scss/variables';
+@import '../global-scope/variables';
 
 .pb-100 {
     padding-bottom: 100px;
@@ -116,22 +116,6 @@
     .container {
         max-width: 650px;
     }
-    .main-left-img {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 5;
-        width: 500px;
-        height: 100%;
-        background-image: url('../../../images/banner/banner-main1.jpg');
-        background-size: cover;
-        background-position: top center;
-        background-repeat: no-repeat;
-
-        img {
-            display: none;
-        }
-    }
     .main-content {
         padding-left: 500px;
 
@@ -173,28 +157,6 @@
         }
         .banner-btn-area {
             margin-bottom: 25px;
-
-            .banner-btn {
-                color: $white-color;
-                margin-left: 15px;
-
-                &:before {
-                    width: 50%;
-                }
-                &:after {
-                    width: 50%;
-                }
-                &:hover {
-                    color: $orange-color;
-
-                    &:before {
-                        width: 0;
-                    }
-                    &:after {
-                        width: 0;
-                    }
-                }
-            }
         }
         ul {
             padding: 0;
@@ -307,11 +269,6 @@
 .what-area {
     position: relative;
     overflow: hidden;
-    
-    .common-right-text {
-        top: 340px;
-        right: -175px;
-    }
 }
 .what-item {
     height: 100%;
@@ -371,10 +328,6 @@
     position: relative;
     overflow: hidden;
 
-    .common-right-text {
-        top: 375px;
-        right: -310px;
-    }
     .experience-content {
         h3 {
             color: $white-color;
@@ -427,11 +380,6 @@
 .review-area {
     position: relative;
     overflow: hidden;
-    
-    .common-right-text {
-        top: 350px;
-        right: -165px;
-    }
 
     .review-item {
         text-align: center;
@@ -502,10 +450,6 @@
     position: relative;
     overflow: hidden;
 
-    .common-right-text {
-        top: 415px;
-        right: -230px;
-    }
     #contactForm {
         margin-bottom: 30px;
 
@@ -529,10 +473,6 @@
                 padding-top: 13px;
                 height: auto !important;
             }
-            #contact-hcaptcha > iframe {
-                display: block;
-                margin: auto;
-            }
         }
         .common-btn {
             transition: $transition;
@@ -541,23 +481,6 @@
             text-align: center;
             opacity: 1;
             border-radius: 0;
-        }
-        .list-unstyled {
-            font-size: 14px;
-            margin-top: 10px;
-            color: #dc3545;
-        }
-        .text-danger {
-            margin-bottom: 0;
-            margin-top: 10px;
-            font-size: 20px;
-            color: #dc3545;
-        }
-        .text-success {
-            margin-bottom: 0;
-            margin-top: 10px;
-            font-size: 20px;
-            color: #28a745;
         }
     }
     .contact-content {
@@ -738,34 +661,6 @@
     }
 }
 
-.pufo-aside {
-    .aside-show-hide {
-        position: absolute;
-        left: 25px;
-        bottom: 0;
-        z-index: 1;
-        -webkit-transition: 0.5s;
-        transition: 0.5s;
-        opacity: 0;
-        visibility: hidden;
-
-        span {
-            display: inline-block;
-            cursor: pointer;
-            font-size: 35px;
-            color: #ffffff;
-            opacity: 0.8;
-        }
-    }
-    &:hover {
-        .aside-show-hide {
-            opacity: 1;
-            visibility: visible;
-            left: 12px;
-        }
-    }
-}
-
 /*-- Banner --*/
 .banner-area.three {
     position: relative;
@@ -804,13 +699,6 @@
 
             span {
                 color: $green-color;
-            }
-        }
-        .banner-btn.three {
-            color: $main-color;
-
-            &:hover {
-                color: $white-color;
             }
         }
     }
@@ -956,7 +844,7 @@
 .review-area.three {
     .review-item {
         background-color: #050608;
-        background-image: url('../../../images/review/review-bg2.png');
+        background-image: url('../../images/review/review-bg2.png');
         box-shadow: none;
         margin: 0;
         border: 0 !important;

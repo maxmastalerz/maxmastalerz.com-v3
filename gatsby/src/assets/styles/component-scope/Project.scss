@@ -1,4 +1,4 @@
-@import '../../global-scope/scss/variables';
+@import '../global-scope/variables';
 
 /*----- Work Details CSS -----*/
 #project-brief-info > div {
@@ -9,10 +9,6 @@
 
 .work-details-area {
     .details-img { 
-        .gatsby-image-wrapper {
-            width: 100%;
-            margin-bottom: 30px;
-        }
         .details-img-inner {
             margin-bottom: 30px;
 

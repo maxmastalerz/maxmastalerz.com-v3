@@ -1,4 +1,4 @@
-@import '../../global-scope/scss/variables';
+@import '../global-scope/variables';
 
 /*----- Blog Details CSS -----*/
 .blog-details-area {
@@ -49,28 +49,6 @@
         h3 {
             font-size: 20px;
             margin-bottom: 10px;
-        }
-        .item {
-            margin-bottom: 20px;
-            padding: 0;
-
-            li {
-                list-style-type: none;
-                display: block;
-                margin-bottom: 8px;
-
-                &:last-child {
-                    margin-bottom: 0;
-                }
-                i {
-                    display: inline-block;
-                    color: $orange-color;
-                    font-size: 16px;
-                    position: relative;
-                    top: 1px;
-                    margin-right: 3px;
-                }
-            }
         }
         .img {
             margin-bottom: 20px;

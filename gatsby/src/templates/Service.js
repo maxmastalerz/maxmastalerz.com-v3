@@ -6,8 +6,8 @@ import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer';
 import useScript from 'react-script-hook';
 
-import "../assets/styles/component-scope/css/Service.css";
-import "../assets/styles/component-scope/css/Service.responsive.css";
+import "../assets/styles/component-scope/Service.scss";
+import "../assets/styles/component-scope/Service.responsive.scss";
 
 const Service = ({data}) => {
     useScript({ src: '/oEmbed-init.js' });

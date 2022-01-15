@@ -6,7 +6,7 @@ import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";
 
-import "../assets/styles/component-scope/css/Blog.css";
+import "../assets/styles/component-scope/Blog.scss";
 
 const Blog = ({ data, location }) => {
     const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];

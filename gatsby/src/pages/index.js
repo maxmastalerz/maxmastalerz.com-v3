@@ -11,8 +11,8 @@ import Testimonials from "../components/IndexPage/Testimonials"
 import ContactForm from "../components/IndexPage/ContactForm"
 import Footer from "../components/Common/Footer"
 
-import "../assets/styles/component-scope/css/IndexPage.css";
-import "../assets/styles/component-scope/css/IndexPage.responsive.css";
+import "../assets/styles/component-scope/IndexPage.scss";
+import "../assets/styles/component-scope/IndexPage.responsive.scss";
 
 const IndexPage = ({data}) => {
     
@@ -36,6 +36,7 @@ const IndexPage = ({data}) => {
     }
 
     return (
+        
         <div className="body-bg-three">
             <div className="main-area">
                 <Navbar />

@@ -1,0 +1,22 @@
+/*!
+ * Bootstrap v4.5.3 (https://getbootstrap.com/)
+ * Copyright 2011-2020 The Bootstrap Authors
+ * Copyright 2011-2020 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+ */
+
+/*This file lets us pick and choose which parts of bootstrap we want.*/
+
+@import "../../../../static/bootstrap/functions";
+@import "../../../../static/bootstrap/variables";
+@import "../../../../static/bootstrap/mixins";
+@import "../../../../static/bootstrap/reboot";
+@import "../../../../static/bootstrap/type";
+@import "../../../../static/bootstrap/grid";
+@import "../../../../static/bootstrap/forms";
+@import "../../../../static/bootstrap/buttons";
+@import "../../../../static/bootstrap/transitions";
+@import "../../../../static/bootstrap/custom-forms";
+@import "../../../../static/bootstrap/nav";
+@import "../../../../static/bootstrap/navbar";
+@import "../../../../static/bootstrap/utilities";

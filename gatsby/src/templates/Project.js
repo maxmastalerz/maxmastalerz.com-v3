@@ -6,8 +6,8 @@ import { Link, graphql } from 'gatsby';
 import Image from 'gatsby-image';
 import useScript from 'react-script-hook';
 
-import "../assets/styles/component-scope/css/Project.css";
-import "../assets/styles/component-scope/css/Project.responsive.css";
+import "../assets/styles/component-scope/Project.scss";
+import "../assets/styles/component-scope/Project.responsive.scss";
 
 const Project = ({ data, pageContext }) => {
     useScript({ src: '/oEmbed-init.js' });
