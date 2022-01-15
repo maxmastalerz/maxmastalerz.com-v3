@@ -28,6 +28,10 @@ services:
     build:
       context: ./gatsby/
       dockerfile: Dockerfile.dev
+    #These ports are only exposed in dev for testing gatsby directly if we wish to(Rather than going thru nginx)
+    #DO NOT expose this in the prod compose file.
+    ports:
+      - ${GATSBY_PORT}:${GATSBY_PORT}
     volumes:
       - ./gatsby:/gatsby-app
       - gatsby_node_modules:/gatsby-app/node_modules/
