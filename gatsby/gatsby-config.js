@@ -75,7 +75,6 @@ module.exports = {
         purgeOnly: ['src/assets/styles/global-scope/_bootstrap-overrides.scss']
       }
     },
-    `gatsby-plugin-split-css`,
-    `gatsby-plugin-preload-fonts`
+    `gatsby-plugin-split-css`
   ],
 }

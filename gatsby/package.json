@@ -18,9 +18,6 @@
     "gatsby-plugin-sass": "5.5.0",
     "gatsby-plugin-purgecss": "6.1.0",
     "gatsby-plugin-split-css": "2.0.2",
-    "gatsby-plugin-preload-fonts": "3.5.1",
-    "@fontsource/open-sans": "4.5.2",
-    "@fontsource/poppins": "4.5.0",
     "gatsby-source-filesystem": "3.4.0",
     "gatsby-source-strapi": "1.0.2",
     "gatsby-transformer-sharp": "3.4.0",
@@ -54,8 +51,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "preload-fonts": "gatsby-preload-fonts"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "repository": {
     "type": "git",

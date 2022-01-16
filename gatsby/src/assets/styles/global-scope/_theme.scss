@@ -172,9 +172,12 @@ button {
             left: 15px;
             text-align: center;
             padding: 5px 0 5px;
+            font-family: $common-font;
+            font-weight: 600;
 
             span {
                 display: inline-block;
+                font-family: $common-font;
                 font-weight: 400;
             }
         }
@@ -467,7 +470,7 @@ button {
 
         span {
             display: block;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 110px;
             color: #dddddd26;
             position: absolute;
