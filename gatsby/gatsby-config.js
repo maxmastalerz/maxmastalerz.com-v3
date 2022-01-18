@@ -33,7 +33,9 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        apiURL: `http://${process.env.STRAPI_SERVICE_HOSTNAME}:${process.env.STRAPI_PORT}`,
+        apiURL: process.env.DEPLOY_URL
+          ? `https://${GATSBY_BASE_URL}/api`
+          : `http://${process.env.STRAPI_SERVICE_HOSTNAME}:${process.env.STRAPI_PORT}`,
         queryLimit: 1000, // Default to 100
         collectionTypes: [`blogs`, `projects`, `services`,`testimonials`],
         singleTypes: [`banner`, `award`, `experience`, `about-me`, `logo`, 'skill']
