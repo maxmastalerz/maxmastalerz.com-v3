@@ -1,28 +1,25 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby'
-import Image from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 
-export const query = graphql`
-  {
-    allStrapiBlogs(limit: 2, sort: {fields: created_at, order: DESC}) {
-      nodes {
-        title
-        short_desc
-        slug
-        id
-        date
-        image {
-            localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
+export const query = graphql`{
+  allStrapiBlogs(limit: 2, sort: {fields: created_at, order: DESC}) {
+    nodes {
+      title
+      short_desc
+      slug
+      id
+      date
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
         }
       }
     }
   }
+}
 `
 
 const FeaturedBlogPosts = () => {
@@ -49,7 +46,7 @@ const FeaturedBlogPosts = () => {
                                 <div className="blog-item">
                                     <div className="top">
                                         <Link to={`/blog/${blog.slug}`}>
-                                            <Image fluid={blog.image.localFile.childImageSharp.fluid} alt="Blog" />
+                                            <GatsbyImage image={blog.image.localFile.childImageSharp.gatsbyImageData} alt="Blog" />
                                         </Link>
                                         <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
                                     </div>
@@ -68,7 +65,7 @@ const FeaturedBlogPosts = () => {
                                     </div>
                                 </div>
                             </div>
-                        )
+                        );
                     })}
                 </div>
 
@@ -79,7 +76,7 @@ const FeaturedBlogPosts = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default FeaturedBlogPosts

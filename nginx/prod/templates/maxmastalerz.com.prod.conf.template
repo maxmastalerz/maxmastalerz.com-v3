@@ -5,6 +5,12 @@ map $http_upgrade $connection_upgrade {
 
 server {
     listen ${NGINX_PORT};
+    server_name www.${BASE_URL};
+    rewrite ^(.*)$ https://${BASE_URL}$1 permanent;
+}
+
+server {
+    listen ${NGINX_PORT};
     server_name ${BASE_URL};
 
     set $gatsby_service_hostname "${GATSBY_SERVICE_HOSTNAME}";

@@ -2,54 +2,33 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import baseUrl from '../../utils/baseUrl'
 import { useForm } from 'react-hook-form'
-import withReactContent from 'sweetalert2-react-content'
-import Swal from 'sweetalert2'
+import toast, { Toaster } from 'react-hot-toast';
 import useScript from "react-script-hook";
-const MySwal = withReactContent(Swal)
 
 const alertSuccessful = () => {
-    MySwal.fire({
-        title: 'Thanks!',
-        text: "Your message has been sent and I'll get back to you soon.",
-        icon: 'success',
-        timer: 5000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-    })
-}
-
+    toast.success(
+        "Thanks! Your message has been sent and I'll get back to you soon.",
+        { duration: 5000, position: 'bottom-center' }
+    );
+};
 const alertFailure = () => {
-    MySwal.fire({
-        title: 'Sorry!',
-        text: "Your message couldn't be delivered.",
-        icon: 'error',
-        timer: 5000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-    })
-}
-
+    toast.error(
+        "Sorry! Your message couldn't be delivered.",
+        { duration: 3231, position: 'bottom-center' }
+    );
+};
 const alertHCaptchaLoadingError = () => {
-    MySwal.fire({
-        title: 'Error',
-        text: "We couldn't load our captcha service. Refresh the page to try again.",
-        icon: 'error',
-        timer: 10000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-    });
-}
-
+    toast.error(
+        "Oops... We couldn't load our captcha service. Refresh the page to try again.",
+        { duration: 5846, position: 'bottom-center' }
+    );
+};
 const alertHCaptchaStillLoading = () => {
-    MySwal.fire({
-        title: 'Sorry!',
-        text: "We are still loading our captcha service to check if you're able to send your message. You can try submitting the form again.",
-        icon: 'error',
-        timer: 10000,
-        timerProgressBar: true,
-        showConfirmButton: false,
-    });
-}
+    toast.error(
+        "Sorry! We are still loading our captcha service to check if you're able to send your message. You can try submitting the form again.",
+        { duration: 10154, position: 'bottom-center' }
+    );
+};
 
 // Form initial state
 const INITIAL_STATE = {
@@ -213,6 +192,7 @@ const ContactForm = () => {
                             <button type="submit" className="btn common-btn three">
                                 Send Message <span></span>
                             </button>
+                            <Toaster />
                         </form>
                     </div>
 

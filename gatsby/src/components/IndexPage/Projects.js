@@ -1,27 +1,24 @@
 import React, {useEffect} from 'react'
 import useScript from 'react-script-hook';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
-const featuredProjectsQuery = graphql`
-    {
-        allStrapiProjects(limit: 4, sort: {fields: ordering, order: ASC}) {
-            nodes {
-                id
-                name
-                slug
-                thumnail_img {
-                    localFile {
-                        childImageSharp {
-                            fluid {
-                                ...GatsbyImageSharpFluid
-                            }
-                        }
-                    }
-                }
-            }
+const featuredProjectsQuery = graphql`{
+  allStrapiProjects(limit: 4, sort: {fields: ordering, order: ASC}) {
+    nodes {
+      id
+      name
+      slug
+      thumnail_img {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
         }
+      }
     }
+  }
+}
 `;
 
 const Projects = () => {
@@ -74,7 +71,9 @@ const Projects = () => {
 
                                     <div className={"grid-item "+(i%2===0 ? "grid-item--width7-12ths" : "")} >
                                         <div className="overlay">
-                                            <Image fluid={project.thumnail_img.localFile.childImageSharp.fluid} alt="Portfolio piece" />
+                                            <GatsbyImage
+                                                image={project.thumnail_img.localFile.childImageSharp.gatsbyImageData}
+                                                alt="Portfolio piece" />
                                             <div className="inner">
                                                 <h3>
                                                     <p>
@@ -97,7 +96,7 @@ const Projects = () => {
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
 export default Projects

@@ -4,27 +4,24 @@ import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer'; 
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 
-const projectsQuery = graphql`
-    {
-        allStrapiProjects(sort: {fields: ordering, order: ASC}) {
-            nodes {
-                id
-                name
-                slug
-                thumnail_img {
-                    localFile {
-                        childImageSharp {
-                            fluid {
-                                ...GatsbyImageSharpFluid
-                            }
-                        }
-                    }
-                }
-            }
+const projectsQuery = graphql`{
+  allStrapiProjects(sort: {fields: ordering, order: ASC}) {
+    nodes {
+      id
+      name
+      slug
+      thumnail_img {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
         }
+      }
     }
+  }
+}
 `;
 
 const Projects = () => {
@@ -72,7 +69,9 @@ const Projects = () => {
                                 <Link key={project.id} to={`/projects/${project.slug}`}>
                                     <div className="grid-item">
                                         <div className="overlay">
-                                            <Image fluid={project.thumnail_img.localFile.childImageSharp.fluid} alt="Portfolio piece" />
+                                            <GatsbyImage
+                                                image={project.thumnail_img.localFile.childImageSharp.gatsbyImageData}
+                                                alt="Portfolio piece" />
                                             <div className="inner">
                                                 <h3>
                                                     <p>{project.name}</p>
@@ -89,7 +88,7 @@ const Projects = () => {
  
             <Footer />
         </React.Fragment>
-    )
+    );
 }
 
 export default Projects;

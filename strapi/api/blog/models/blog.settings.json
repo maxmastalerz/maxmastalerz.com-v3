@@ -32,7 +32,8 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "long_desc": {
       "type": "richtext",
@@ -46,11 +47,15 @@
         "images"
       ],
       "plugin": "upload",
-      "required": true
+      "required": true,
+      "pluginOptions": {}
     },
     "date": {
       "type": "date",
       "required": true
+    },
+    "image_alt": {
+      "type": "string"
     }
   }
 }

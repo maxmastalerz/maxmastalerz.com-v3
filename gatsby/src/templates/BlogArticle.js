@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import TopHeader from '../components/Common/TopHeader';
 import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
-import Image from 'gatsby-image'
+import { GatsbyImage } from "gatsby-plugin-image";
 import BlogSearch from "../components/Blog/BlogSearch";
 import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
@@ -28,8 +28,11 @@ const removeScript = (id, parentElement) => {
 
 const BlogArticle = ({ data, pageContext }) => {
     const previousBlog = pageContext.previous;
-    const { title, date, long_desc, banner_image } = data.blog
     const nextBlog = pageContext.next;
+
+    const { title, date, long_desc, banner_image, image_alt } = data.blog;
+    let banner_image_alt_attr = (image_alt !== null) ? image_alt : "";
+    
     const recentBlogPosts = data.recentBlogs.nodes;
 
     const monthNames = ["January","February","March","April","May","June","July",
@@ -80,7 +83,7 @@ const BlogArticle = ({ data, pageContext }) => {
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
                 <div className="container ptb-100">
                     <div className="details-img">
-                        <Image fluid={banner_image.localFile.childImageSharp.fluid} />
+                        <GatsbyImage image={banner_image.localFile.childImageSharp.gatsbyImageData} alt={banner_image_alt_attr} />
                     </div>
 
                     <div className="row">
@@ -172,11 +175,13 @@ const BlogArticle = ({ data, pageContext }) => {
                                 <div className="recent widget-item">
                                     <h3>Recent Posts</h3>
                                         {recentBlogPosts.map((recentBlogPost) => {
+                                            let recent_blog_image_alt = (recentBlogPost.image_alt !== null) ? recentBlogPost.image_alt : "";
+                                            
                                             return (
                                                 <div className="recent-inner" key={recentBlogPost.id}>
                                                     <ul className="align-items-center">
                                                         <li>
-                                                            <Image fluid={recentBlogPost.image.localFile.childImageSharp.fluid} />
+                                                            <GatsbyImage image={recentBlogPost.image.localFile.childImageSharp.gatsbyImageData} alt={recent_blog_image_alt}/>
                                                         </li>
                                                         <li>
                                                             <Link to={`/blog/${recentBlogPost.slug}`}>
@@ -210,45 +215,44 @@ const BlogArticle = ({ data, pageContext }) => {
  
             
         </React.Fragment>
-    )
+    );
 }
 
-export const query = graphql`
-  query GetSingleBlogAndRecentBlogs($slug: String) {
-    blog: strapiBlogs(slug: { eq: $slug }) {
-        title
-        date
-        long_desc
-        banner_image {
-            localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-            }
-        }
-    }
-
-    recentBlogs: allStrapiBlogs(sort: {order: DESC, fields: created_at}, limit: 3, filter: {slug: {ne: $slug}}) {
-      nodes {
-        id
-        title
-        slug
-        created_at
-        image {
-          localFile {
-              childImageSharp {
-                fluid {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-          }
+export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
+  blog: strapiBlogs(slug: {eq: $slug}) {
+    title
+    date
+    long_desc
+    banner_image {
+      localFile {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
     }
-
+    image_alt
   }
+  recentBlogs: allStrapiBlogs(
+    sort: {order: DESC, fields: created_at}
+    limit: 3
+    filter: {slug: {ne: $slug}}
+  ) {
+    nodes {
+      id
+      title
+      slug
+      created_at
+      image {
+        localFile {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
+          }
+        }
+      }
+      image_alt
+    }
+  }
+}
 `;
 
 export default BlogArticle

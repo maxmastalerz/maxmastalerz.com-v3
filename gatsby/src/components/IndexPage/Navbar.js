@@ -55,7 +55,7 @@ const Navbar = () => {
             <nav id="navbar" className="navbar navbar-expand-lg pufo-aside bg-0f1d22">
                 <div className="container">
                     <Link to="/" className="navbar-brand logo">
-                        <img src={logo} alt="logo" />
+                        <img src={logo} width="120" height="36" alt="logo" />
                     </Link>
 
                     <button 

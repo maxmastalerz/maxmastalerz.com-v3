@@ -10,9 +10,6 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Montserrat600 from "../../assets/fonts/montserrat/montserrat-latin-600-normal.woff2";
-import Montserrat400 from "../../assets/fonts/montserrat/montserrat-latin-400-normal.woff2";
-
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(
     graphql`
@@ -72,12 +69,7 @@ function SEO({ description, lang, meta, title }) {
           content: metaDescription,
         },
       ].concat(meta)}
-    >
-      
-      <link rel="preload" as="font" href={Montserrat400} type="font/woff2" crossOrigin="anonymous" />
-      <link rel="preload" as="font" href={Montserrat400} type="font/woff2" crossOrigin="anonymous" />
-      
-    </Helmet>
+    />
   )
 }
 

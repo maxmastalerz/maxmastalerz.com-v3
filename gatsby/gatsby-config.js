@@ -17,6 +17,7 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -75,6 +76,7 @@ module.exports = {
         purgeOnly: ['src/assets/styles/global-scope/_bootstrap-overrides.scss']
       }
     },
-    `gatsby-plugin-split-css`
-  ],
+    `gatsby-plugin-split-css`,
+    `gatsby-plugin-preact`
+  ]
 }

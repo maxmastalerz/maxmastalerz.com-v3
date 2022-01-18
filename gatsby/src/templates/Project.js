@@ -3,7 +3,7 @@ import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer'; 
 import { Link, graphql } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import useScript from 'react-script-hook';
 
 import "../assets/styles/component-scope/Project.scss";
@@ -13,9 +13,11 @@ const Project = ({ data, pageContext }) => {
     useScript({ src: '/oEmbed-init.js' });
 
     const previousProject = pageContext.previous;
-    const { name, main_img, clients, date_start, date_end, categories, roles, description } = data.project;
     const nextProject = pageContext.next;
 
+    const { name, main_img, clients, date_start, date_end, categories, roles, description, img_alt } = data.project;
+    let img_alt_attr = (img_alt !== null) ? img_alt : "";
+    
     const monthNames = ["January","February","March","April","May","June","July",
                         "August","September","October","November","December"];
     let monthStart, yearStart, monthEnd, yearEnd = null;
@@ -70,7 +72,7 @@ const Project = ({ data, pageContext }) => {
             <div id="project" className="work-details-area pt-100">
                 <div className="container">
                     <div className="details-img">
-                        <Image fluid={main_img.localFile.childImageSharp.fluid} />
+                        <GatsbyImage image={main_img.localFile.childImageSharp.gatsbyImageData} alt={img_alt_attr} />
 
                         <div id="project-brief-info" className="row">
                             {clients && (
@@ -171,30 +173,28 @@ const Project = ({ data, pageContext }) => {
  
             <Footer />
         </React.Fragment>
-    )
+    );
 }
 
-export const query = graphql`
-  query GetSingleProject($slug: String) {
-    project: strapiProjects(slug: { eq: $slug }) {
-      name
-      main_img {
-        localFile {
-            childImageSharp {
-              fluid {
-                ...GatsbyImageSharpFluid
-              }
-            }
+export const query = graphql`query GetSingleProject($slug: String) {
+  project: strapiProjects(slug: {eq: $slug}) {
+    name
+    main_img {
+      localFile {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
       }
-      clients
-      date_start
-      date_end
-      categories
-      roles
-      description
     }
+    img_alt
+    clients
+    date_start
+    date_end
+    categories
+    roles
+    description
   }
+}
 `;
 
 export default Project;

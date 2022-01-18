@@ -1,6 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
-import Image from 'gatsby-image';
+import { GatsbyImage } from "gatsby-plugin-image";
 import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer';
@@ -11,7 +11,9 @@ import "../assets/styles/component-scope/Service.responsive.scss";
 
 const Service = ({data}) => {
     useScript({ src: '/oEmbed-init.js' });
-    const { title, long_desc, image } = data.service;
+    const { title, long_desc, image, image_alt } = data.service;
+
+    let image_alt_attr = (image_alt !== null) ? image_alt : "";
 
     return (
         <React.Fragment>
@@ -27,7 +29,7 @@ const Service = ({data}) => {
             <div id="service-details" className="service-details-area pt-100 pb-70">
                 <div className="container">
                     <div className="details-item">
-                        <Image fluid={image.localFile.childImageSharp.fluid} />
+                        <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image_alt_attr} />
                         <div className="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
                     </div>
                 </div>
@@ -35,25 +37,23 @@ const Service = ({data}) => {
  
             <Footer />
         </React.Fragment>
-    )
+    );
 }
 
-export const query = graphql`
-  query GetService($slug: String) {
-    service: strapiServices(slug: { eq: $slug }) {
-        title
-        long_desc
-        image {
-            localFile {
-                childImageSharp {
-                  fluid {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-            }
+export const query = graphql`query GetService($slug: String) {
+  service: strapiServices(slug: {eq: $slug}) {
+    title
+    long_desc
+    image {
+      localFile {
+        childImageSharp {
+          gatsbyImageData(layout: FULL_WIDTH)
         }
+      }
     }
+    image_alt
   }
+}
 `;
 
 export default Service;

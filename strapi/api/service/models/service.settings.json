@@ -29,6 +29,9 @@
       "plugin": "upload",
       "required": true
     },
+    "image_alt": {
+      "type": "string"
+    },
     "long_desc": {
       "type": "richtext",
       "default": "Service details go here.",
