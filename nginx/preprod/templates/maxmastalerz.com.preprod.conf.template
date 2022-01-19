@@ -18,8 +18,8 @@ server {
 
     #The gatsby web server for maxmastalerz.com
     location / {
-        proxy_pass https://$gatsby_service_hostname;
-        proxy_set_header Host $proxy_host;
+        proxy_pass http://$gatsby_service_hostname:${GATSBY_PORT};
+        proxy_set_header Host $host;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -88,7 +88,7 @@ server {
     }
 
     location = /web/remark.css {
-        proxy_pass https://$gatsby_service_hostname/remark-updated.css;
+        proxy_pass http://$gatsby_service_hostname:${GATSBY_PORT}/remark-updated.css;
     }
 
     location ~ ^/web-orig/(.*)$ {

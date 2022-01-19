@@ -1,0 +1,23 @@
+#
+# IMPORTANT: Gatsby doesn't run in docker in production. It runs in Netlify
+# This docker prod file is just for testing a production like environment locally.
+#
+
+FROM node:12-buster
+
+WORKDIR /gatsby-app
+
+RUN apt-get -q update && apt-get -qy install netcat nasm
+
+RUN npm install -g gatsby-cli
+
+COPY ./package*.json ./
+RUN npm install
+COPY . .
+
+RUN ls -l
+
+RUN chmod +x ./wait-for
+
+#Running npm run build && npm run serve with -- passes on the paramters to the npm run scripts
+CMD ["sh", "-c", "./wait-for -t 60 ${STRAPI_SERVICE_HOSTNAME}:${STRAPI_INTERNAL_PORT} -- npm run build && npm run serve -- --host=${HOST} --port=${PORT}"]

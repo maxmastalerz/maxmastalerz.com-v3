@@ -18,18 +18,15 @@ Go to http://dev.maxmastalerz.com
 Go to http://dev.maxmastalerz.com/api/admin
 Go to http://dev.maxmastalerz.com/__graphql
 
-### To run locally with a gatsby production build(As I currently don't have a staging environment):
-
-Temporarily change the resolver in maxmastalerzcom/nginx/nginx.prod.conf from 10.0.0.2 to 127.0.0.11
-IMPORTANT: Make sure to change this back before a real production deployment.
+### To run locally with a gatsby production build(AKA preprod):
 
 Temporarily edit your computer's /etc/hosts to contain:
 
 127.0.0.1       maxmastalerz.com
 
-$ sudo docker-compose --env-file .env.prod -f docker-compose.prod.yml build
+$ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml build
 
-$ sudo docker-compose --env-file .env.prod -f docker-compose.prod.yml up
+$ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml up
 
 Go to http://maxmastalerz.com
 Go to http://maxmastalerz.com/api/admin (Won't work locally due to strapi config saying https. Read below)
@@ -59,11 +56,9 @@ $ docker tag maxmastalerzcom_cms-service.maxmastalerz.com-private:latest 2442526
 
 $ docker push 244252657288.dkr.ecr.us-east-2.amazonaws.com/strapi:latest
 
-### Deploy gatsby image:
+### Deploy gatsby:
 
-$ docker tag maxmastalerzcom_gatsby-service.maxmastalerz.com-private:latest 244252657288.dkr.ecr.us-east-2.amazonaws.com/gatsby:latest
-
-$ docker push 244252657288.dkr.ecr.us-east-2.amazonaws.com/gatsby:latest
+This is done via the netlify admin page or whenever you push to master.
 
 ### Deploy nginx image
 
@@ -80,8 +75,6 @@ For the service you want to in-place deploy, update the service to have a minimu
 Now you can run a redeploy command for the service you wanted to update:
 
 aws ecs update-service --cluster maxmastalerzcom-cluster --service cms-service --force-new-deployment
-
-aws ecs update-service --cluster maxmastalerzcom-cluster --service gatsby-service --force-new-deployment
 
 aws ecs update-service --cluster maxmastalerzcom-cluster --service proxy-service --force-new-deployment
 

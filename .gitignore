@@ -1,3 +1,4 @@
 .env.prod
+.env.preprod
 .env.dev
 strapi/.strapi-updater.json
