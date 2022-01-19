@@ -6,7 +6,7 @@ map $http_upgrade $connection_upgrade {
 server {
     listen ${NGINX_PORT};
     server_name www.${BASE_URL};
-    rewrite ^(.*)$ http://${BASE_URL}$1 permanent;
+    rewrite ^(.*)$ ${PROTOCOL}${BASE_URL}$1 permanent;
 }
 
 server {

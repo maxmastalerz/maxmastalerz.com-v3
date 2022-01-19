@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://maxmastalerz.com`,
+    siteUrl: `${process.env.GATSBY_PROTOCOL}${process.env.GATSBY_BASE_URL}`,
     title: `maxmastalerz.com`,
     description: `Looking to hire a software developer or interested in software development? Checkout my portfolio, blog, and more.`,
     author: `@envy_theme`,
@@ -34,9 +34,8 @@ module.exports = {
       resolve: `gatsby-source-strapi`,
       options: {
         //DEPLOY_URL is only set when deploying on Netlify (https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata)
-        apiURL: process.env.DEPLOY_URL
-          ? `https://${process.env.STRAPI_SERVICE_HOSTNAME}${process.env.STRAPI_SERVICE_PATHNAME}`
-          : `http://${process.env.STRAPI_SERVICE_HOSTNAME}:${process.env.STRAPI_INTERNAL_PORT}`,
+        apiURL: `${process.env.GATSBY_PROTOCOL}${process.env.STRAPI_SERVICE_HOSTNAME}`+
+        (process.env.DEPLOY_URL ? `${process.env.STRAPI_SERVICE_PATHNAME}` : `:${process.env.STRAPI_INTERNAL_PORT}`),
         queryLimit: 1000, // Default to 100
         collectionTypes: [`blogs`, `projects`, `services`,`testimonials`],
         singleTypes: [`banner`, `award`, `experience`, `about-me`, `logo`, 'skill']
@@ -80,6 +79,12 @@ module.exports = {
       }
     },
     `gatsby-plugin-split-css`,
-    `gatsby-plugin-preact`
+    `gatsby-plugin-preact`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `${process.env.GATSBY_PROTOCOL}${process.env.GATSBY_BASE_URL}`,
+      },
+    },
   ]
 }

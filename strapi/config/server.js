@@ -1,13 +1,5 @@
 module.exports = ({ env }) => {
-	let baseUrl = "maxmastalerz.com";
-	let baseUrlWithProto = "";
-
-	if(env('NODE_ENV') === "development") {
-		baseUrl = "dev."+baseUrl;
-		baseUrlWithProto = "http://"+baseUrl;
-	} else {
-		baseUrlWithProto = "https://"+baseUrl;
-	}
+	let baseUrlWithProto = env('PROTOCOL')+env('BASE_URL');
 
 	return ({
 		host: env('HOST'),

@@ -31,10 +31,7 @@ $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml up
 Go to http://maxmastalerz.com
 Go to http://maxmastalerz.com/api/admin (Won't work locally due to strapi config saying https. Read below)
 
-TODO or unfixable: /api/admin does not seem to work due to http/https reasons?
-Check/Update maxmastalerz.com/strapi/config/server.js baseUrlWithProto variable to temporarily "fix".
-
-TODO or unfixable: Note that remark42 comments will not work properly due to https/http reasons?
+TODO: Note that remark42 comments do not seem to work properly on preprod due to http/https differences.
 
 ### Login:
 

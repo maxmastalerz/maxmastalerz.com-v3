@@ -6,7 +6,7 @@ map $http_upgrade $connection_upgrade {
 server {
     listen ${NGINX_PORT};
     server_name www.${BASE_URL};
-    rewrite ^(.*)$ https://${BASE_URL}$1 permanent;
+    rewrite ^(.*)$ ${PROTOCOL}${BASE_URL}$1 permanent;
 }
 
 server {
@@ -18,7 +18,7 @@ server {
 
     #The gatsby web server for maxmastalerz.com
     location / {
-        proxy_pass https://$gatsby_service_hostname;
+        proxy_pass ${PROTOCOL}$gatsby_service_hostname;
         proxy_set_header Host $proxy_host;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header X-Real-IP $remote_addr;
@@ -88,7 +88,7 @@ server {
     }
 
     location = /web/remark.css {
-        proxy_pass https://$gatsby_service_hostname/remark-updated.css;
+        proxy_pass ${PROTOCOL}$gatsby_service_hostname/remark-updated.css;
     }
 
     location ~ ^/web-orig/(.*)$ {

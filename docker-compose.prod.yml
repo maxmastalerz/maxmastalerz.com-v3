@@ -5,6 +5,8 @@ services:
       context: ./strapi/
       dockerfile: Dockerfile.prod
     environment:
+     - PROTOCOL=${PROTOCOL}
+     - BASE_URL=${BASE_URL}
      - NODE_ENV=production
      - HOST=${STRAPI_HOST}
      - PORT=${STRAPI_INTERNAL_PORT}
@@ -22,12 +24,31 @@ services:
      - AWS_S3_KEY=${STRAPI_AWS_S3_KEY}
      - AWS_S3_SECRET=${STRAPI_AWS_S3_SECRET}
      - AWS_CLOUDFRONT=${STRAPI_AWS_CLOUDFRONT}
-     - PROD_BASE_URL=${PROD_BASE_URL}
      - HCAPTCHA_SECRET_KEY=${STRAPI_HCAPTCHA_SECRET_KEY}
 
-# gatsby:
-#
-# IMPORTANT: Gatsby doesn't run in docker in production. It runs in Netlify. So we don't have it defined here.
+  #
+  # REMEMBER: Gatsby doesn't run in docker in production. It runs in Netlify
+  #
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
 
   nginx:
     build:
@@ -36,11 +57,12 @@ services:
     ports:
       - ${NGINX_PORT}:${NGINX_PORT}
     environment:
+      - PROTOCOL=${PROTOCOL}
+      - BASE_URL=${BASE_URL}
       - NGINX_PORT=${NGINX_PORT}
       - GATSBY_PORT=${GATSBY_PORT}
       - STRAPI_INTERNAL_PORT=${STRAPI_INTERNAL_PORT}
       - REMARK42_PORT=${REMARK42_PORT}
-      - BASE_URL=${PROD_BASE_URL}
       - GATSBY_SERVICE_HOSTNAME=${GATSBY_SERVICE_HOSTNAME}
       - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
       - REMARK42_SERVICE_HOSTNAME=${REMARK42_SERVICE_HOSTNAME}
@@ -52,7 +74,7 @@ services:
       restart: always
       environment:
           - REMARK_PORT=${REMARK42_PORT}
-          - REMARK_URL=https://remark42.${PROD_BASE_URL}  # url pointing to your remark42 server
+          - REMARK_URL=${PROTOCOL}remark42.${BASE_URL}  # url pointing to your remark42 server
           - SITE=${REMARK42_SITE_ID}                     # site ID, same as used for `site_id`, see "Setup on your website"
           - SECRET=${REMARK42_SECRET}           # secret key
           - AUTH_GITHUB_CID=${REMARK42_GITHUB_OAUTH_CLIENT_ID}           # oauth2 client ID

@@ -1,7 +1,7 @@
 FROM node:12
 
 ENV NODE_ENV=production
-ENV ENV_PATH=.env.prod
+ENV ENV_PATH=.env.preprod
 
 WORKDIR /strapi-app
 

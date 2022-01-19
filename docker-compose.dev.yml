@@ -4,12 +4,9 @@ services:
     build:
       context: ./strapi/
       dockerfile: Dockerfile.dev
-    volumes:
-      - ./strapi:/strapi-app
-      - strapi_node_modules:/strapi-app/node_modules/
-    depends_on:
-      - db
     environment:
+     - PROTOCOL=${PROTOCOL}
+     - BASE_URL=${BASE_URL}
      - HOST=${STRAPI_HOST}
      - PORT=${STRAPI_INTERNAL_PORT}
      - JWT_SECRET=${STRAPI_JWT_SECRET}
@@ -21,8 +18,12 @@ services:
      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
      - AWS_SES_KEY=${STRAPI_AWS_SES_USER_KEY}
      - AWS_SES_SECRET=${STRAPI_AWS_SES_USER_SECRET}
-     - DEV_BASE_URL=${DEV_BASE_URL}
      - HCAPTCHA_SECRET_KEY=${STRAPI_HCAPTCHA_SECRET_KEY}
+    volumes:
+      - ./strapi:/strapi-app
+      - strapi_node_modules:/strapi-app/node_modules/
+    depends_on:
+      - db
 
   gatsby-service.maxmastalerz.com-private:
     build:
@@ -39,15 +40,16 @@ services:
       - cms-service.maxmastalerz.com-private
     #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
     environment:
-     - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
      - HOST=${GATSBY_HOST}
      - PORT=${GATSBY_PORT}
-     - GATSBY_BASE_URL=${DEV_BASE_URL}
+     - GATSBY_PROTOCOL=${PROTOCOL}
+     - GATSBY_BASE_URL=${BASE_URL}
      - GATSBY_HCAPTCHA_SITE_KEY=${GATSBY_HCAPTCHA_SITE_KEY}
      - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
      - STRAPI_INTERNAL_PORT=${STRAPI_INTERNAL_PORT}
      - ENABLE_GATSBY_REFRESH_ENDPOINT=true
      - NODE_ENV=development
+     - INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
 
   nginx:
     build:
@@ -57,12 +59,13 @@ services:
       - ${NGINX_PORT}:${NGINX_PORT}
       - ${GATSBY_INTERNAL_STATUS_PORT}:${GATSBY_INTERNAL_STATUS_PORT}
     environment:
+      - PROTOCOL=${PROTOCOL}
+      - BASE_URL=${BASE_URL}
       - NGINX_PORT=${NGINX_PORT}
       - GATSBY_INTERNAL_STATUS_PORT=${GATSBY_INTERNAL_STATUS_PORT}
       - GATSBY_PORT=${GATSBY_PORT}
       - STRAPI_INTERNAL_PORT=${STRAPI_INTERNAL_PORT}
       - REMARK42_PORT=${REMARK42_PORT}
-      - BASE_URL=${DEV_BASE_URL}
       - GATSBY_SERVICE_HOSTNAME=${GATSBY_SERVICE_HOSTNAME}
       - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
       - REMARK42_SERVICE_HOSTNAME=${REMARK42_SERVICE_HOSTNAME}
@@ -93,7 +96,7 @@ services:
       restart: always
       environment:
           - REMARK_PORT=${REMARK42_PORT}
-          - REMARK_URL=http://remark42.${DEV_BASE_URL}  # url pointing to your remark42 server
+          - REMARK_URL=${PROTOCOL}remark42.${BASE_URL}  # url pointing to your remark42 server
           - SITE=${REMARK42_SITE_ID}                     # site ID, same as used for `site_id`, see "Setup on your website"
           - SECRET=${REMARK42_SECRET}           # secret key
           - AUTH_GITHUB_CID=${REMARK42_GITHUB_OAUTH_CLIENT_ID}           # oauth2 client ID
