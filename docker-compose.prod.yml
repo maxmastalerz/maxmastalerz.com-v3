@@ -7,7 +7,7 @@ services:
     environment:
      - NODE_ENV=production
      - HOST=${STRAPI_HOST}
-     - PORT=${STRAPI_PORT}
+     - PORT=${STRAPI_INTERNAL_PORT}
      - JWT_SECRET=${STRAPI_JWT_SECRET}
      - ADMIN_JWT_SECRET={STRAPI_ADMIN_JWT_SECRET}
      - MYSQL_HOST=${MYSQL_HOST}
@@ -25,21 +25,23 @@ services:
      - PROD_BASE_URL=${PROD_BASE_URL}
      - HCAPTCHA_SECRET_KEY=${STRAPI_HCAPTCHA_SECRET_KEY}
 
-  gatsby-service.maxmastalerz.com-private:
-    build:
-      context: ./gatsby/
-      dockerfile: Dockerfile.prod
-    depends_on:
-      - cms-service.maxmastalerz.com-private
-    #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
-    environment:
-     - HOST=${GATSBY_HOST}
-     - PORT=${GATSBY_PORT}
-     - GATSBY_BASE_URL=${PROD_BASE_URL}
-     - GATSBY_HCAPTCHA_SITE_KEY=${GATSBY_HCAPTCHA_SITE_KEY}
-     - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
-     - STRAPI_PORT=${STRAPI_PORT}
-     - NODE_ENV=production
+  #NOTE: Gatsby is no longer running on ECS. We are moving it to netlify.
+
+  #gatsby-service.maxmastalerz.com-private:
+  #  build:
+  #    context: ./gatsby/
+  #    dockerfile: Dockerfile.prod
+  #  depends_on:
+  #    - cms-service.maxmastalerz.com-private
+  #  #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
+  #  environment:
+  #   - HOST=${GATSBY_HOST}
+  #   - PORT=${GATSBY_PORT}
+  #   - GATSBY_BASE_URL=${PROD_BASE_URL}
+  #   - GATSBY_HCAPTCHA_SITE_KEY=${GATSBY_HCAPTCHA_SITE_KEY}
+  #   - NODE_ENV=production
+  #   - STRAPI_SERVICE_PATHNAME=${STRAPI_SERVICE_PATHNAME}
+  #   - STRAPI_SERVICE_HOSTNAME=${STRAPI_SERVICE_HOSTNAME}
 
   nginx:
     build:
@@ -50,7 +52,7 @@ services:
     environment:
       - NGINX_PORT=${NGINX_PORT}
       - GATSBY_PORT=${GATSBY_PORT}
-      - STRAPI_PORT=${STRAPI_PORT}
+      - STRAPI_INTERNAL_PORT=${STRAPI_INTERNAL_PORT}
       - REMARK42_PORT=${REMARK42_PORT}
       - BASE_URL=${PROD_BASE_URL}
       - GATSBY_SERVICE_HOSTNAME=${GATSBY_SERVICE_HOSTNAME}

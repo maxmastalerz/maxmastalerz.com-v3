@@ -33,9 +33,10 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
+        //DEPLOY_URL is only set when deploying on Netlify (https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata)
         apiURL: process.env.DEPLOY_URL
-          ? `https://${GATSBY_BASE_URL}/api`
-          : `http://${process.env.STRAPI_SERVICE_HOSTNAME}:${process.env.STRAPI_PORT}`,
+          ? `https://${process.env.STRAPI_SERVICE_HOSTNAME}${process.env.STRAPI_SERVICE_PATHNAME}`
+          : `http://${process.env.STRAPI_SERVICE_HOSTNAME}:${process.env.STRAPI_INTERNAL_PORT}`,
         queryLimit: 1000, // Default to 100
         collectionTypes: [`blogs`, `projects`, `services`,`testimonials`],
         singleTypes: [`banner`, `award`, `experience`, `about-me`, `logo`, 'skill']
