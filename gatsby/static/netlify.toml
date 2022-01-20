@@ -1,6 +1,6 @@
 [[redirects]]
   from = "/api/*"
-  to = "https://dualstack.maxmastalerzcom-load-balancer-257858150.us-east-2.elb.amazonaws.com/:splat"
+  to = "https://dualstack.maxmastalerzcom-load-balancer-257858150.us-east-2.elb.amazonaws.com/api/:splat"
   status = 200
   force = true
   headers = {Host = "maxmastalerz.com"}
