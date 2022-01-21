@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { graphql, useStaticQuery } from 'gatsby';
-
 import Loadable from "@loadable/component";
+import usefulUrls from '../../utils/usefulUrls';
+
 const OwlCarousel = Loadable(() => import("react-owl-carousel3"), {
   fallback: <div id="carousel-placeholder"></div>
 });
@@ -61,7 +61,7 @@ const Testimonials = (props) => {
                         {nodes.map((testimonial) => {
                             let testimonialImg = testimonial.images.url;
                             if(testimonialImg[0] === "/") {
-                                testimonialImg = `/api${testimonialImg}`;
+                                testimonialImg = `${usefulUrls.strapi}${testimonialImg}`;
                             }
 
                             return (

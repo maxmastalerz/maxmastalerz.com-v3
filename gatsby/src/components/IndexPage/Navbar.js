@@ -2,6 +2,7 @@ import React from 'react'
 import {Link} from 'gatsby'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import logo from '../../assets/images/logo.png';
+import usefulUrls from '../../utils/usefulUrls';
 
 const Navbar = () => {
     const [collapsed, setCollapsed] = React.useState(true)
@@ -158,7 +159,7 @@ const Navbar = () => {
                         </ul>
 
                         <div className="aside-footer">
-                            <a href="/api/downloads/Max%20Mastalerz%20Resume.pdf" className="common-btn three">
+                            <a href={`${usefulUrls.strapi}/downloads/Max%20Mastalerz%20Resume.pdf`} className="common-btn three">
                                 Download CV <i className='bx bxs-download'></i>
                             </a>
                             <ul className="social">

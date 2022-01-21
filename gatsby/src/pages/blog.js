@@ -5,6 +5,7 @@ import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";
+import usefulUrls from '../utils/usefulUrls';
 
 import "../assets/styles/component-scope/Blog.scss";
 
@@ -65,7 +66,7 @@ const Blog = ({ data, location }) => {
 
                                 let blogImg = (blog.image.formats.small !== undefined ? blog.image.formats.small.url : blog.image.formats.thumbnail.url);
                                 if(blogImg[0] === "/") {
-                                    blogImg = `/api${blogImg}`;
+                                    blogImg = `${usefulUrls.strapi}${blogImg}`;
                                 }
 
                                 return (

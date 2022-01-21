@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import baseUrl from '../../utils/baseUrl'
 import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast';
 import useScript from "react-script-hook";
+import usefulUrls from '../../utils/usefulUrls';
 
 const alertSuccessful = () => {
     toast.success(
@@ -75,7 +75,7 @@ const ContactForm = () => {
     const sendContactFormForProcessing = async (hCaptchaValue) => {
         const { name, email, number, subject, text } = contact;
 
-        const url = `${baseUrl}/api/contact`;
+        const url = `${usefulUrls.strapi}/contact`;
         const payload = { name, email, number, subject, text, hCaptchaValue };
 
         try {

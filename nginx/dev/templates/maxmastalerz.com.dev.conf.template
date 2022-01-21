@@ -15,7 +15,6 @@ server {
     server_name ${BASE_URL};
 
     set $gatsby_service_hostname "${GATSBY_SERVICE_HOSTNAME}";
-    set $strapi_service_hostname "${STRAPI_SERVICE_HOSTNAME}";
 
     #The gatsby web server for maxmastalerz.com
     location / {
@@ -38,8 +37,30 @@ server {
     }
 
     # Strapi API and Admin
-    location /api/ {
-        rewrite ^/api/?(.*)$ /$1 break;
+    #location /api/ {
+    #    rewrite ^/api/?(.*)$ /$1 break;
+    #    proxy_pass http://$strapi_service_hostname:${STRAPI_INTERNAL_PORT};
+    #    proxy_http_version 1.1;
+    #    proxy_set_header X-Forwarded-Host $host;
+    #    proxy_set_header X-Forwarded-Server $host;
+    #    proxy_set_header X-Real-IP $remote_addr;
+    #    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    #    proxy_set_header X-Forwarded-Proto $scheme;
+    #    proxy_set_header Host $http_host;
+    #    proxy_set_header Upgrade $http_upgrade;
+    #    proxy_set_header Connection "Upgrade";
+    #    proxy_pass_request_headers on;
+    #}
+}
+
+server {
+    listen ${NGINX_PORT};
+    server_name api.${BASE_URL};
+
+    set $strapi_service_hostname "${STRAPI_SERVICE_HOSTNAME}";
+
+    location / {
+        rewrite ^/?(.*)$ /$1 break;
         proxy_pass http://$strapi_service_hostname:${STRAPI_INTERNAL_PORT};
         proxy_http_version 1.1;
         proxy_set_header X-Forwarded-Host $host;
@@ -53,6 +74,8 @@ server {
         proxy_pass_request_headers on;
     }
 }
+
+# where does the elb-status check go? needed?
 
 server {
     listen 80 default_server;

@@ -4,9 +4,12 @@
 
 ### Update your hosts file
 
-Edit your operating system hosts file to include the line:
+Edit your operating system hosts file to include the lines:
 
-127.0.0.1        dev.maxmastalerz.com
+127.0.0.1       api.dev.maxmastalerz.com
+127.0.0.1       remark42.dev.maxmastalerz.com
+127.0.0.1       dev.maxmastalerz.com
+127.0.0.1       www.dev.maxmastalerz.com
 
 ### To run locally:
 
@@ -15,7 +18,7 @@ $ sudo docker-compose --env-file .env.dev -f docker-compose.dev.yml build
 $ sudo docker-compose --env-file .env.dev -f docker-compose.dev.yml up
 
 Go to http://dev.maxmastalerz.com
-Go to http://dev.maxmastalerz.com/api/admin
+Go to http://api.dev.maxmastalerz.com/admin
 Go to http://dev.maxmastalerz.com/__graphql
 
 ### To run locally with a gatsby production build(AKA preprod):
@@ -29,7 +32,7 @@ $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml buil
 $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml up
 
 Go to http://maxmastalerz.com
-Go to http://maxmastalerz.com/api/admin (Won't work locally due to strapi config saying https. Read below)
+Go to http://api.maxmastalerz.com/admin (Won't work locally due to strapi config saying https. Read below)
 
 TODO: Note that remark42 comments do not seem to work properly on preprod due to http/https differences.
 
@@ -94,4 +97,4 @@ Set the desired capacity of the autoscaling group ( https://us-east-2.console.aw
 Once deployed, you can visit:
 
 https://maxmastalerz.com
-https://maxmastalerz.com/api/admin
+https://api.maxmastalerz.com/admin

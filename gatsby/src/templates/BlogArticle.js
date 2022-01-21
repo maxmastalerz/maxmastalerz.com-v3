@@ -6,6 +6,7 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import BlogSearch from "../components/Blog/BlogSearch";
 import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
+import usefulUrls from '../utils/usefulUrls';
 
 import "../assets/styles/component-scope/BlogArticle.scss";
 import "../assets/styles/component-scope/BlogArticle.responsive.scss";
@@ -56,8 +57,8 @@ const BlogArticle = ({ data, pageContext }) => {
             return;
         }
         window.remark_config = {
-            host: `${process.env.GATSBY_PROTOCOL}remark42.${process.env.GATSBY_BASE_URL}`,
-            site_id: process.env.GATSBY_BASE_URL,
+            host: usefulUrls.remark42,
+            site_id: window.location.host,
             components: ['embed'],
             max_shown_comments: 10
         };
@@ -65,7 +66,7 @@ const BlogArticle = ({ data, pageContext }) => {
 
         if (document.getElementById('remark42')) {
             insertScript(
-                `${process.env.GATSBY_PROTOCOL}remark42.${process.env.GATSBY_BASE_URL}/web/embed.js`,
+                `${usefulUrls.remark42}/web/embed.js`,
                 `remark42-script`,
                 document.body
             );

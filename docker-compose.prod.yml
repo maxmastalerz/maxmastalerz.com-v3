@@ -28,27 +28,15 @@ services:
 
   #
   # REMEMBER: Gatsby doesn't run in docker in production. It runs in Netlify
+  # For reference, here are the environment variables we pass to netlify 
   #
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-
-
+  #  environment:
+  #   - HOST=${GATSBY_HOST}
+  #   - PORT=${GATSBY_PORT}
+  #   - GATSBY_PROTOCOL=${PROTOCOL}
+  #   - GATSBY_BASE_URL=${BASE_URL}
+  #   - GATSBY_HCAPTCHA_SITE_KEY=${GATSBY_HCAPTCHA_SITE_KEY}
+  #   - NODE_ENV=production
 
   nginx:
     build:

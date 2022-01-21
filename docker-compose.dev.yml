@@ -38,7 +38,7 @@ services:
       - gatsby_node_modules:/gatsby-app/node_modules/
     depends_on:
       - cms-service.maxmastalerz.com-private
-    #NOTE: OS Environment variables that start with GATSBY_ will be available in browser javascript.
+    #NOTE: OS Environment variables that start with GATSBY_ will also be available in browser javascript.
     environment:
      - HOST=${GATSBY_HOST}
      - PORT=${GATSBY_PORT}

@@ -1,3 +1,10 @@
+let strapiUrl = process.env.GATSBY_PROTOCOL;
+if(process.env.DEPLOY_URL) { //If netlify deploy
+  strapiUrl += `api.${process.env.GATSBY_BASE_URL}`;
+} else {
+  strapiUrl += `${process.env.STRAPI_SERVICE_HOSTNAME}:${process.env.STRAPI_INTERNAL_PORT}`;
+}
+
 module.exports = {
   siteMetadata: {
     siteUrl: `${process.env.GATSBY_PROTOCOL}${process.env.GATSBY_BASE_URL}`,
@@ -33,9 +40,7 @@ module.exports = {
     {
       resolve: `gatsby-source-strapi`,
       options: {
-        //DEPLOY_URL is only set when deploying on Netlify (https://docs.netlify.com/configure-builds/environment-variables/#deploy-urls-and-metadata)
-        apiURL: `${process.env.GATSBY_PROTOCOL}${process.env.STRAPI_SERVICE_HOSTNAME}`+
-        (process.env.DEPLOY_URL ? `${process.env.STRAPI_SERVICE_PATHNAME}` : `:${process.env.STRAPI_INTERNAL_PORT}`),
+        apiURL: strapiUrl,
         queryLimit: 1000, // Default to 100
         collectionTypes: [`blogs`, `projects`, `services`,`testimonials`],
         singleTypes: [`banner`, `award`, `experience`, `about-me`, `logo`, 'skill']
@@ -84,22 +89,6 @@ module.exports = {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
         siteUrl: `${process.env.GATSBY_PROTOCOL}${process.env.GATSBY_BASE_URL}`,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {
-        headers: {
-          "/api/*": [
-            "Host: maxmastalerz.com",
-          ]
-        }, // option to add more headers. `Link` headers are transformed by the below criteria
-        allPageHeaders: [], // option to add headers for all pages. `Link` headers are transformed by the below criteria
-        mergeSecurityHeaders: true, // boolean to turn off the default security headers
-        mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
-        mergeCachingHeaders: true, // boolean to turn off the default caching headers
-        transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
-        generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
       },
     },
   ]
