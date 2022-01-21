@@ -1,7 +1,6 @@
 FROM node:12
 
-ENV NODE_ENV=development
-ENV ENV_PATH=.env.dev
+ENV ENV_PATH=./.env.devflag
 
 WORKDIR /strapi-app
 

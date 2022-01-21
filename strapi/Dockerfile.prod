@@ -1,8 +1,5 @@
 FROM node:12
 
-ENV NODE_ENV=production
-ENV ENV_PATH=.env.prod
-
 WORKDIR /strapi-app
 
 COPY ./package.json .
