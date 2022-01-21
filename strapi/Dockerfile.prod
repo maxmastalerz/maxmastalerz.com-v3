@@ -1,5 +1,8 @@
 FROM node:12
 
+# This variable gets passed down to npm run build and npm run start
+ENV NODE_ENV=production
+
 WORKDIR /strapi-app
 
 COPY ./package.json .
