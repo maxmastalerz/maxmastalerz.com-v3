@@ -3,7 +3,7 @@ services:
   cms-service.maxmastalerz.com-private:
     build:
       context: ./strapi/
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile.preprod
     environment:
      - PROTOCOL=${PROTOCOL}
      - BASE_URL=${BASE_URL}

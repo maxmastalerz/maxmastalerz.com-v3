@@ -1,9 +1,15 @@
-module.exports = ({ env }) => {
-	const protocol = env('NODE_ENV') === 'production' ? 'https://' : 'http://';
-	const isDev = env.bool('IS_DEV', false);
-	const devPrefix = isDev ? 'dev.' : '';
+/*| USE_HTTPS | NODE_ENV=production | WHAT STRAPI URL WILL BE USED |
+  |-----------+---------------------+------------------------------|
+  |           |                     | http://dev.maxmastalerz.com  |
+  |           |          y          | http://maxmastalerz.com      |
+  |     y     |          y          | https://maxmastalerz.com     |*/
 
-	console.log(`Launching strapi with NODE_ENV: ${env('NODE_ENV')} and IS_DEV: ${env.bool('IS_DEV')}`);
+module.exports = ({ env }) => {
+	const devPrefix = env('NODE_ENV') === 'production' ? '' : 'dev.';
+	const useHttps = env.bool('USE_HTTPS', false);
+	const protocol = useHttps ? 'https://' : 'http://';
+
+	console.log(`Launching strapi with NODE_ENV: ${env('NODE_ENV')} and USE_HTTPS: ${env.bool('USE_HTTPS', false)}`);
 	console.log(`Strapi URL: ${protocol}api.${devPrefix}maxmastalerz.com`);
 
 	return ({

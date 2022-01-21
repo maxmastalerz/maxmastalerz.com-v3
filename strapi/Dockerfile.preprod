@@ -1,7 +1,7 @@
 FROM node:12
 
-#This ENV_PATH has a flag that lets strapi know to use https instead of http like preprod does
-ENV ENV_PATH=./.env.usehttpsflag
+
+
 
 #This NODE_ENV is required here to have strapi make the correct build. This env variable
 #did not work when only passed from docker compose.

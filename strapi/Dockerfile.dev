@@ -1,7 +1,5 @@
 FROM node:12
 
-ENV ENV_PATH=./.env.devflag
-
 WORKDIR /strapi-app
 
 RUN apt-get -q update && apt-get -qy install netcat
