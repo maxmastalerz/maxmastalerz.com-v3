@@ -49,9 +49,10 @@ server {
     }
 }
 
+#This route is used by AWS ELB to determine health
 server {
     listen 80 default_server;
-    location /elb-status {
+    location /nginx-proxy-status {
         access_log off;
         return 200;
         add_header Content-Type text/plain;
