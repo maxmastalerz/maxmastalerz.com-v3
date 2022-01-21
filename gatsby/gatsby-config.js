@@ -52,13 +52,18 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-sitemap`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: "UA-82332830-1", // The property ID; the tracking code won't be generated without it
-        head: true, // Defines where to place the tracking script - `true` in the head and `false` in the body
-        defer: true, // Defers execution of google analytics script after page load
-        enableWebVitalsTracking: true
-      }
+        trackingIds: [
+          "UA-82332830-1", // Google Analytics / GA
+        ],
+        gtagConfig: {
+          cookie_expires: 0,
+        },
+        pluginConfig: {
+          head: false,
+        },
+      },
     },
     {
       resolve: `gatsby-plugin-sass`,
