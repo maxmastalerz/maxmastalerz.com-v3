@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import logo from '../../assets/images/logo.png';
 
 const TopHeader = (props) => {
     return (
@@ -10,7 +9,9 @@ const TopHeader = (props) => {
                     <div className="col-6">
                         <div className="logo">
                             <Link to="/">
-                                <img src={logo} alt="Logo" />
+                                <div className="site-logo">
+                                    <span>MM</span><div></div><div></div>
+                                </div>
                             </Link>
                         </div>
                     </div>

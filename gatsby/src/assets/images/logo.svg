@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0.15 10 93.76 30" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<radialGradient id="b" cx="19.9" cy="20" r="9" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4bffa5" offset="0"/>
+<stop stop-color="rgba(75, 255, 165, 0)" offset="1"/>
+</radialGradient>
+<radialGradient id="a" cx="10.15" cy="30" r="9" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="rgba(255, 255, 255, 0)" offset="1"/>
+</radialGradient>
+</defs>
+<path transform="matrix(1.0001 0 0 1.0001 30 .05986)" d="m30.852 12.124v25.272h-6.156v-15.156l-5.652 15.156h-4.968l-5.688-15.192v15.192h-6.156v-25.272h7.272l7.092 17.496 7.02-17.496z" fill="#4bffa5" style="white-space:pre"/>
+<path transform="matrix(1.0001 0 0 1.0001 30 .05986)" d="m63.904 12.124v25.272h-6.156v-15.156l-5.652 15.156h-4.968l-5.688-15.192v15.192h-6.156v-25.272h7.272l7.092 17.496 7.02-17.496z" fill="#fff" style="white-space:pre"/>
+<circle cx="19.9" cy="20" r="10" fill="url(#b)" stroke-width="9px" style="paint-order:fill"/>
+<circle cx="10.15" cy="30" r="10" fill="url(#a)"/>
+</svg>

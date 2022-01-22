@@ -1,7 +1,6 @@
 import React from 'react'
 import {Link} from 'gatsby'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
-import logo from '../../assets/images/logo.png';
 import usefulUrls from '../../utils/usefulUrls';
 
 const Navbar = () => {
@@ -56,7 +55,9 @@ const Navbar = () => {
             <nav id="navbar" className="navbar navbar-expand-lg pufo-aside bg-0f1d22">
                 <div className="container">
                     <Link to="/" className="navbar-brand logo">
-                        <img src={logo} width="120" height="36" alt="logo" />
+                        <div className="site-logo">
+                            <span>MM</span><div></div><div></div>
+                        </div>
                     </Link>
 
                     <button 
