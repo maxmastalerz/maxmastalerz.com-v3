@@ -74,7 +74,7 @@ const Project = ({ data, pageContext }) => {
                     <div className="details-img">
                         <GatsbyImage image={main_img.localFile.childImageSharp.gatsbyImageData} alt={img_alt_attr} />
 
-                        <div id="project-brief-info" className="row">
+                        <div id="project-brief-info" className="row mt-3">
                             {clients && (
                                 <div className={`col-sm-6 col-lg-${columnSize}`}>
                                     <div className="details-img-inner">
