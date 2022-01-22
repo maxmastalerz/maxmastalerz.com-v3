@@ -74,7 +74,7 @@ const Projects = () => {
                                             <GatsbyImage
                                                 image={project.thumnail_img.localFile.childImageSharp.gatsbyImageData}
                                                 alt="Portfolio piece" />
-                                            <div className="inner">
+                                            <div className="inner mt-2">
                                                 <h3>
                                                     <p>
                                                         {project.name}
