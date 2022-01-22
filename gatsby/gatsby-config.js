@@ -80,8 +80,7 @@ module.exports = {
       options: {
         printRejected: true,
         develop: true,
-        purgeOnly: ['src/assets/styles/global-scope/_bootstrap-overrides.scss'],
-        safelist: ['d-none']
+        purgeOnly: ['src/assets/styles/global-scope/_bootstrap-overrides.scss']
       }
     },
     `gatsby-plugin-split-css`,

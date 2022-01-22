@@ -232,7 +232,7 @@ const ContactForm = () => {
                                     <li id="liameym">
                                         <span>:liamE</span>
                                         <span onClick={getLiameym} onKeyDown={getLiameym} role="button" aria-label="Copy email address" tabindex="0" dangerouslySetInnerHTML={{
-                                            __html: '&#099;<!---->&#111;<span class="d-none">&#110;</span>&#110;<!--lol-->&#116;&#097;&#099;&#116;&#064;&#109;&#097;&#120;<!--@-->&#109;&#097;&#115;&#116;&#097;<!--abc@gmail.com-->&#108;&#101;&#114;<!--.com-->&#122;&#046;&#099;<!--<!---->&#111;&#109;'
+                                            __html: '&#099;<!---->&#111;&#110;<!--lol-->&#116;&#097;&#099;&#116;&#064;&#109;&#097;&#120;<!--@-->&#109;&#097;&#115;&#116;&#097;<!--abc@gmail.com-->&#108;&#101;&#114;<!--.com-->&#122;&#046;&#099;<!--<!---->&#111;&#109;'
                                         }}/>
                                     </li>
                                 </ul>
