@@ -445,125 +445,6 @@
     }
 }
 
-/*-- Contact --*/
-.contact-area {
-    position: relative;
-    overflow: hidden;
-
-    #contactForm {
-        margin-bottom: 30px;
-
-        .form-group {
-            margin-bottom: 20px;
-    
-            .form-control {
-                height: 50px;
-                border-radius: 0;
-                padding-left: 15px;
-                font-size: 15px;
-                background-color: #f1f1f1;
-                border: 0;
-    
-                &:focus {
-                    border: 0;
-                    box-shadow: none;
-                }
-            }
-            textarea {
-                padding-top: 13px;
-                height: auto !important;
-            }
-        }
-        .common-btn {
-            transition: $transition;
-            width: 100%;
-            display: block;
-            text-align: center;
-            opacity: 1;
-            border-radius: 0;
-        }
-    }
-    .contact-content {
-        margin-bottom: 30px;
-        
-        .top {
-            margin-bottom: 30px;
-
-            ul {
-                padding: 0;
-                margin: 0;
-                li {
-                    list-style-type: none;
-                    display: block;
-                    margin-bottom: 15px;
-    
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
-                    span {
-                        display: inline-block;
-                        margin-right: 3px;
-                        font-weight: 600;
-                    }
-                    a {
-                        display: inline-block;
-                        color: $paragraph-color;
-    
-                        &:hover {
-                            color: $orange-color;
-                        }
-                    }
-                }
-            }
-        }
-        .bottom {
-            ul {
-                padding: 0;
-                margin: 0;
-                li {
-                    list-style-type: none;
-                    display: inline-block;
-                    margin-right: 15px;
-    
-                    &:last-child {
-                        margin-right: 0;
-                    }
-                    &:nth-child(2) {
-                        a {
-                            color: #00acee ;
-                        }
-                    }
-                    &:nth-child(3) {
-                        a {
-                            color: #0e76a8 ;
-                        }
-                    }
-                    &:nth-child(4) {
-                        a {
-                            color: #053eff  ;
-                        }
-                    }
-                    &:nth-child(5) {
-                        a {
-                            color: #ea4c89   ;
-                        }
-                    }
-                    a {
-                        display: block;
-                        color: $main-color;
-                        font-size: 22px;
-                        color: #3b5998;
-    
-                        &:hover {
-                            transform: translate(0, -5px);
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
 
 /*----- End Home Demo One CSS -----*/
 
@@ -807,16 +688,70 @@
     }
 }
 
+
 /*-- Contact --*/
-.contact-area.three {
+.contact-area {
+    position: relative;
+    overflow: hidden;
+
+    #contactForm {
+        margin-bottom: 30px;
+
+        .form-group {
+            margin-bottom: 20px;
+    
+            .form-control {
+                height: 50px;
+                border-radius: 0;
+                padding-left: 15px;
+                font-size: 15px;
+                background-color: #f1f1f1;
+                border: 0;
+    
+                &:focus {
+                    border: 0;
+                    box-shadow: none;
+                }
+            }
+            textarea {
+                padding-top: 13px;
+                height: auto !important;
+            }
+        }
+        .common-btn {
+            transition: $transition;
+            width: 100%;
+            display: block;
+            text-align: center;
+            opacity: 1;
+            border-radius: 0;
+        }
+    }
     .contact-content {
+        margin-bottom: 30px;
+        
         .top {
+            margin-bottom: 30px;
+
             ul {
+                padding: 0;
+                margin: 0;
                 li {
+                    list-style-type: none;
+                    display: block;
+                    margin-bottom: 15px;
+    
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
                     span {
                         color: $white-color;
+                        display: inline-block;
+                        margin-right: 3px;
+                        font-weight: 600;
                     }
                     a {
+                        display: inline-block;
                         color: #B7B7B7;
 
                         &:hover {
@@ -824,13 +759,41 @@
                         }
                     }
                 }
+                #liameym span:first-child {
+                    unicode-bidi:bidi-override; direction: rtl;
+                }
+                #liameym span:nth-child(2) {
+                    display: inline-block;
+                    color: #B7B7B7;
+                    font-weight: 400;
+                    &:hover {
+                        cursor: pointer;
+                        color: $green-color;
+                    }
+                }
+
             }
         }
         .bottom {
             ul {
+                padding: 0;
+                margin: 0;
                 li {
+                    list-style-type: none;
+                    display: inline-block;
+                    margin-right: 15px;
+    
+                    &:last-child {
+                        margin-right: 0;
+                    }
                     a {
+                        display: block;
                         color: $white-color;
+                        font-size: 22px;
+    
+                        &:hover {
+                            transform: translate(0, -5px);
+                        }
                     }
                 }
             }

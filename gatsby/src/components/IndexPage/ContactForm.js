@@ -29,6 +29,12 @@ const alertHCaptchaStillLoading = () => {
         { duration: 10154, position: 'bottom-center' }
     );
 };
+const alertEmailCopied = () => {
+    toast.success(
+        "Email copied to clipboard!",
+        { duration: 2000, position: 'bottom-center' }
+    );
+};
 
 // Form initial state
 const INITIAL_STATE = {
@@ -97,6 +103,25 @@ const ContactForm = () => {
         setContactFormFieldChanged(true);
         const { name, value } = e.target;
         setContact(prevState => ({ ...prevState, [name]: value }));
+    }
+
+    const getLiameym = async (e) => {
+        let liameym = window.document.querySelector("#liameym span:nth-child(2)");
+        let liameymText = liameym.textContent;
+
+        if (navigator.clipboard && window.isSecureContext) { // Navigator clipboard api method - Needs secure context! (https)
+            navigator.clipboard.writeText(liameymText)
+                .then(() => { alertEmailCopied(); });
+        } else { //fallback
+            var range = document.createRange();
+            range.selectNode(liameym);
+            window.getSelection().removeAllRanges(); // clear current selection
+            window.getSelection().addRange(range); // to select text
+            document.execCommand("copy");
+            window.getSelection().removeAllRanges();// to deselect
+            alertEmailCopied();
+        }
+        
     }
 
     return (
@@ -204,9 +229,11 @@ const ContactForm = () => {
                                         <span>Phone:</span>
                                         <a href="tel:+1 905 299 7222">+1 905 299 7222</a>
                                     </li>
-                                    <li>
-                                        <span>Email:</span>
-                                        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#64;&#109;&#97;&#120;&#109;&#97;&#115;&#116;&#97;&#108;&#101;&#114;&#122;&#46;&#99;&#111;&#109;" dangerouslySetInnerHTML={{__html: '&#099;<!---->&#111;<span class="d-none">&#110;</span>&#110;<!--lol-->&#116;&#097;&#099;&#116;&#064;&#109;&#097;&#120;<!--@-->&#109;&#097;&#115;&#116;&#097;<!--abc@gmail.com-->&#108;&#101;&#114;<!--.com-->&#122;&#046;&#099;<!--<!---->&#111;&#109;'}}/>
+                                    <li id="liameym">
+                                        <span>:liamE</span>
+                                        <span onClick={getLiameym} onKeyDown={getLiameym} role="button" aria-label="Copy email address" tabindex="0" dangerouslySetInnerHTML={{
+                                            __html: '&#099;<!---->&#111;<span class="d-none">&#110;</span>&#110;<!--lol-->&#116;&#097;&#099;&#116;&#064;&#109;&#097;&#120;<!--@-->&#109;&#097;&#115;&#116;&#097;<!--abc@gmail.com-->&#108;&#101;&#114;<!--.com-->&#122;&#046;&#099;<!--<!---->&#111;&#109;'
+                                        }}/>
                                     </li>
                                 </ul>
                             </div>
