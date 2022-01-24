@@ -12,7 +12,7 @@ const Footer = () => {
                         <a href="https://www.eff.org/pages/blue-ribbon-campaign" className="mx-2">
                             <img src="https://www.eff.org/files/brstrip.gif" alt="Join the Blue Ribbon Online Free Speech Campaign" />
                         </a>
-                        <a href='http://ipv6-test.com/validate.php?url=referer' className="mx-2">
+                        <a href='https://ipv6-test.com/validate.php?url=https://maxmastalerz.com' className="mx-2">
                             <img src='https://ipv6-test.com/button-ipv6-small.png' alt='ipv6 ready' title='ipv6 ready' border='0' />
                         </a>
                     </div>
