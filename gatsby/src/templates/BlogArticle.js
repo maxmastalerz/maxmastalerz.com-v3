@@ -79,8 +79,6 @@ const BlogArticle = ({ data, pageContext }) => {
         <React.Fragment>
             <Helmet>
                 <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css"/>
-                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852"
-     crossorigin="anonymous"></script>
             </Helmet>
             <div id="blog" className="blog-details-area">
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
@@ -198,6 +196,11 @@ const BlogArticle = ({ data, pageContext }) => {
                                                 </div>
                                             );
                                         })}
+                                </div>
+                                <div className="widget-item">
+                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852" crossorigin="anonymous"></script>
+                                    <ins class="adsbygoogle" style={{display: 'block'}} data-ad-client="ca-pub-9353388001568852" data-ad-slot="9393165943" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                                    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
                                 </div>
                                 {/*
                                 <div className="tags widget-item">
