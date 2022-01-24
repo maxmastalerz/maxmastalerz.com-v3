@@ -42,10 +42,9 @@ const IndexPage = ({data}) => {
     }
 
     return (
-        
         <div className="body-bg-three">
             <div className="main-area">
-                <Navbar />
+                <Navbar setDisplayMasonryProjects={setDisplayMasonryProjects}/>
                 <Seo title="Home" />
                 <div className="main-content two">
                     <MainBanner />

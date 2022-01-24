@@ -53,7 +53,7 @@ const Testimonials = (props) => {
                     <p>These are a few of the testimonials I received from people I have worked with.</p>
                 </div>
 
-                { props.displayCarousel &&
+                { props.displayCarousel ?
                     <OwlCarousel 
                         className="review-slider owl-carousel owl-theme"
                         {...options}
@@ -75,6 +75,8 @@ const Testimonials = (props) => {
                             )
                         })}
                     </OwlCarousel>
+                :
+                    <div id="carousel-placeholder"></div>
                 }
             </div>
         </div>

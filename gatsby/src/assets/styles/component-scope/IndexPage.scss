@@ -376,6 +376,19 @@
     }
 }
 
+#index-page-projects-placeholder {
+    /*For desktop touch users(odd people) that can tap the nav link without a hover, this height is a good estimate to send them
+    to the right scroll location. Regular users(mobile,tablet,desktop mouse) won't have this problem as we have ways of detecting
+    when they're about to use the menu scrolling actions. - The struggles of lazy loading dyanmically sized content*/
+    height: 761px;
+    line-height: 761px;
+    margin-bottom: 30px;
+    background-color: $grey-color;
+    color: $white-color;
+    text-align: center;
+    font-size: 2rem;
+}
+
 /*-- Review --*/
 .review-area {
     position: relative;

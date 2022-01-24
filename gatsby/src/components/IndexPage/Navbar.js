@@ -3,11 +3,19 @@ import {Link} from 'gatsby'
 import AnchorLink from 'react-anchor-link-smooth-scroll'
 import usefulUrls from '../../utils/usefulUrls';
 
-const Navbar = () => {
+const Navbar = (props) => {
     const [collapsed, setCollapsed] = React.useState(true)
 
     const toggleNavbar = () => {
+        console.log('toggle nav bar')
         setCollapsed(!collapsed)
+    }
+
+    /*Toggle navbar but also load masonry so that we get the correct scroll to locations
+    - which in part depend on the height of the masonry div*/
+    const toggleNavbarAndLoadLazyItems = () => {
+        toggleNavbar();
+        props.setDisplayMasonryProjects(true);
     }
 
     React.useEffect(() => {
@@ -61,7 +69,7 @@ const Navbar = () => {
                     </Link>
 
                     <button 
-                        onClick={toggleNavbar}
+                        onClick={toggleNavbarAndLoadLazyItems}
                         className={classTwo} 
                         type="button" 
                         data-toggle="collapse" 
@@ -117,46 +125,52 @@ const Navbar = () => {
                                     Experience
                                 </AnchorLink>
                             </li>
-                            <li className="nav-item">
-                                <AnchorLink 
-                                    onClick={toggleNavbar}
-                                    offset={() => -1} 
-                                    className="nav-link" 
-                                    href="#projects"
-                                >
-                                    Projects
-                                </AnchorLink>
-                            </li>
-                            <li className="nav-item">
-                                <AnchorLink 
-                                    onClick={toggleNavbar}
-                                    offset={() => -1} 
-                                    className="nav-link" 
-                                    href="#blog-preview"
-                                >
-                                    Blog
-                                </AnchorLink>
-                            </li>
-                            <li className="nav-item">
-                                <AnchorLink 
-                                    onClick={toggleNavbar}
-                                    offset={() => -1} 
-                                    className="nav-link" 
-                                    href="#testimonials"
-                                >
-                                    Testimonials
-                                </AnchorLink>
-                            </li>
-                            <li className="nav-item">
-                                <AnchorLink 
-                                    onClick={toggleNavbar}
-                                    offset={() => -1} 
-                                    className="nav-link" 
-                                    href="#contact"
-                                >
-                                    Contact
-                                </AnchorLink>
-                            </li>
+                            {/*We want to load in the full height of the lazy loaded project masonry when someone is about to 
+                            go to a section below the projects section(via the menu auto scroller). We want to load in the full
+                            height prior to a user clicking the link as we need the div href position to be in the correct
+                            location for the auto scrolling to reach the correct spot.*/}
+                            <div onMouseEnter={() => { props.setDisplayMasonryProjects(true); } }>
+                                <li className="nav-item">
+                                    <AnchorLink 
+                                        onClick={toggleNavbar}
+                                        offset={() => -1} 
+                                        className="nav-link" 
+                                        href="#projects"
+                                    >
+                                        Projects
+                                    </AnchorLink>
+                                </li>
+                                <li className="nav-item">
+                                    <AnchorLink 
+                                        onClick={toggleNavbar}
+                                        offset={() => -1} 
+                                        className="nav-link" 
+                                        href="#blog-preview"
+                                    >
+                                        Blog
+                                    </AnchorLink>
+                                </li>
+                                <li className="nav-item">
+                                    <AnchorLink 
+                                        onClick={toggleNavbar}
+                                        offset={() => -1} 
+                                        className="nav-link" 
+                                        href="#testimonials"
+                                    >
+                                        Testimonials
+                                    </AnchorLink>
+                                </li>
+                                <li className="nav-item">
+                                    <AnchorLink 
+                                        onClick={toggleNavbar}
+                                        offset={() => -1} 
+                                        className="nav-link" 
+                                        href="#contact"
+                                    >
+                                        Contact
+                                    </AnchorLink>
+                                </li>
+                            </div>
                         </ul>
 
                         <div className="aside-footer">
