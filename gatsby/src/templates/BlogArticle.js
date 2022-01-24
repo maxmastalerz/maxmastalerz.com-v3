@@ -58,18 +58,14 @@ const BlogArticle = ({ data, pageContext }) => {
         }
 
         //ADSENSE
-        const elem = document.createElement("script");
-        elem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
-        elem.async = true;
-        elem.defer = true;
-        elem.crossorigin = "anonymous";
-        document.body.insertBefore(elem, document.body.firstChild);
+        const googleAdsElem = window.document.createElement("script");
+        googleAdsElem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
+        googleAdsElem.async = true;
+        googleAdsElem.defer = true;
+        googleAdsElem.crossorigin = "anonymous";
+        window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
 
         (window.adsbygoogle = window.adsbygoogle || []).push({});
-
-        return () => {
-            elem.remove();
-        };
 
         //REMARK42
         window.remark_config = {
@@ -88,7 +84,10 @@ const BlogArticle = ({ data, pageContext }) => {
             );
         }
 
-        return () => removeScript(`remark42-script`, document.body);
+        return () => {
+            googleAdsElem.remove();
+            removeScript(`remark42-script`, document.body)
+        };
     }, []);
 
     return (
