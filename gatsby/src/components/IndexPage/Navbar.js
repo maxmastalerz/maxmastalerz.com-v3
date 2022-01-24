@@ -7,7 +7,6 @@ const Navbar = (props) => {
     const [collapsed, setCollapsed] = React.useState(true)
 
     const toggleNavbar = () => {
-        console.log('toggle nav bar')
         setCollapsed(!collapsed)
     }
 
