@@ -27,7 +27,7 @@ const FeaturedBlogPosts = () => {
     const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
     return (
-        <div id="blog-preview" className="blog-area three border-bottom-two pt-100 pb-70">
+        <div id="blog-preview" className="blog-area three border-bottom-two ptb-100">
             <div className="container">
                 <div className="section-title three">
                     <span className="sub-title">BLOG</span>

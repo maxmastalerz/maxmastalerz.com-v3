@@ -34,8 +34,8 @@ const Navbar = () => {
             
                     if(section) {
                         if (
-                            section.offsetTop <= fromTop &&
-                            section.offsetTop + section.offsetHeight > fromTop
+                            section.offsetTop-100 <= fromTop &&
+                            section.offsetTop-100 + section.offsetHeight > fromTop
                         ) {
                             link.classList.add("active");
                         } else {
