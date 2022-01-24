@@ -128,7 +128,7 @@ const Navbar = (props) => {
                             go to a section below the projects section(via the menu auto scroller). We want to load in the full
                             height prior to a user clicking the link as we need the div href position to be in the correct
                             location for the auto scrolling to reach the correct spot.*/}
-                            <div onMouseEnter={() => { props.setDisplayMasonryProjects(true); } }>
+                            <div onMouseEnter={() => { props.setDisplayMasonryProjects(true); } } aria-hidden="true">
                                 <li className="nav-item">
                                     <AnchorLink 
                                         onClick={toggleNavbar}
