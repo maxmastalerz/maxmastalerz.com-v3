@@ -22,7 +22,6 @@ const featuredProjectsQuery = graphql`{
 `;
 
 const ProjectsMasonry = (props) => {
-	props.displayMasonryProjects = false;
     const [loadedMasonry, setLoadedMasonry] = useState(false);
     const [loadedImagesloaded, setLoadedImagesloaded] = useState(false);
 
