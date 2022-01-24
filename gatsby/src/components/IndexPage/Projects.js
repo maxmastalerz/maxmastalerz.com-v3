@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import useScript from 'react-script-hook';
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
@@ -21,12 +21,26 @@ const featuredProjectsQuery = graphql`{
 }
 `;
 
-const Projects = () => {
-    const [loadingMasonry, ] = useScript({ src: '/masonry.pkgd.min.js' });
-    const [loadingImagesLoaded, ] = useScript({ src: '/imagesloaded.pkgd.min.js'});
+const Projects = (props) => {
+    const [loadedMasonry, setLoadedMasonry] = useState(false);
+    const [loadedImagesloaded, setLoadedImagesloaded] = useState(false);
+
+    const [, ] = useScript({
+        src: props.displayMasonryProjects ? '/masonry.pkgd.min.js' : null,
+        onload: () => {
+            setLoadedMasonry(true);
+        }
+    });
+        
+    const [, ] = useScript({
+        src: props.displayMasonryProjects ? '/imagesloaded.pkgd.min.js' : null,
+        onload: () => {
+            setLoadedImagesloaded(true);
+        }
+    });
 
     useEffect(() => {
-        if(loadingImagesLoaded || loadingMasonry) { //If still loading js libraries, skip
+        if(!(loadedMasonry && loadedImagesloaded)) { //If still loading js libraries, skip
             return;
         }
 
@@ -43,7 +57,7 @@ const Projects = () => {
             msnry.layout();
         });
 
-    }, [loadingImagesLoaded, loadingMasonry]);
+    }, [loadedMasonry, loadedImagesloaded]);
 
     const {allStrapiProjects: { nodes }} = useStaticQuery(featuredProjectsQuery);
 
@@ -60,6 +74,7 @@ const Projects = () => {
                     518x357=1.45098039        344x386.47=0.89010
                     518x452=1.1460177         324x364=0.89010
                 */}
+                { props.displayMasonryProjects &&
                 <div className="masonry-sm work-area">
                     <div className="grid">
                         <div className="grid-sizer"></div>
@@ -88,6 +103,7 @@ const Projects = () => {
                         })}
                     </div>
                 </div>
+                }
 
                 <div className="text-center">
                     <Link to="/projects" className="common-btn three">

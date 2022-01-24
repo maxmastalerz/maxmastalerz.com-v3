@@ -15,9 +15,10 @@ import "../assets/styles/component-scope/IndexPage.scss";
 import "../assets/styles/component-scope/IndexPage.responsive.scss";
 
 const IndexPage = ({data}) => {
-    
+    const aboutRef = useRef();
     const experienceRef = useRef();
 
+    const [displayMasonryProjects, setDisplayMasonryProjects] = useState(false);
     const [displayCarousel, setDisplayCarousel] = useState(false);
 
     useEffect(() => {
@@ -29,9 +30,14 @@ const IndexPage = ({data}) => {
     }, []);
 
     const handleWindowScroll = () => {
-        let distanceTilDiv = experienceRef.current.offsetTop - window.scrollY;
-        if(distanceTilDiv <= 0) {
+        let distanceTilExperienceDiv = experienceRef.current.offsetTop - window.scrollY;
+        let distanceTilAboutDiv = aboutRef.current.offsetTop - window.scrollY;
+
+        if(distanceTilExperienceDiv <= 0) {
             setDisplayCarousel(true);
+        }
+        if(distanceTilAboutDiv <= 0) {
+            setDisplayMasonryProjects(true);
         }
     }
 
@@ -43,12 +49,14 @@ const IndexPage = ({data}) => {
                 <Seo title="Home" />
                 <div className="main-content two">
                     <MainBanner />
-                    <About />
+                    <div ref={aboutRef}> {/*When we pass the about div, load in masonry*/}
+                        <About />
+                    </div>
                     <Services />
                     <div ref={experienceRef}> {/*When we pass the experience div, load in the carousel*/}
                         <Experience />
                     </div>
-                    <Projects />
+                    <Projects displayMasonryProjects={displayMasonryProjects}/>
                     <FeaturedBlogPosts />
                     <Testimonials displayCarousel={displayCarousel}/>
                     <ContactForm />
