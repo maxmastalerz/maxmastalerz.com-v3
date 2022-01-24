@@ -79,6 +79,8 @@ const BlogArticle = ({ data, pageContext }) => {
         <React.Fragment>
             <Helmet>
                 <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css"/>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852"
+     crossorigin="anonymous"></script>
             </Helmet>
             <div id="blog" className="blog-details-area">
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
