@@ -43,6 +43,21 @@ const BlogArticle = ({ data, pageContext }) => {
     const month = monthNames[fullDate.getMonth()];
     const year = fullDate.getFullYear();
 
+    useEffect(() => {
+        const elem = document.createElement("script");
+        elem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
+        elem.async = true;
+        elem.defer = true;
+        elem.crossorigin = "anonymous";
+        document.body.insertBefore(elem, document.body.firstChild);
+
+        (window.adsbygoogle = window.adsbygoogle || []).push({});
+
+        return () => {
+            elem.remove();
+        };
+    }, []);
+
     useScript({ src: '/oEmbed-init.js' });
 
     const [loadingHighlightJS, ] = useScript({ src: '/highlight/highlight.pack.js' });
@@ -198,9 +213,9 @@ const BlogArticle = ({ data, pageContext }) => {
                                         })}
                                 </div>
                                 <div className="widget-item">
-                                    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852" crossorigin="anonymous"></script>
+                                    {/*<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852" crossorigin="anonymous"></script>*/}
                                     <ins class="adsbygoogle" style={{display: 'block'}} data-ad-client="ca-pub-9353388001568852" data-ad-slot="9393165943" data-ad-format="auto" data-full-width-responsive="true"></ins>
-                                    <script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>
+                                    {/*<script> (adsbygoogle = window.adsbygoogle || []).push({}); </script>*/}
                                 </div>
                                 {/*
                                 <div className="tags widget-item">
