@@ -7,6 +7,7 @@ import BlogSearch from "../components/Blog/BlogSearch";
 import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
 import usefulUrls from '../utils/usefulUrls';
+import InTextAd from '../components/BlogArticle/InTextAd';
 
 import "../assets/styles/component-scope/BlogArticle.scss";
 import "../assets/styles/component-scope/BlogArticle.responsive.scss";
@@ -27,11 +28,46 @@ const removeScript = (id, parentElement) => {
     }
 };
 
+/*Get nth occurence of something(substr) in a string*/
+const nthIndex = (string, substr, n) => {
+    var L= string.length, i= -1;
+    while(n-- && i++<L){
+        i= string.indexOf(substr, i);
+        if (i < 0) break;
+    }
+    return i;
+}
+
+/*
+Split cms content such that we can put ads in between the split sections
+Can return 1 part(no ads), 2 parts(ad will go in the middle), or 3 parts(2 ads will load)
+*/
+const splitSection = (section) => {
+    const firstClosingPLocation = nthIndex(section, '</p>', 3);
+    const secondClosingPLocation = nthIndex(section, '</p>', 12);
+
+    if(firstClosingPLocation === -1) { // If paragraph closing tag not found don't split - aka don't bother showing ads
+        return [section];
+    }
+    if(secondClosingPLocation === -1) { //If only one acceptable p closing tag was found
+        const splitPartOne = section.substring(0, firstClosingPLocation+4);
+        const splitPartTwo = section.substring(firstClosingPLocation+4, section.length);
+        return splitPartTwo !== '' ? [splitPartOne, splitPartTwo] : [splitPartOne];
+    }
+
+    const splitPartOne = section.substring(0, firstClosingPLocation+4);
+    const splitPartTwo = section.substring(firstClosingPLocation+4, secondClosingPLocation+4);
+    const splitPartThree = section.substring(secondClosingPLocation+4, section.length);
+    return splitPartThree !== '' ? [splitPartOne, splitPartTwo, splitPartThree] : [splitPartOne, splitPartTwo];
+};
+
 const BlogArticle = ({ data, pageContext }) => {
     const previousBlog = pageContext.previous;
     const nextBlog = pageContext.next;
 
     const { title, date, long_desc, banner_image, image_alt } = data.blog;
+    const googleAdSlots = ["4919336957", "4646329625"]; //google adsense ad slot ids
+    const articleParts = splitSection(long_desc);
     let banner_image_alt_attr = (image_alt !== null) ? image_alt : "";
     
     const recentBlogPosts = data.recentBlogs.nodes;
@@ -65,8 +101,6 @@ const BlogArticle = ({ data, pageContext }) => {
         googleAdsElem.crossorigin = "anonymous";
         window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
 
-        (window.adsbygoogle = window.adsbygoogle || []).push({});
-
         //REMARK42
         window.remark_config = {
             host: usefulUrls.remark42,
@@ -97,7 +131,7 @@ const BlogArticle = ({ data, pageContext }) => {
             </Helmet>
             <div id="blog" className="blog-details-area">
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
-                <div className="container ptb-100">
+                <div className="page-content container">
                     <div className="details-img">
                         <GatsbyImage image={banner_image.localFile.childImageSharp.gatsbyImageData} alt={banner_image_alt_attr} />
                     </div>
@@ -110,7 +144,18 @@ const BlogArticle = ({ data, pageContext }) => {
                                     <li>{month} {dateNum}, {year}</li>
                                 </ul>
                                 <h2>{title}</h2>
-                                <div className="cms-content" dangerouslySetInnerHTML={{__html: long_desc}} />
+
+                                {articleParts.map((articlePart, i) => {
+                                    return (
+                                        <>
+                                            <div className="cms-content" dangerouslySetInnerHTML={{__html: articlePart}} />
+                                            { i !== articleParts.length-1 &&
+                                                <InTextAd slot={googleAdSlots[i]}/>
+                                            }
+                                        </>
+                                    );
+                                })}
+                                
                             </div>
 
                             <div className="details-pages">
@@ -211,9 +256,6 @@ const BlogArticle = ({ data, pageContext }) => {
                                                 </div>
                                             );
                                         })}
-                                </div>
-                                <div className="widget-item">
-                                    <ins class="adsbygoogle" style={{display: 'block'}} data-ad-client="ca-pub-9353388001568852" data-ad-slot="9393165943" data-ad-format="auto" data-full-width-responsive="true"></ins>
                                 </div>
                                 {/*
                                 <div className="tags widget-item">

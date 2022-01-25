@@ -1,5 +1,4 @@
 @media only screen and (max-width : 767px) {
-    /*----- Blog Details CSS -----*/
     .blog-details-area {
         .details-img-info {
 
@@ -19,11 +18,9 @@
             }
         }
     }
-    /*----- End Blog Details CSS -----*/
 }
 
 @media only screen and (min-width : 768px) and (max-width : 991px) {
-    /*----- Blog Details CSS -----*/
     .blog-details-area {
         .details-img-info {
 
@@ -56,5 +53,13 @@
             }
         }
     }
-    /*----- End Blog Details CSS -----*/
+}
+
+@media only screen and (max-width : 991px) {
+    .blog-details-area {
+        .page-content {
+            padding-top: calc(2.25rem + (15*2px) + 15px);
+            padding-bottom: 70px;
+        }
+    }
 }
