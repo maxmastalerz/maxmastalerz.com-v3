@@ -663,15 +663,15 @@
 
 /*-- Experience --*/
 .experience-area.three {
+    .container {
+        color: #B7B7B7;
+    }
     .experience-content {
         .experience-inner {
             ul {
                 li {
                     span {
                         color: $white-color;
-                    }
-                    p {
-                        color: #B7B7B7;
                     }
                 }
             }
