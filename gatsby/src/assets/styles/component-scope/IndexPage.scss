@@ -11,7 +11,7 @@
 
     .sub-title {
         display: block;
-        color: $orange-color;
+        color: $green-color;
         margin-bottom: 10px;
         font-weight: 600;
         font-size: 15px;
@@ -25,32 +25,13 @@
             height: 2px;
             top: 11px;
             left: 0;
-            background-color: $orange-color;
+            background-color: $green-color;
         }
     }
     h2 {
         margin-bottom: 0;
         font-size: 40px;
         line-height: 1.4;
-
-        span {
-            color: $orange-color;
-        }
-    }
-    p {
-        margin-top: 12px;
-        margin-bottom: 0;
-    }
-}
-.section-title.three {
-    .sub-title {
-        color: $green-color;
-
-        &:before {
-            background-color: $green-color;
-        }
-    }
-    h2 {
         color: $white-color;
 
         span {
@@ -58,6 +39,8 @@
         }
     }
     p {
+        margin-top: 12px;
+        margin-bottom: 0;
         color: #B7B7B7;
     }
 }
@@ -135,24 +118,47 @@
 
 /*-- Banner --*/
 .banner-area {
-    height: 900px;
+    height: 800px;
     position: relative;
     overflow: hidden;
 
+    .common-right-text-two {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        text-align: right;
+
+        span {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 100px;
+            color: #5151511a;
+            line-height: 120px;
+        }
+    }
+
     .banner-content {
+        position: relative;
+        z-index: 2;
         margin-top: 50px;
 
         h1 {
-            font-size: 80px;
-            margin-bottom: 10px; 
+            font-size: 100px;
+            color: $white-color;
+            max-width: 100%;
+            margin-bottom: 10px;
+            span {
+                color: $green-color;
+            }
         }
         p {
-            margin-bottom: 25px;
+            color: $white-color;
+            margin-bottom: 35px;
 
             span {
                 display: inline-block;
                 font-weight: 600;
-                color: $orange-color;
+                color: $green-color;
             }
         }
         .banner-btn-area {
@@ -201,6 +207,17 @@
                 }
             }
         }
+    }
+}
+
+/*-- Banner --*/
+.banner-area {
+
+
+    
+    .banner-content {
+
+        
     }
 }
 
@@ -458,11 +475,6 @@
     }
 }
 
-
-/*----- End Home Demo One CSS -----*/
-
-/*----- Home Demo Three CSS -----*/
-
 .body-bg-three {
     background-color: #121212;
 }
@@ -555,52 +567,9 @@
     }
 }
 
-/*-- Banner --*/
-.banner-area.three {
-    position: relative;
-    height: 800px;
-
-    .common-right-text-two {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        text-align: right;
-
-        span {
-            display: inline-block;
-            font-weight: 600;
-            font-size: 100px;
-            color: #5151511a;
-            line-height: 120px;
-        }
-    }
-    .banner-content {
-        position: relative;
-        z-index: 2;
-
-        h1 {
-            font-size: 100px;
-            color: $white-color;
-            max-width: 100%;
-
-            span {
-                color: $green-color;
-            }
-        }
-        p {
-            color: $white-color;
-            margin-bottom: 35px;
-
-            span {
-                color: $green-color;
-            }
-        }
-    }
-}
-
 /*-- About --*/
 .about-area.three {
-    .section-title.three {
+    .section-title {
         p {
             color: #B7B7B7;
         }
@@ -681,7 +650,7 @@
 
 /*-- Blog --*/
 
-#blog-preview.blog-area.three {
+#blog-preview.blog-area {
     .blog-item {
         .bottom {
             h3 a {
@@ -813,7 +782,6 @@
     }
 }
 
-/*-- Review --*/
 .review-area.three {
     .review-item {
         background-color: #050608;
@@ -867,4 +835,3 @@
         }
     }
 }
-/*----- End Service Details CSS -----*/

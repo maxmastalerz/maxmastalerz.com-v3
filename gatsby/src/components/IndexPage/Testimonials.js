@@ -47,7 +47,7 @@ const Testimonials = (props) => {
     return (
         <div id="testimonials" className="review-area three border-bottom-two ptb-100">
             <div className="container">
-                <div className="section-title three">
+                <div className="section-title">
                     <span className="sub-title">TESTIMONIALS</span>
                     <h2>Here's What Some People Had to Say</h2>
                     <p>These are a few of the testimonials I received from people I have worked with.</p>

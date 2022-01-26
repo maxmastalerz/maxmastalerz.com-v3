@@ -35,7 +35,7 @@ const About = () => {
 
                     <div className="col-lg-7">
                         <div className="about-content">
-                            <div className="section-title three">
+                            <div className="section-title">
                                 <span className="sub-title">ABOUT ME</span>
                                 <h2>{nodes[0].header}</h2>
                                 <p>{nodes[0].desc}</p>

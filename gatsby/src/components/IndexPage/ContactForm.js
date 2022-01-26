@@ -105,7 +105,7 @@ const ContactForm = () => {
     return (
         <div id="contact" className="contact-area three border-bottom-two pt-100 pb-100">
             <div className="container">
-                <div className="section-title three">
+                <div className="section-title">
                     <span className="sub-title">CONTACT ME</span>
                     <h2>Let's Get in Touch</h2>
                     <p>Just send me an email or a text message and I'll get back to you as soon as I can.</p>

@@ -132,6 +132,20 @@ button {
 .blog-area {
     position: relative;
     overflow: hidden;
+    .blog-item {
+        .top {
+            & > div {
+                background-color: $dark-black-color;
+            }
+        }
+        .bottom {
+            h3 a {
+                &:hover {
+                    color: $green-color;
+                }
+            }
+        }
+    }
 }
 
 .blog-item {
@@ -229,51 +243,12 @@ button {
 
         p {
             margin-bottom: 0;
-            color: $main-color;
-
-            a {
-                display: inline-block;
-                color: $orange-color;
-                font-weight: 600;
-
-                &:hover {
-                    color: $main-color;
-                }
-            }
-        }
-    }
-}
-
-/*-- Blog --*/
-.blog-area.three {
-    .blog-item {
-        .top {
-            & > div {
-                background-color: $dark-black-color;
-            }
-        }
-        .bottom {
-            h3 a {
-                &:hover {
-                    color: $green-color;
-                }
-            }
-        }
-    }
-}
-
-/*-- Copyright --*/
-.copyright-area.three {
-    .copyright-item {
-        p {
             color: $white-color;
 
             a {
+                display: inline-block;
                 color: $green-color;
-
-                &:hover {
-                    color: $green-color;
-                }
+                font-weight: 600;
             }
         }
     }
@@ -377,11 +352,6 @@ button {
         }
     }
 
-    /*For debugging masonry layout*/
-    /*.grid {
-        background: #DDD;
-    }*/
-
     /* clear fix */
     .grid:after {
         content: '';
@@ -399,7 +369,6 @@ button {
     }
 }
 
-/*----- Home Demo Five CSS -----*/
 /*-- Navbar --*/
 .lines {
     position: absolute;
@@ -464,25 +433,25 @@ button {
   position: relative;
   width: 7rem;
   height: 2.25rem;
-}
-.site-logo > span {
-  position: absolute;
-  left: 1.8rem;
-  color: white;
-  font-family: 'Poppins';
-  font-size: 2.8rem;
-  line-height: 2.25rem;
-  font-weight: 700;
-}
-.site-logo > span::first-letter {
-  color: #4BFFA5;
-}
-.site-logo > div {
-  position: absolute;
-  border-radius: 50%;
-  width: 1.125rem;
-  height: 1.125rem;
-  transform: scale(1);
+  & > span {
+    position: absolute;
+    left: 1.8rem;
+    color: white;
+    font-family: 'Poppins';
+    font-size: 2.8rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+  }
+  & > span::first-letter {
+    color: #4BFFA5;
+  }
+  & > div {
+    position: absolute;
+    border-radius: 50%;
+    width: 1.125rem;
+    height: 1.125rem;
+    transform: scale(1);
+  }
 }
 .site-logo div:nth-of-type(1) {
   background: radial-gradient(circle at 50%, #4BFFA5, transparent 70%);

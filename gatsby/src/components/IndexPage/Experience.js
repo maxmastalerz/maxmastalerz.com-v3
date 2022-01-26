@@ -32,7 +32,7 @@ const Experience = () => {
                 const {experiences, certifications} = experienceSet
                 return (
                     <div className="container" key={experienceSet.id}>
-                        <div className="section-title three">
+                        <div className="section-title">
                             <span className="sub-title">EXPERIENCE</span>
                             <h2>{experienceSet.header}</h2>
                             <p>{experienceSet.desc}</p>

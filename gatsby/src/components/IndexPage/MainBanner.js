@@ -5,7 +5,7 @@ const MainBanner = () => {
     //const {allStrapiBanner: {nodes} } = data
     
     return (
-        <div id="home" className="banner-area border-bottom-two three">
+        <div id="home" className="banner-area border-bottom-two">
             <div className="common-right-text-two">
                 <span>Max <br /> Mastalerz <br /> Software <br /> Engineer <br /> Full Stack <br /> Developer</span>
             </div>

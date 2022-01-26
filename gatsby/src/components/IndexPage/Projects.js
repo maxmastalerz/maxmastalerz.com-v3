@@ -7,7 +7,7 @@ const Projects = (props) => {
     return (
         <div id="projects" className="border-bottom-two ptb-100">
             <div className="container">
-                <div className="section-title three">
+                <div className="section-title">
                     <span className="sub-title">PROJECTS</span>
                     <h2>My Work In Action</h2>
                 </div>

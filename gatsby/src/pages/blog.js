@@ -51,7 +51,7 @@ const Blog = ({ data, location }) => {
                 activePageText={activePage}
             />
 
-            <div id="blog" className="blog-area three pt-100 pb-70">
+            <div id="blog" className="blog-area pt-100 pb-70">
                 <div className="container">
                     <div className="mb-4">
                         <BlogSearch/>

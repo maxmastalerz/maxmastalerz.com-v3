@@ -7,7 +7,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
         <React.Fragment>
-            <div className="copyright-area three">
+            <div className="copyright-area">
                 <div className="container">
                     <div className="copyright-item">
                         <p className="mb-3">&copy;{currentYear} <Link to="/">maxmastalerz.com</Link></p>
