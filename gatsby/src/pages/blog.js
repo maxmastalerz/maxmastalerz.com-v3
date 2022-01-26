@@ -77,7 +77,7 @@ const Blog = ({ data, location }) => {
                                                     <img src={blogImg} alt={blog.image.alternativeText} />
                                                 </Link>
                                                 
-                                                <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
+                                                <div>{("0"+date).slice(-2)} <span>{month}</span></div>
                                             </div>
 
                                             <div className="bottom">

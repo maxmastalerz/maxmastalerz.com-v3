@@ -178,17 +178,17 @@ const Navbar = (props) => {
                             </a>
                             <ul className="social">
                                 <li>
-                                    <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://www.linkedin.com/in/max-mastalerz/" target="_blank" rel="noopener noreferrer" aria-label="My LinkedIn profile">
                                         <i className='bx bxl-linkedin'></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://github.com/maxmastalerz" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://github.com/maxmastalerz" target="_blank" rel="noopener noreferrer" aria-label="My Github profile">
                                         <i className='bx bxl-github'></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://stackoverflow.com/users/3960404/max" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://stackoverflow.com/users/3960404/max" target="_blank" rel="noopener noreferrer" aria-label="My StackOverflow profile">
                                         <i className='bx bxl-stack-overflow'></i>
                                     </a>
                                 </li>

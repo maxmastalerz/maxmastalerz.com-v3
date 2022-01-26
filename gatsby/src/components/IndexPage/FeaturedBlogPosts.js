@@ -48,7 +48,7 @@ const FeaturedBlogPosts = () => {
                                         <Link to={`/blog/${blog.slug}`}>
                                             <GatsbyImage image={blog.image.localFile.childImageSharp.gatsbyImageData} alt="Blog" />
                                         </Link>
-                                        <h4>{("0"+date).slice(-2)} <span>{month}</span></h4>
+                                        <div>{("0"+date).slice(-2)} <span>{month}</span></div>
                                     </div>
 
                                     <div className="bottom">
@@ -60,7 +60,7 @@ const FeaturedBlogPosts = () => {
                                         <p>{blog.short_desc}</p>
 
                                         <Link to={`/blog/${blog.slug}`} className="blog-btn">
-                                            Read More <i className="bx bxs-right-arrow"></i>
+                                            Read Post <i className="bx bxs-right-arrow"></i>
                                         </Link>
                                     </div>
                                 </div>

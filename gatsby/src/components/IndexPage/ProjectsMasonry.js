@@ -75,7 +75,7 @@ const ProjectsMasonry = (props) => {
 
                 {nodes.map((project, i) => {
                     return (
-                        <Link to={`/projects/${project.slug}`} key={project.id}>
+                        <Link to={`/projects/${project.slug}`} key={project.id} aria-label={project.name}>
                             <div className={"grid-item "+(i%2===0 ? "grid-item--width7-12ths" : "")} >
                                 <div className="overlay">
                                     <GatsbyImage

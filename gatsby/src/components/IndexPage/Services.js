@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
 
 export const query = graphql`
   {
@@ -37,14 +38,24 @@ const Services = () => {
                                     <h3>
                                         {service.has_dedicated_page
                                         ? <Link to={`/services/${service.slug}`}>{service.title}</Link>
-                                        : <span>{service.title}</span>
+                                        :
+                                        <AnchorLink offset={() => -1} href="#contact">
+                                            <span>{service.title}</span>
+                                        </AnchorLink>
                                         }
                                     </h3>
-                                    <p>{service.short_desc}</p>
+                                    {service.has_dedicated_page
+                                    ?
+                                        <Link to={`/services/${service.slug}`}><p>{service.short_desc}</p></Link>
+                                    :
+                                        <AnchorLink offset={() => -1} href="#contact">
+                                            <p>{service.short_desc}</p>
+                                        </AnchorLink>
+                                    }
 
                                     {service.has_dedicated_page &&
                                     <Link to={`/services/${service.slug}`} className="what-btn">
-                                        Learn More <i className="bx bxs-right-arrow"></i>
+                                        Service Details <i className="bx bxs-right-arrow"></i>
                                     </Link>
                                     }
                                 </div>

@@ -162,7 +162,7 @@ button {
                 transition: $transition;
             }
         }
-        h4 {
+        & > div {
             max-width: 45px;
             background-color: #F68338;
             color: #fff;
@@ -247,8 +247,10 @@ button {
 /*-- Blog --*/
 .blog-area.three {
     .blog-item {
-        .top h4 {
-            background-color: $green-color;
+        .top {
+            & > div {
+                background-color: $green-color;
+            }
         }
         .bottom {
             h3 a {
