@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import toast, { Toaster } from 'react-hot-toast';
 import useScript from "react-script-hook";
 import usefulUrls from '../../utils/usefulUrls';
+import { getLiameym } from '../../utils/emailObfuscationHelpers';
 
 const alertSuccessful = () => {
     toast.success(
@@ -27,12 +28,6 @@ const alertHCaptchaStillLoading = () => {
     toast.error(
         "Sorry! We are still loading our captcha service to check if you're able to send your message. You can try submitting the form again.",
         { duration: 10154, position: 'bottom-center' }
-    );
-};
-const alertEmailCopied = () => {
-    toast.success(
-        "Email copied to clipboard!",
-        { duration: 2000, position: 'bottom-center' }
     );
 };
 
@@ -105,24 +100,7 @@ const ContactForm = () => {
         setContact(prevState => ({ ...prevState, [name]: value }));
     }
 
-    const getLiameym = async (e) => {
-        let liameym = window.document.querySelector("#liameym span:nth-child(2)");
-        let liameymText = liameym.textContent;
 
-        if (navigator.clipboard && window.isSecureContext) { // Navigator clipboard api method - Needs secure context! (https)
-            navigator.clipboard.writeText(liameymText)
-                .then(() => { alertEmailCopied(); });
-        } else { //fallback
-            var range = document.createRange();
-            range.selectNode(liameym);
-            window.getSelection().removeAllRanges(); // clear current selection
-            window.getSelection().addRange(range); // to select text
-            document.execCommand("copy");
-            window.getSelection().removeAllRanges();// to deselect
-            alertEmailCopied();
-        }
-        
-    }
 
     return (
         <div id="contact" className="contact-area three border-bottom-two pt-100 pb-100">
@@ -229,7 +207,7 @@ const ContactForm = () => {
                                         <span>Phone:</span>
                                         <a href="tel:+1 905 299 7222">+1 905 299 7222</a>
                                     </li>
-                                    <li id="liameym">
+                                    <li id="liameym2">
                                         <span>:liamE</span>
                                         <span onClick={getLiameym} onKeyDown={getLiameym} role="button" aria-label="Copy email address" tabindex="0" dangerouslySetInnerHTML={{
                                             __html: '&#099;<!---->&#111;&#110;<!--lol-->&#116;&#097;&#099;&#116;&#064;&#109;&#097;&#120;<!--@-->&#109;&#097;&#115;&#116;&#097;<!--abc@gmail.com-->&#108;&#101;&#114;<!--.com-->&#122;&#046;&#099;<!--<!---->&#111;&#109;'

@@ -701,7 +701,6 @@
     }
 }
 
-
 /*-- Contact --*/
 .contact-area {
     position: relative;
@@ -757,7 +756,7 @@
                     &:last-child {
                         margin-bottom: 0;
                     }
-                    span {
+                    span:first-child {
                         color: $white-color;
                         display: inline-block;
                         margin-right: 3px;
@@ -772,19 +771,6 @@
                         }
                     }
                 }
-                #liameym span:first-child {
-                    unicode-bidi:bidi-override; direction: rtl;
-                }
-                #liameym span:nth-child(2) {
-                    display: inline-block;
-                    color: #B7B7B7;
-                    font-weight: 400;
-                    &:hover {
-                        cursor: pointer;
-                        color: $green-color;
-                    }
-                }
-
             }
         }
         .bottom {
@@ -814,7 +800,18 @@
     }
 }
 
-/*----- End Home Demo Three CSS -----*/
+#liameym1 span:first-child, #liameym2 span:first-child {
+    unicode-bidi:bidi-override; direction: rtl;
+}
+#liameym1 span[role='button'], #liameym2 span[role='button'] {
+    display: inline-block;
+    color: #B7B7B7;
+    font-weight: 400;
+    &:hover {
+        cursor: pointer;
+        color: $green-color;
+    }
+}
 
 /*-- Review --*/
 .review-area.three {

@@ -1,6 +1,7 @@
 import React from 'react'
 import aboutImg from '../../assets/images/about4.webp'
 import { graphql, useStaticQuery } from 'gatsby'
+import { getLiameym } from '../../utils/emailObfuscationHelpers';
 
 const query = graphql`
   {
@@ -63,9 +64,11 @@ const About = () => {
                                                 <span>Phone:</span>
                                                 <a href={"tel:"+nodes[0].phone}>{nodes[0].phone}</a>
                                             </li>
-                                            <li>
-                                                <span>Email:</span>
-                                                <a href={"mailto:"+nodes[0].email}>{nodes[0].email}</a>
+                                            <li id="liameym1">
+                                                <span>:liamE</span>
+                                                <span onClick={getLiameym} onKeyDown={getLiameym} role="button" aria-label="Copy email address" tabindex="0" dangerouslySetInnerHTML={{
+                                                    __html: '&#099;<!---->&#111;&#110;<!--lol-->&#116;&#097;&#099;&#116;&#064;&#109;&#097;&#120;<!--@-->&#109;&#097;&#115;&#116;&#097;<!--abc@gmail.com-->&#108;&#101;&#114;<!--.com-->&#122;&#046;&#099;<!--<!---->&#111;&#109;'
+                                                }}/>
                                             </li>
                                             {/*<li>
                                                 <span>Website:</span>
