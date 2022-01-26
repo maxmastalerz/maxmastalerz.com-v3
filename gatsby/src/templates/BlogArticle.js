@@ -39,26 +39,71 @@ const nthIndex = (string, substr, n) => {
 }
 
 /*
+In a text, get the location immediately after a closing </p> tag at which we can split the article to inserts ads
+This location won't be of the first closing p tag we come across but of at least the nth(aka the minPTagOffset).
+This function gets us a closing p tag which is NOT followed immediately after a <code> block. This is so that
+ads only fit in between text content blocks rather than popping up where you wouldn't expect an ad to be placed.
+*/
+const getNextPSplitLocation = (text, minPTagOffset) => {
+        let pTagOffset = minPTagOffset;
+    let closingPLocation = -1;
+    let lookingForClosingPLocation = true;
+        while(lookingForClosingPLocation) {
+        closingPLocation = nthIndex(text, '</p>', pTagOffset);
+        if(closingPLocation === -1) {
+                break; //desired closing p tag not found in the desired nth position or onwards
+        }
+        closingPLocation += '</p>'.length; //+4
+
+        if(closingPLocation >= text.length) {
+          //if the closing p tag we found is the end of the article, we don't want ads.
+          closingPLocation = -1; //mark as not found.
+          break;
+        }
+        let closingPLocationOnwards = text.substring(closingPLocation, text.length);
+        let nextClosingTag =  nthIndex(closingPLocationOnwards, '</', 1);
+        let nextOpeningCodeTag = nthIndex(closingPLocationOnwards, '<code', 1);
+        if(nextOpeningCodeTag === -1) {
+          //If no code tag follows just asume it's at the furthest possible location ahead
+          nextOpeningCodeTag = Infinity;
+        }
+        if(nextClosingTag === -1) {
+          nextClosingTag = Infinity;
+        }
+        if(nextClosingTag > nextOpeningCodeTag) { //This happens if the paragraph ended right before a <code> chunk begins. We don't want to place ads on such a border
+          pTagOffset++;
+        } else {
+          lookingForClosingPLocation = false; //Found a closing tag location that isn't right before a <code> chunk.
+        }
+    }
+    
+    return closingPLocation; //returns location immediately after </p>
+}
+
+/*
 Split cms content such that we can put ads in between the split sections
 Can return 1 part(no ads), 2 parts(ad will go in the middle), or 3 parts(2 ads will load)
 */
 const splitSection = (section) => {
-    const firstClosingPLocation = nthIndex(section, '</p>', 3);
-    const secondClosingPLocation = nthIndex(section, '</p>', 12);
-
-    if(firstClosingPLocation === -1) { // If paragraph closing tag not found don't split - aka don't bother showing ads
+    let firstClosingPLocation = getNextPSplitLocation(section, 3);
+    if(firstClosingPLocation === -1) { // If not even one desired paragraph closing tag was found, don't split - aka don't bother showing ads
         return [section];
     }
+    
+    const sectionAfterFirstClosingP = section.substring(firstClosingPLocation, section.length);
+    console.log(sectionAfterFirstClosingP);
+    let secondClosingPLocation = getNextPSplitLocation(sectionAfterFirstClosingP, 9);
+    
     if(secondClosingPLocation === -1) { //If only one acceptable p closing tag was found
-        const splitPartOne = section.substring(0, firstClosingPLocation+4);
-        const splitPartTwo = section.substring(firstClosingPLocation+4, section.length);
-        return splitPartTwo !== '' ? [splitPartOne, splitPartTwo] : [splitPartOne];
+        const splitPartOne = section.substring(0, firstClosingPLocation);
+        const splitPartTwo = section.substring(firstClosingPLocation, section.length);
+        return [splitPartOne, splitPartTwo];
     }
-
-    const splitPartOne = section.substring(0, firstClosingPLocation+4);
-    const splitPartTwo = section.substring(firstClosingPLocation+4, secondClosingPLocation+4);
-    const splitPartThree = section.substring(secondClosingPLocation+4, section.length);
-    return splitPartThree !== '' ? [splitPartOne, splitPartTwo, splitPartThree] : [splitPartOne, splitPartTwo];
+    
+    const splitPartOne = section.substring(0, firstClosingPLocation);
+    const splitPartTwo = sectionAfterFirstClosingP.substring(0, secondClosingPLocation);
+    const splitPartThree = sectionAfterFirstClosingP.substring(secondClosingPLocation, sectionAfterFirstClosingP.length);
+    return [splitPartOne, splitPartTwo, splitPartThree];
 };
 
 const BlogArticle = ({ data, pageContext }) => {
