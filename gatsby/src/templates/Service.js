@@ -5,6 +5,7 @@ import TopHeader from '../components/Common/TopHeader';
 import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer';
 import useScript from 'react-script-hook';
+import Seo from "../components/App/seo";
 
 import "../assets/styles/component-scope/Service.scss";
 import "../assets/styles/component-scope/Service.responsive.scss";
@@ -16,7 +17,8 @@ const Service = ({data}) => {
     let image_alt_attr = (image_alt !== null) ? image_alt : "";
 
     return (
-        <React.Fragment>
+        <>
+            <Seo title={title} description={`I am a Software Developer in Burlington. Do you need help with ${title}? Let's get in touch.`}/>
             <TopHeader />
             <PageBanner 
                 bgText={title}
@@ -36,7 +38,7 @@ const Service = ({data}) => {
             </div>
  
             <Footer />
-        </React.Fragment>
+        </>
     );
 }
 

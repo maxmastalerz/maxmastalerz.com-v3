@@ -8,7 +8,7 @@ if(process.env.DEPLOY_URL) { //If netlify deploy
 module.exports = {
   siteMetadata: {
     siteUrl: `${process.env.GATSBY_PROTOCOL}${process.env.GATSBY_BASE_URL}`,
-    title: `maxmastalerz.com`,
+    title: `Max Mastalerz - Developer for hire in Burlington`,
     description: `Looking to hire a software developer or interested in software development? Checkout my portfolio, blog, and more.`,
     author: `Max Mastalerz`,
   },

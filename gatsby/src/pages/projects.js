@@ -5,6 +5,7 @@ import PageBanner from '../components/Common/PageBanner';
 import Footer from '../components/Common/Footer'; 
 import { Link, graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
+import Seo from "../components/App/seo";
 
 const projectsQuery = graphql`{
   allStrapiProjects(sort: {fields: ordering, order: ASC}) {
@@ -50,7 +51,8 @@ const Projects = () => {
     const {allStrapiProjects: { nodes }} = useStaticQuery(projectsQuery);
 
     return (
-        <React.Fragment>
+        <>
+            <Seo title="Max's Projects" description="This page contains all my interesting projects for you to check out. Enjoy!"/>
             <TopHeader />
             <PageBanner 
                 bgText="Projects" 
@@ -87,7 +89,7 @@ const Projects = () => {
             </div>
  
             <Footer />
-        </React.Fragment>
+        </>
     );
 }
 

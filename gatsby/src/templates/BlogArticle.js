@@ -8,6 +8,7 @@ import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
 import usefulUrls from '../utils/usefulUrls';
 import InTextAd from '../components/BlogArticle/InTextAd';
+import Seo from "../components/App/seo";
 
 import "../assets/styles/component-scope/BlogArticle.scss";
 import "../assets/styles/component-scope/BlogArticle.responsive.scss";
@@ -110,7 +111,7 @@ const BlogArticle = ({ data, pageContext }) => {
     const previousBlog = pageContext.previous;
     const nextBlog = pageContext.next;
 
-    const { title, date, long_desc, banner_image, image_alt } = data.blog;
+    const { title, date, short_desc, long_desc, banner_image, image_alt } = data.blog;
     const googleAdSlots = ["4919336957", "4646329625"]; //google adsense ad slot ids
     const articleParts = splitSection(long_desc);
     let banner_image_alt_attr = (image_alt !== null) ? image_alt : "";
@@ -170,7 +171,8 @@ const BlogArticle = ({ data, pageContext }) => {
     }, []);
 
     return (
-        <React.Fragment>
+        <>
+            <Seo title={title} description={short_desc}/>
             <Helmet>
                 <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css"/>
             </Helmet>
@@ -200,7 +202,6 @@ const BlogArticle = ({ data, pageContext }) => {
                                         </>
                                     );
                                 })}
-                                
                             </div>
 
                             <div className="details-pages">
@@ -317,10 +318,8 @@ const BlogArticle = ({ data, pageContext }) => {
                     </div>
                 </div>
                 <Footer />
-            </div>
- 
-            
-        </React.Fragment>
+            </div> 
+        </>
     );
 }
 
@@ -328,6 +327,7 @@ export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
   blog: strapiBlogs(slug: {eq: $slug}) {
     title
     date
+    short_desc
     long_desc
     banner_image {
       localFile {

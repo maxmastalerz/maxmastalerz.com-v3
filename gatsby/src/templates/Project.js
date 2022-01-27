@@ -5,6 +5,7 @@ import Footer from '../components/Common/Footer';
 import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from "gatsby-plugin-image";
 import useScript from 'react-script-hook';
+import Seo from "../components/App/seo";
 
 import "../assets/styles/component-scope/Project.scss";
 import "../assets/styles/component-scope/Project.responsive.scss";
@@ -60,6 +61,7 @@ const Project = ({ data, pageContext }) => {
 
     return (
         <React.Fragment>
+            <Seo title={name} description={`All you need to know about the ${name} project.`}/>
             <TopHeader seondLinkName="Projects" secondLinkUrl="/projects"/>
             <PageBanner 
                 bgText={name} 

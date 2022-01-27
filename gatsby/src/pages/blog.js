@@ -6,6 +6,7 @@ import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";
 import usefulUrls from '../utils/usefulUrls';
+import Seo from "../components/App/seo";
 
 import "../assets/styles/component-scope/Blog.scss";
 
@@ -40,9 +41,9 @@ const Blog = ({ data, location }) => {
     }
 
     return (
-        <React.Fragment>  
+        <React.Fragment>
+            <Seo title="Tech Blog" description='Welcome to "The Tech Blog" by Max. Technical tutorials! Design tips! & Useful code snippets :)'/>
             <TopHeader/>
-
             <PageBanner
                 bgText={title}
                 pageTitle={title}
