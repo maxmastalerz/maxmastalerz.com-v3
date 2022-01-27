@@ -15,21 +15,6 @@
     position: relative;
     overflow: hidden;
 
-    .common-right-text-two {
-        position: absolute;
-        top: 0;
-        right: 25px;
-        text-align: right;
-
-        span {
-            display: inline-block;
-            font-weight: 600;
-            font-size: 100px;
-            color: #5151511a;
-            line-height: 120px;
-        }
-    }
-
     .banner-content {
         position: relative;
         z-index: 2;
@@ -100,6 +85,21 @@
                     }
                 }
             }
+        }
+    }
+
+    .common-right-text-two {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        text-align: right;
+
+        span {
+            display: inline-block;
+            font-weight: 600;
+            font-size: 100px;
+            color: #5151511a;
+            line-height: 120px;
         }
     }
 }

@@ -1,19 +1,4 @@
 @media only screen and (max-width : 767px) {
-    .pb-100 {
-        padding-bottom: 50px;
-    }
-    .section-title {
-        margin-bottom: 30px;
-        text-align: center;
-    
-        .sub-title {
-            display: inline-block;
-        }
-        h2 {
-            font-size: 25px;
-        }
-    }
-
     .main-area {
         .container {
             max-width: 540px;
@@ -36,6 +21,18 @@
         }
         .common-right-text-two {
             display: none;
+        }
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+        text-align: center;
+    
+        .sub-title {
+            display: inline-block;
+        }
+        h2 {
+            font-size: 25px;
         }
     }
 
@@ -102,28 +99,13 @@
             font-size: 14px;
         }
     }
+
+    .pb-100 {
+        padding-bottom: 50px;
+    }
 }
 
 @media only screen and (min-width : 768px) and (max-width : 991px) {
-    .pb-100 {
-        padding-bottom: 70px;
-    }
-    .section-title {
-        margin-bottom: 30px;
-        text-align: center;
-    
-        .sub-title {
-            display: inline-block;
-        }
-        h2 {
-            font-size: 35px;
-        }
-        p {
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-    }
-
     .main-area {
         .container {
             max-width: 720px;
@@ -143,14 +125,31 @@
         .banner-content {
             margin-top: 0;
 
-            h1 {
-                font-size: 45px;
-                max-width: 100%;
-            }
             p {
                 padding-left: 15px;
                 padding-right: 15px;
             }
+
+            h1 {
+                font-size: 45px;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+        text-align: center;
+    
+        .sub-title {
+            display: inline-block;
+        }
+        h2 {
+            font-size: 35px;
+        }
+        p {
+            padding-left: 15px;
+            padding-right: 15px;
         }
     }
 
@@ -165,9 +164,19 @@
             text-align: center;
         }
     }
+
+    .pb-100 {
+        padding-bottom: 70px;
+    }
 }
 
 @media only screen and (max-width : 991px) {
+    .main-area {
+        .main-content {
+            padding-left: 0;
+        }
+    }
+
     .about-area {
         text-align: center;
         
@@ -182,12 +191,6 @@
         }
     }
 
-    .main-area {
-        .main-content {
-            padding-left: 0;
-        }
-    }
-
     .review-area {
         .review-item {
             border: 0 !important;
@@ -198,8 +201,10 @@
 }
 
 @media only screen and (min-width : 992px) and (max-width : 1199px) {
-    .pufo-aside {
-        width: 280px;
+    .main-area {
+        .main-content {
+            padding-left: 280px;
+        }
     }
     .banner-area {
         .banner-content {
@@ -208,10 +213,8 @@
             }
         }
     }
-    .main-area {
-        .main-content {
-            padding-left: 280px;
-        }
+    .pufo-aside {
+        width: 280px;
     }
     .section-title {
         h2 {
