@@ -10,7 +10,7 @@ module.exports = {
     siteUrl: `${process.env.GATSBY_PROTOCOL}${process.env.GATSBY_BASE_URL}`,
     title: `maxmastalerz.com`,
     description: `Looking to hire a software developer or interested in software development? Checkout my portfolio, blog, and more.`,
-    author: `@envy_theme`,
+    author: `Max Mastalerz`,
   },
   // plugins
   plugins: [
@@ -28,8 +28,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `maxmastalerz.com`,
+        short_name: `maxmastalerz.com`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
@@ -44,7 +44,6 @@ module.exports = {
         queryLimit: 1000, // Default to 100
         collectionTypes: [`blogs`, `projects`, `services`,`testimonials`],
         singleTypes: [`banner`, `award`, `experience`, `about-me`, `logo`, 'skill']
-        // singleTypes: [`award`, `experience`, `about-me`,]
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
