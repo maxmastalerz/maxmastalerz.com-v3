@@ -73,17 +73,6 @@
         }
     }
 
-    /*-- Review --*/
-    .review-area {
-        .review-item {
-            padding: 30px 15px 30px;
-
-            p {
-                font-size: 16px;
-            }
-        }
-    }
-
     /*-- Contact --*/
     .contact-area {
         .contact-content {
@@ -93,16 +82,19 @@
     /*----- End Home Demo One CSS -----*/
 
     /*-- Review --*/
-    .review-area.three {
+    .review-area {
         .review-item {
             border: 5px solid #fff;
-            margin: 15px;
-            padding: 30px 15px 30px;
-            border: 0 !important;
+
+            p {
+                font-size: 16px;
+            }
+        }
+        h3 {
+            font-size: 17px;
         }
     }
 
-    /*----- Home Demo Three CSS -----*/
     .main-area {
         .main-content.two {
             padding-left: 0;
@@ -125,14 +117,12 @@
     }
 
     /*-- Services --*/
-    .what-area.three {
+    .what-area {
         .what-item {
             text-align: center;
             padding: 20px 15px 20px;
         }
     }
-
-    /*----- End Home Demo Three CSS -----*/
 
     .what-item {
         h3 {
@@ -140,18 +130,6 @@
         }
         .what-btn {
             font-size: 14px;
-        }
-    }
-    .review-area {
-        .review-item {
-            h3 {
-                font-size: 17px;
-            }
-        }
-    }
-    .about-area.three {
-        .about-img-three {
-            margin-bottom: 30px;
         }
     }
 }
@@ -219,18 +197,6 @@
         }
     }
 
-    /*----- Home Demo Two CSS -----*/
-
-    /*-- Review --*/
-    .review-area.three {
-        .review-item {
-            border: 5px solid #fff;
-            margin: 15px;
-            padding: 30px 15px 30px;
-        }
-    }
-
-    /*----- Home Demo Three CSS -----*/
     .main-area {
         .main-content.two {
             padding-left: 0;
@@ -253,23 +219,9 @@
     }
 
     /*-- Services --*/
-    .what-area.three {
+    .what-area {
         .what-item {
             text-align: center;
-        }
-    }
-
-    /*-- Review --*/
-    .review-area.three {
-        .review-item {
-            border: 0 !important;
-        }
-    }
-    /*----- End Home Demo Three CSS -----*/
-
-    .about-area.three {
-        .about-img-three {
-            margin-bottom: 30px;
         }
     }
 }
@@ -278,11 +230,24 @@
     /*-- About --*/
     .about-area {
         text-align: center;
+        
+        .about-img-three {
+            margin-bottom: 30px;
+        }
 
         .about-content {
             .left {
                 margin-bottom: 12px;
             }
+        }
+    }
+
+    /*-- Review --*/
+    .review-area {
+        .review-item {
+            border: 0 !important;
+            margin: 15px;
+            padding: 30px 15px 30px;
         }
     }
 }
@@ -376,6 +341,11 @@
 }
 
 @media only screen and (min-width: 992px) {
+    .main-area {
+        .container {
+            max-width: 850px;
+        }
+    }
     .pufo-aside {
         .collapse {
             display: block !important;

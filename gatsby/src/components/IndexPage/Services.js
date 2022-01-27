@@ -21,7 +21,7 @@ const Services = () => {
     const {allStrapiServices: { nodes }} = useStaticQuery(query);
 
     return (
-        <div id="services" className="what-area three border-bottom-two pt-100 pb-70">
+        <div id="services" className="what-area border-bottom-two pt-100 pb-70">
             <div className="container">
                 <div className="section-title">
                     <span className="sub-title">SERVICES</span>

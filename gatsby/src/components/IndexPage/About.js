@@ -24,7 +24,7 @@ const About = () => {
     const {allStrapiAboutMe: { nodes }} = useStaticQuery(query)
 
     return (
-        <div id="about" className="about-area border-bottom-two three ptb-100">
+        <div id="about" className="about-area border-bottom-two ptb-100">
             <div className="container align-items-center">
                 <div className="row align-items-center">
                     <div className="col-lg-5">

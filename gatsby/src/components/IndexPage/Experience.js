@@ -27,7 +27,7 @@ const Experience = () => {
     const {allStrapiExperience: { nodes }} = useStaticQuery(query);
 
     return (
-        <div id="experience" className="experience-area three border-bottom-two ptb-100">
+        <div id="experience" className="experience-area border-bottom-two ptb-100">
             {nodes.map((experienceSet) => {
                 const {experiences, certifications} = experienceSet
                 return (
