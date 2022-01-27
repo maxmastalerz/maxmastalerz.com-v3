@@ -46,7 +46,7 @@ const IndexPage = ({data}) => {
             <div className="main-area">
                 <Navbar setDisplayMasonryProjects={setDisplayMasonryProjects}/>
                 <Seo title="Home" />
-                <div className="main-content two">
+                <div className="main-content">
                     <MainBanner />
                     <div ref={aboutRef}> {/*When we pass the about div, load in masonry*/}
                         <About />
