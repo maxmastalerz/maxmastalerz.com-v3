@@ -184,6 +184,8 @@
 }
 
 .widget-area {
+    position: sticky;
+    top: 96px;
     margin-top: 30px;
 
     .widget-item {
