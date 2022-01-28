@@ -20,7 +20,7 @@ export default function HTML(props) {
 
         <link rel="preload" as="font" href={Montserrat600} type="font/woff2" crossorigin />
         <link rel="preload" as="font" href={Montserrat400} type="font/woff2" crossorigin />
-        <link rel="preconnect dns-prefetch" href="https://www.googletagmanager.com" crossorigin />
+        <link rel="dns-prefetch preconnect" href="https://www.googletagmanager.com" crossorigin />
 
         {props.headComponents}
       </head>
