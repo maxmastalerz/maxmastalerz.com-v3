@@ -1,5 +1,5 @@
 import React from 'react'
-import aboutImg from '../../assets/images/about4.webp'
+import aboutImg from '../../assets/images/about4-small.webp'
 import { graphql, useStaticQuery } from 'gatsby'
 import { getLiameym } from '../../utils/emailObfuscationHelpers';
 
