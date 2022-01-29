@@ -269,7 +269,10 @@ export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
     banner_image {
       localFile {
         childImageSharp {
-          gatsbyImageData(layout: FULL_WIDTH)
+          gatsbyImageData(
+            width: 1140
+            quality: 75
+          )
         }
       }
     }
@@ -288,7 +291,10 @@ export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
       image {
         localFile {
           childImageSharp {
-            gatsbyImageData(layout: FULL_WIDTH)
+            gatsbyImageData(
+                width: 128
+                quality: 75
+            )
           }
         }
       }
