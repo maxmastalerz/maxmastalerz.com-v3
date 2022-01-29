@@ -30,7 +30,7 @@ const About = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-5">
                         <div className="about-img-three">
-                            <img height="548" width="312" src={profilePicture} alt="A photo of Max Mastalerz at the Bonneville Salt Flats in Utah." />
+                            <img height="548" width="312" src={profilePicture} alt="Max Mastalerz at the Bonneville Salt Flats in Utah." />
                         </div>
                     </div>
 
