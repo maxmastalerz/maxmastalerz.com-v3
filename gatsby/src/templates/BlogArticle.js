@@ -159,6 +159,11 @@ const BlogArticle = ({ data, pageContext }) => {
             <Seo title={title} description={short_desc}/>
             <Helmet>
                 <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css"/>
+                <link rel="dns-prefetch preconnect" href="https://pagead2.googlesyndication.com" crossorigin />
+                <link rel="dns-prefetch preconnect" href="https://googleads.g.doubleclick.net" crossorigin />
+                <link rel="dns-prefetch preconnect" href="https://partner.googleadservices.com" crossorigin />
+                <link rel="dns-prefetch preconnect" href="https://adservice.google.com" crossorigin />
+                <link rel="dns-prefetch preconnect" href="https://tpc.googlesyndication.com" crossorigin />
             </Helmet>
             <div id="blog" className="blog-details-area">
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
