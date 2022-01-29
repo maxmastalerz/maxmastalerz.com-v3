@@ -137,22 +137,23 @@ const BlogArticle = ({ data, pageContext }) => {
     }, [loadingHighlightJS]);
 
     useEffect(() => {
-        if (!window) { // If there's no window there's nothing to do for us
-            return;
+        //ADSENSE
+        let googleAdsElem = null;
+        if(articleParts.length > 1) {
+            googleAdsElem = window.document.createElement("script");
+            googleAdsElem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
+            googleAdsElem.async = true;
+            googleAdsElem.defer = true;
+            googleAdsElem.crossorigin = "anonymous";
+            window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
         }
 
-        //ADSENSE
-        const googleAdsElem = window.document.createElement("script");
-        googleAdsElem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
-        googleAdsElem.async = true;
-        googleAdsElem.defer = true;
-        googleAdsElem.crossorigin = "anonymous";
-        window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
-
         return () => {
-            googleAdsElem.remove();
+            if(googleAdsElem) {
+                googleAdsElem.remove();
+            }
         };
-    }, []);
+    }, [articleParts]);
 
     return (
         <>
