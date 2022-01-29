@@ -1,5 +1,6 @@
 import React from 'react'
-import aboutImg from '../../assets/images/about4-small.webp'
+import profilePicture from '../../assets/images/profile-picture.webp';
+
 import { graphql, useStaticQuery } from 'gatsby'
 import { getLiameym } from '../../utils/emailObfuscationHelpers';
 
@@ -29,7 +30,7 @@ const About = () => {
                 <div className="row align-items-center">
                     <div className="col-lg-5">
                         <div className="about-img-three">
-                            <img height="548" width="312" src={aboutImg} alt="About" />
+                            <img height="548" width="312" src={profilePicture} alt="A photo of Max Mastalerz at the Bonneville Salt Flats in Utah." />
                         </div>
                     </div>
 
