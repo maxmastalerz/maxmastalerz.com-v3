@@ -8,14 +8,10 @@ import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
 import InTextAd from '../components/BlogArticle/InTextAd';
 import Seo from "../components/App/seo";
-import Loadable from "@loadable/component";
+import Remark42Comments from "../components/Blog/Remark42Comments";
 
 import "../assets/styles/component-scope/BlogArticle.scss";
 import "../assets/styles/component-scope/BlogArticle.responsive.scss";
-
-const Remark42Comments = Loadable(() => import("../components/Blog/Remark42Comments"), {
-  fallback: <div id="remark42-comments-placeholder">LOADING COMMENTS</div>
-});
 
 /*Get nth occurence of something(substr) in a string*/
 const nthIndex = (string, substr, n) => {
@@ -117,17 +113,21 @@ const BlogArticle = ({ data, pageContext }) => {
     useScript({ src: '/oEmbed-init.js' });
 
     useEffect(() => {
-        window.addEventListener('scroll', handleWindowScroll);
-        
+        if(window.scrollY !== 0) {
+            setDisplayRemark42Comments(true);
+        }
+
+        const handleOneTimeScroll = () => {
+            setDisplayRemark42Comments(true);
+            window.removeEventListener('scroll', handleOneTimeScroll);
+        };
+
+        window.addEventListener('scroll', handleOneTimeScroll);
+
         return () => {
-            window.removeEventListener('scroll', handleWindowScroll);
+            window.removeEventListener('scroll', handleOneTimeScroll);
         }
     }, []);
-
-    const handleWindowScroll = () => {
-        setDisplayRemark42Comments(true);
-        window.removeEventListener('scroll', this);
-    };
 
     const [loadingHighlightJS, ] = useScript({ src: '/highlight/highlight.pack.js' });
     useEffect(() => {
