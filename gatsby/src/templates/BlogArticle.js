@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import TopHeader from '../components/Common/TopHeader';
 import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
@@ -6,28 +6,16 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import BlogSearch from "../components/Blog/BlogSearch";
 import useScript from 'react-script-hook';
 import { Helmet } from "react-helmet";
-import usefulUrls from '../utils/usefulUrls';
 import InTextAd from '../components/BlogArticle/InTextAd';
 import Seo from "../components/App/seo";
+import Loadable from "@loadable/component";
 
 import "../assets/styles/component-scope/BlogArticle.scss";
 import "../assets/styles/component-scope/BlogArticle.responsive.scss";
 
-const insertScript = (src, id, parentElement) => {
-    const script = window.document.createElement('script');
-    script.defer = true;
-    script.src = src;
-    script.id = id;
-    parentElement.appendChild(script);
-    return script;
-};
-// Helper to remove scripts from our page
-const removeScript = (id, parentElement) => {
-    const script = window.document.getElementById(id);
-    if (script) {
-        parentElement.removeChild(script);
-    }
-};
+const Remark42Comments = Loadable(() => import("../components/Blog/Remark42Comments"), {
+  fallback: <div id="remark42-comments-placeholder">LOADING COMMENTS</div>
+});
 
 /*Get nth occurence of something(substr) in a string*/
 const nthIndex = (string, substr, n) => {
@@ -46,7 +34,7 @@ This function gets us a closing p tag which is NOT followed immediately after a 
 ads only fit in between text content blocks rather than popping up where you wouldn't expect an ad to be placed.
 */
 const getNextPSplitLocation = (text, minPTagOffset) => {
-        let pTagOffset = minPTagOffset;
+    let pTagOffset = minPTagOffset;
     let closingPLocation = -1;
     let lookingForClosingPLocation = true;
         while(lookingForClosingPLocation) {
@@ -92,7 +80,6 @@ const splitSection = (section) => {
     }
     
     const sectionAfterFirstClosingP = section.substring(firstClosingPLocation, section.length);
-    console.log(sectionAfterFirstClosingP);
     let secondClosingPLocation = getNextPSplitLocation(sectionAfterFirstClosingP, 9);
     
     if(secondClosingPLocation === -1) { //If only one acceptable p closing tag was found
@@ -108,6 +95,8 @@ const splitSection = (section) => {
 };
 
 const BlogArticle = ({ data, pageContext }) => {
+    const [displayRemark42Comments, setDisplayRemark42Comments] = useState(false);
+
     const previousBlog = pageContext.previous;
     const nextBlog = pageContext.next;
 
@@ -126,6 +115,19 @@ const BlogArticle = ({ data, pageContext }) => {
     const year = fullDate.getFullYear();
 
     useScript({ src: '/oEmbed-init.js' });
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleWindowScroll);
+        
+        return () => {
+            window.removeEventListener('scroll', handleWindowScroll);
+        }
+    }, []);
+
+    const handleWindowScroll = () => {
+        setDisplayRemark42Comments(true);
+        window.removeEventListener('scroll', this);
+    };
 
     const [loadingHighlightJS, ] = useScript({ src: '/highlight/highlight.pack.js' });
     useEffect(() => {
@@ -147,26 +149,8 @@ const BlogArticle = ({ data, pageContext }) => {
         googleAdsElem.crossorigin = "anonymous";
         window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
 
-        //REMARK42
-        window.remark_config = {
-            host: usefulUrls.remark42,
-            site_id: window.location.host,
-            components: ['embed'],
-            max_shown_comments: 10
-        };
-        const document = window.document;
-
-        if (document.getElementById('remark42')) {
-            insertScript(
-                `${usefulUrls.remark42}/web/embed.js`,
-                `remark42-script`,
-                document.body
-            );
-        }
-
         return () => {
             googleAdsElem.remove();
-            removeScript(`remark42-script`, document.body)
         };
     }, []);
 
@@ -227,55 +211,17 @@ const BlogArticle = ({ data, pageContext }) => {
                                     </div>
                                 </div>
                             </div>
-                            {/*<div className="details-comments">
-                                <h3>Comments <span>(02)</span></h3>
-                                <ul>
-                                    <li>
-                                        <img src="/images/blog/comment1.jpg" alt="Comment" />
-                                        <h4>Adam Smith</h4>
-                                        <span>October 10, 2020</span>
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus ratione neque architecto modi facere provident dolore optio, perferendis</p>
-                                        <a href="#">Reply</a>
-                                    </li>
-                                    <li>
-                                        <img src="/images/blog/comment2.jpg" alt="Comment" />
-                                        <h4>Tom Henry</h4>
-                                        <span>October 11, 2020</span>
-                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusamus ratione neque architecto modi facere provident dolore optio, perferendis</p>
-                                        <a href="#">Reply</a>
-                                    </li>
-                                </ul>
-                            </div>
 
-                            <div className="details-leave">
-                                <h3>Leave A Comment</h3>
-                                <form>
-                                    <div className="form-group">
-                                        <input type="text" className="form-control" placeholder="Name" />
-                                    </div>
-                                    <div className="form-group">
-                                        <input type="email" className="form-control" placeholder="Email" />
-                                    </div>
-                                    <div className="form-group">
-                                        <textarea id="your-comments" rows="8" className="form-control" placeholder="Comments"></textarea>
-                                    </div>
-                                    <button type="submit" className="btn common-btn three">Post A Comment</button>
-                                </form>
-                            </div>*/}
-
-                            <div id="remark42"></div>
+                            { displayRemark42Comments ?
+                                <Remark42Comments />
+                            :
+                                <div id="remark42-comments-placeholder">LOADING COMMENTS</div>
+                            }
                         </div>
 
                         <div className="col-lg-4">
                             <div className="widget-area">
                                 <div className="widget-item">
-                                    {/*<form onSubmit={handleSearchSubmit}>
-                                        <input name="search" type="text" className="form-control" placeholder="Search..." />
-                                        <button type="submit" className="btn">
-                                            <i className='bx bx-search-alt'></i>
-                                        </button>
-                                    </form>*/}
-                                
                                     <BlogSearch />
                                 </div>
 
@@ -303,16 +249,6 @@ const BlogArticle = ({ data, pageContext }) => {
                                             );
                                         })}
                                 </div>
-                                {/*
-                                <div className="tags widget-item">
-                                    <h3>Tags</h3>
-                                    <ul>
-                                        <li>
-                                            <a href="#">Design</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                */}
                             </div>
                         </div>
                     </div>

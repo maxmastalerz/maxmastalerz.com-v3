@@ -69,6 +69,17 @@
             }
         }
     }
+    #remark42 {
+        min-height: 231.5px;
+    }
+    #remark42-comments-placeholder {
+        height: 231.5px;
+        background-color: $grey-color;
+        line-height: 231.5px;
+        color: $white-color;
+        text-align: center;
+        font-size: 2rem;
+    }
     #remark42 > iframe {
         margin: 0 !important;
     }
