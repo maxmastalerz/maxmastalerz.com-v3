@@ -165,7 +165,7 @@ const BlogArticle = ({ data, pageContext }) => {
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
                 <div className="page-content container">
                     <div className="details-img">
-                        <GatsbyImage image={banner_image.localFile.childImageSharp.gatsbyImageData} alt={banner_image_alt_attr} />
+                        <GatsbyImage image={banner_image.localFile.childImageSharp.gatsbyImageData} alt={banner_image_alt_attr} loading="eager"/>
                     </div>
 
                     <div className="row">
