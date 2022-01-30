@@ -271,7 +271,7 @@ export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
         childImageSharp {
           gatsbyImageData(
             width: 1140
-            quality: 75
+            quality: 60
           )
         }
       }
@@ -293,7 +293,7 @@ export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
           childImageSharp {
             gatsbyImageData(
                 width: 128
-                quality: 75
+                quality: 60
             )
           }
         }
