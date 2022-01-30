@@ -129,12 +129,7 @@ const BlogArticle = ({ data, pageContext }) => {
         }
     }, []);
 
-    const [loadingHighlightJS, ] = useScript({ src: '/highlight/highlight.pack.js' });
-    useEffect(() => {
-        if(!loadingHighlightJS) {
-            window.hljs.highlightAll();
-        }
-    }, [loadingHighlightJS]);
+    useScript({ src: '/prism/prism.js' });
 
     useEffect(() => {
         //ADSENSE
@@ -159,7 +154,7 @@ const BlogArticle = ({ data, pageContext }) => {
         <>
             <Seo title={title} description={short_desc}/>
             <Helmet>
-                <link rel="stylesheet" href="/highlight/styles/monokai-sublime.css"/>
+                <link rel="stylesheet" href="/prism/prism.css"/>
             </Helmet>
             <div id="blog" className="blog-details-area">
                 <TopHeader seondLinkName="Blog" secondLinkUrl="/blog"/>
