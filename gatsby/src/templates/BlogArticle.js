@@ -270,7 +270,7 @@ export const query = graphql`query GetSingleBlogAndRecentBlogs($slug: String) {
       localFile {
         childImageSharp {
           gatsbyImageData(
-            width: 1140
+            width: 1110
             quality: 60
           )
         }
