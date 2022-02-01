@@ -101,7 +101,6 @@ const tryRenderingAds = (articleParts) => {
         googleAdsElem.defer = true;
         googleAdsElem.crossorigin = "anonymous";
         window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
-        console.log("RENDERED GOOGLE ADS");
     }
 
     return googleAdsElem;
