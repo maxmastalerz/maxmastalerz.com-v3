@@ -33,11 +33,32 @@ const getNextPSplitLocation = (text, minPTagOffset) => {
     let pTagOffset = minPTagOffset;
     let closingPLocation = -1;
     let lookingForClosingPLocation = true;
-        while(lookingForClosingPLocation) {
+    const ignorePTagsEndingWith = ['</strong>'];
+
+    while(lookingForClosingPLocation) {
         closingPLocation = nthIndex(text, '</p>', pTagOffset);
         if(closingPLocation === -1) {
-                break; //desired closing p tag not found in the desired nth position or onwards
+            break; //desired closing p tag not found in the desired nth position or onwards
         }
+
+        //BEGIN - Don't place ads immediately after a closing p tag which inside itself ended with a ignorePTagsEndingWith tag
+        //For example: If we think we found an acceptable p tag but it looks like this : <p><strong>A title</strong></p>
+        //then we skip it. It's actually not a good placement for an ad.
+        let continueWhile = false;
+        for(let i=0; i<ignorePTagsEndingWith.length; i++) {
+            let closingTag = ignorePTagsEndingWith[i];
+            if(text.substring(closingPLocation-closingTag.length, closingPLocation) === closingTag) {
+                pTagOffset++;
+                continueWhile = true;
+                break;
+            }
+        };
+        if(continueWhile) {
+            continue;
+        }
+        //END ignorePTagsEndingWith checks.
+
+        if(text.substring(closingPLocation))
         closingPLocation += '</p>'.length; //+4
 
         if(closingPLocation >= text.length) {
@@ -82,7 +103,7 @@ const splitSection = (section) => {
     }
     
     const sectionAfterFirstClosingP = section.substring(firstClosingPLocation, section.length);
-    let secondClosingPLocation = getNextPSplitLocation(sectionAfterFirstClosingP, 9);
+    let secondClosingPLocation = getNextPSplitLocation(sectionAfterFirstClosingP, 8);
     
     if(secondClosingPLocation === -1) { //If only one acceptable p closing tag was found
         const splitPartOne = section.substring(0, firstClosingPLocation);
