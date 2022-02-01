@@ -600,6 +600,10 @@ div.cms-content {
     h1:first-of-type {
         display: none;
     }
+
+    pre {
+        overflow: scroll;
+    }
 }
 /*----- End CMS content -----*/
 
