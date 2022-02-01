@@ -70,6 +70,10 @@ Split cms content such that we can put ads in between the split sections
 Can return 1 part(no ads), 2 parts(ad will go in the middle), or 3 parts(2 ads will load)
 */
 const splitSection = (section) => {
+    if(typeof window === "undefined") {
+        return;
+    }
+
     let firstClosingPLocation = getNextPSplitLocation(section, 3);
     // If not even one desired paragraph closing tag was found, don't split - aka don't bother showing ads
     // Also, if on large mobile and smaller, don't show ads to improve performance.
