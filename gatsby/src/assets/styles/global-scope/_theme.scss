@@ -596,13 +596,11 @@ button {
 
 /*----- CMS content -----*/
 div.cms-content {
+    overflow: hidden;
+    
     /*Added to avoid creating my own ckeditor build simply to remove post titles.*/
     h1:first-of-type {
         display: none;
-    }
-
-    pre {
-        overflow: scroll;
     }
 }
 /*----- End CMS content -----*/
