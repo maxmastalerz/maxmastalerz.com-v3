@@ -95,7 +95,7 @@ const splitSection = (section) => {
         return [section];
     }
 
-    let firstClosingPLocation = getNextPSplitLocation(section, 3);
+    let firstClosingPLocation = getNextPSplitLocation(section, 2);
     // If not even one desired paragraph closing tag was found, don't split - aka don't bother showing ads
     // Also, if on large mobile and smaller, don't show ads to improve performance.
     if(firstClosingPLocation === -1 || window.innerWidth <= 425) {
@@ -103,7 +103,7 @@ const splitSection = (section) => {
     }
     
     const sectionAfterFirstClosingP = section.substring(firstClosingPLocation, section.length);
-    let secondClosingPLocation = getNextPSplitLocation(sectionAfterFirstClosingP, 8);
+    let secondClosingPLocation = getNextPSplitLocation(sectionAfterFirstClosingP, 7);
     
     if(secondClosingPLocation === -1) { //If only one acceptable p closing tag was found
         const splitPartOne = section.substring(0, firstClosingPLocation);
