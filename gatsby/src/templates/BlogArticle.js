@@ -98,7 +98,7 @@ const splitSection = (section) => {
 
 const tryRenderingAds = (articleParts) => {
     let googleAdsElem = null;
-    if(articleParts.length > 1 && window.innerWidth > 425) {
+    if(articleParts.length > 1) {
         googleAdsElem = window.document.createElement("script");
         googleAdsElem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
         googleAdsElem.async = true;
