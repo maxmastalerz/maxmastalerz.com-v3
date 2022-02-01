@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import TopHeader from '../components/Common/TopHeader';
 import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
@@ -71,7 +71,9 @@ Can return 1 part(no ads), 2 parts(ad will go in the middle), or 3 parts(2 ads w
 */
 const splitSection = (section) => {
     let firstClosingPLocation = getNextPSplitLocation(section, 3);
-    if(firstClosingPLocation === -1) { // If not even one desired paragraph closing tag was found, don't split - aka don't bother showing ads
+    // If not even one desired paragraph closing tag was found, don't split - aka don't bother showing ads
+    // Also, if on large mobile and smaller, don't show ads to improve performance.
+    if(firstClosingPLocation === -1 || window.innerWidth <= 425) {
         return [section];
     }
     
@@ -90,8 +92,29 @@ const splitSection = (section) => {
     return [splitPartOne, splitPartTwo, splitPartThree];
 };
 
+const tryRenderingAds = (articleParts) => {
+    let googleAdsElem = null;
+    if(articleParts.length > 1 && window.innerWidth > 425) {
+        googleAdsElem = window.document.createElement("script");
+        googleAdsElem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
+        googleAdsElem.async = true;
+        googleAdsElem.defer = true;
+        googleAdsElem.crossorigin = "anonymous";
+        window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
+        console.log("RENDERED GOOGLE ADS");
+    }
+
+    return googleAdsElem;
+};
+
+const monthNames = ["January","February","March","April","May","June","July",
+                        "August","September","October","November","December"];
+
 const BlogArticle = ({ data, pageContext }) => {
     const [displayRemark42Comments, setDisplayRemark42Comments] = useState(false);
+    const hasAttemptedAdRender = useRef(false);
+    useScript({ src: '/oEmbed-init.js' });
+    useScript({ src: '/prism/prism.js' });
 
     const previousBlog = pageContext.previous;
     const nextBlog = pageContext.next;
@@ -103,14 +126,25 @@ const BlogArticle = ({ data, pageContext }) => {
     
     const recentBlogPosts = data.recentBlogs.nodes;
 
-    const monthNames = ["January","February","March","April","May","June","July",
-                        "August","September","October","November","December"];
     const fullDate = new Date(date);
     const dateNum = fullDate.getDate();
     const month = monthNames[fullDate.getMonth()];
     const year = fullDate.getFullYear();
 
-    useScript({ src: '/oEmbed-init.js' });
+    useEffect(() => {
+        //ADSENSE
+        let googleAdsElem = null;
+        if(hasAttemptedAdRender.current === false) {
+            googleAdsElem = tryRenderingAds(articleParts);
+            hasAttemptedAdRender.current = true;
+        }
+
+        return () => {
+            if(googleAdsElem) {
+                googleAdsElem.remove();
+            }
+        }
+    }, [articleParts]);
 
     useEffect(() => {
         if(window.scrollY !== 0) {
@@ -126,29 +160,8 @@ const BlogArticle = ({ data, pageContext }) => {
 
         return () => {
             window.removeEventListener('scroll', handleOneTimeScroll);
-        }
-    }, []);
-
-    useScript({ src: '/prism/prism.js' });
-
-    useEffect(() => {
-        //ADSENSE
-        let googleAdsElem = null;
-        if(articleParts.length > 1) {
-            googleAdsElem = window.document.createElement("script");
-            googleAdsElem.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9353388001568852";
-            googleAdsElem.async = true;
-            googleAdsElem.defer = true;
-            googleAdsElem.crossorigin = "anonymous";
-            window.document.body.insertBefore(googleAdsElem, window.document.body.firstChild);
-        }
-
-        return () => {
-            if(googleAdsElem) {
-                googleAdsElem.remove();
-            }
         };
-    }, [articleParts]);
+    }, []);
 
     return (
         <>
