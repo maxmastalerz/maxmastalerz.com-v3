@@ -71,7 +71,7 @@ Can return 1 part(no ads), 2 parts(ad will go in the middle), or 3 parts(2 ads w
 */
 const splitSection = (section) => {
     if(typeof window === "undefined") {
-        return;
+        return [section];
     }
 
     let firstClosingPLocation = getNextPSplitLocation(section, 3);
