@@ -112,18 +112,24 @@ const tryRenderingAds = (articleParts) => {
 
 const monthNames = ["January","February","March","April","May","June","July",
                         "August","September","October","November","December"];
+const googleAdSlots = ["4919336957", "4646329625"]; //google adsense ad slot ids
 
 const BlogArticle = ({ data, pageContext }) => {
     const [displayRemark42Comments, setDisplayRemark42Comments] = useState(false);
     const hasAttemptedAdRender = useRef(false);
     useScript({ src: '/oEmbed-init.js' });
-    useScript({ src: '/prism/prism.js' });
+    useScript({
+        src: '/prism/prism.js',
+        onload: () => {
+            window.Prism.highlightAll();
+        }
+    });
 
     const previousBlog = pageContext.previous;
     const nextBlog = pageContext.next;
 
     const { title, date, short_desc, long_desc, banner_image, image_alt } = data.blog;
-    const googleAdSlots = ["4919336957", "4646329625"]; //google adsense ad slot ids
+    
     const articleParts = splitSection(long_desc);
     let banner_image_alt_attr = (image_alt !== null) ? image_alt : "";
     
