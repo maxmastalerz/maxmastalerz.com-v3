@@ -110,10 +110,14 @@ const splitSection = (section) => {
         const splitPartTwo = section.substring(firstClosingPLocation, section.length);
         return [splitPartOne, splitPartTwo];
     }
+
+    console.log('first closing p location: '+firstClosingPLocation);
+    console.log('section:' + section);
     
     const splitPartOne = section.substring(0, firstClosingPLocation);
     const splitPartTwo = sectionAfterFirstClosingP.substring(0, secondClosingPLocation);
     const splitPartThree = sectionAfterFirstClosingP.substring(secondClosingPLocation, sectionAfterFirstClosingP.length);
+    console.log([splitPartOne, splitPartTwo, splitPartThree]);
     return [splitPartOne, splitPartTwo, splitPartThree];
 };
 
