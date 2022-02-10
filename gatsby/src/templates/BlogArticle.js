@@ -213,7 +213,7 @@ const BlogArticle = ({ data, pageContext }) => {
                                     <li>By: <Link to="/">Max Mastalerz</Link></li>
                                     <li>{month} {dateNum}, {year}</li>
                                 </ul>
-                                <h2>{title}</h2>
+                                <h1>{title}</h1>
 
                                 {articleParts.map((articlePart, i) => {
                                     return (

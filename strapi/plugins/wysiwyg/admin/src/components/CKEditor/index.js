@@ -45,6 +45,7 @@ const configuration = {
     'horizontalLine',
     'highlight'
   ],
+  removePlugins: [ 'Title' ],
   mediaEmbed: {
       extraProviders: [
           {
