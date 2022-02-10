@@ -111,13 +111,14 @@ const splitSection = (section) => {
         return [splitPartOne, splitPartTwo];
     }
 
-    console.log('first closing p location: '+firstClosingPLocation);
-    console.log('section:' + section);
+    //console.log('first closing p location: '+firstClosingPLocation);
+    //console.log('section:' + section);
     
     const splitPartOne = section.substring(0, firstClosingPLocation);
+    //console.log(splitPartOne);
     const splitPartTwo = sectionAfterFirstClosingP.substring(0, secondClosingPLocation);
     const splitPartThree = sectionAfterFirstClosingP.substring(secondClosingPLocation, sectionAfterFirstClosingP.length);
-    console.log([splitPartOne, splitPartTwo, splitPartThree]);
+    //console.log([splitPartOne, splitPartTwo, splitPartThree]);
     return [splitPartOne, splitPartTwo, splitPartThree];
 };
 
@@ -155,6 +156,7 @@ const BlogArticle = ({ data, pageContext }) => {
 
     const { title, date, short_desc, long_desc, banner_image, image_alt } = data.blog;
     
+    console.log('long_desc: '+long_desc);
     const articleParts = splitSection(long_desc);
     let banner_image_alt_attr = (image_alt !== null) ? image_alt : "";
     
@@ -220,6 +222,7 @@ const BlogArticle = ({ data, pageContext }) => {
                                 <h2>{title}</h2>
 
                                 {articleParts.map((articlePart, i) => {
+                                    console.log(articlePart);
                                     return (
                                         <>
                                             <div className="cms-content" dangerouslySetInnerHTML={{__html: articlePart}} />
