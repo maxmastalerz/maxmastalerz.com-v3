@@ -7,8 +7,11 @@
 Edit your operating system hosts file to include the lines:
 
 127.0.0.1       api.dev.maxmastalerz.com
+
 127.0.0.1       remark42.dev.maxmastalerz.com
+
 127.0.0.1       dev.maxmastalerz.com
+
 127.0.0.1       www.dev.maxmastalerz.com
 
 ### To run locally:
