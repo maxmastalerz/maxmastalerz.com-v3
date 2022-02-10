@@ -92,7 +92,7 @@ Can return 1 part(no ads), 2 parts(ad will go in the middle), or 3 parts(2 ads w
 */
 const splitSection = (section) => {
     if(typeof window === "undefined") {
-        return [section];
+        return [];
     }
 
     let firstClosingPLocation = getNextPSplitLocation(section, 2);
@@ -110,15 +110,10 @@ const splitSection = (section) => {
         const splitPartTwo = section.substring(firstClosingPLocation, section.length);
         return [splitPartOne, splitPartTwo];
     }
-
-    //console.log('first closing p location: '+firstClosingPLocation);
-    //console.log('section:' + section);
     
     const splitPartOne = section.substring(0, firstClosingPLocation);
-    //console.log(splitPartOne);
     const splitPartTwo = sectionAfterFirstClosingP.substring(0, secondClosingPLocation);
     const splitPartThree = sectionAfterFirstClosingP.substring(secondClosingPLocation, sectionAfterFirstClosingP.length);
-    //console.log([splitPartOne, splitPartTwo, splitPartThree]);
     return [splitPartOne, splitPartTwo, splitPartThree];
 };
 
@@ -222,7 +217,6 @@ const BlogArticle = ({ data, pageContext }) => {
                                 <h2>{title}</h2>
 
                                 {articleParts.map((articlePart, i) => {
-                                    console.log(articlePart);
                                     return (
                                         <>
                                             <div className="cms-content" dangerouslySetInnerHTML={{__html: articlePart}} />
