@@ -151,7 +151,6 @@ const BlogArticle = ({ data, pageContext }) => {
 
     const { title, date, short_desc, long_desc, banner_image, image_alt } = data.blog;
     
-    console.log('long_desc: '+long_desc);
     const articleParts = splitSection(long_desc);
     let banner_image_alt_attr = (image_alt !== null) ? image_alt : "";
     
