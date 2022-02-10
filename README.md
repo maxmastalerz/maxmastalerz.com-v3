@@ -35,6 +35,7 @@ $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml buil
 $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml up
 
 Go to http://maxmastalerz.com
+
 Go to http://api.maxmastalerz.com/admin
 
 TODO: Note that remark42 comments do not seem to work properly on preprod due to http/https differences.
