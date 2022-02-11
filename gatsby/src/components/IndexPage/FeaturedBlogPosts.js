@@ -32,7 +32,7 @@ const FeaturedBlogPosts = () => {
                 <div className="section-title">
                     <span className="sub-title">BLOG</span>
                     <h2>I Have a Blog You May Like</h2>
-                    <p>If you enjoy reading about tech I hope you enjoy the blog. It's very new so bear with me while I work on adding content.</p>
+                    <p>If you enjoy reading about tech, you might enjoy my blog. I hope the posts prove to be intriguing and helpful. The blog is quite new, so bear with me while I work on adding content.</p>
                 </div>
 
                 <div className="row">
