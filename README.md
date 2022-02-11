@@ -1,4 +1,4 @@
-#maxmastalerz.com v3!
+# maxmastalerz.com v3!
 
 ## LOCAL SET UP:
 
@@ -7,8 +7,11 @@
 Edit your operating system hosts file to include the lines:
 
 127.0.0.1       api.dev.maxmastalerz.com
+
 127.0.0.1       remark42.dev.maxmastalerz.com
+
 127.0.0.1       dev.maxmastalerz.com
+
 127.0.0.1       www.dev.maxmastalerz.com
 
 ### To run locally:
@@ -32,6 +35,7 @@ $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml buil
 $ sudo docker-compose --env-file .env.preprod -f docker-compose.preprod.yml up
 
 Go to http://maxmastalerz.com
+
 Go to http://api.maxmastalerz.com/admin
 
 TODO: Note that remark42 comments do not seem to work properly on preprod due to http/https differences.
@@ -97,4 +101,5 @@ Set the desired capacity of the autoscaling group ( https://us-east-2.console.aw
 Once deployed, you can visit:
 
 https://maxmastalerz.com
+
 https://api.maxmastalerz.com/admin
