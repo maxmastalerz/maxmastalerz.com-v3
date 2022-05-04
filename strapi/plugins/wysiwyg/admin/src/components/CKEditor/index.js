@@ -49,8 +49,8 @@ const configuration = {
   mediaEmbed: {
       extraProviders: [
           {
-              name: 's3.maxmastalerz.com',
-              url: /^https?:\/\/s3\.maxmastalerz\.com\/(.+)\.(mp4|webm|ogg|avi|wmv|mpg|mpeg)/,
+              name: 'daavgqhmwmui1.cloudfront.net',
+              url: /^https?:\/\/daavgqhmwmui1\.cloudfront\.net\/(.+)\.(mp4|webm|ogg|avi|wmv|mpg|mpeg)/,
               html: (match) => {
                 return
                 `<div style="position:relative; padding-bottom:100%; height:0">` +

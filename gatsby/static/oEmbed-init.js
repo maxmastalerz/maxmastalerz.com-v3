@@ -5,8 +5,8 @@ The simplest oEmbed provider.
 document.querySelectorAll('oembed[url]').forEach( element => {
 	const url = element.attributes.url.value;
 	let match = null;
-
-	if((match = url.match(/^https?:\/\/s3\.maxmastalerz\.com\/(.+)\.(mp4|webm|ogg|avi|wmv|mpg|mpeg)/)) !== null) {
+	
+	if((match = url.match(/^https?:\/\/daavgqhmwmui1\.cloudfront\.net\/(.+)\.(mp4|webm|ogg|avi|wmv|mpg|mpeg)/)) !== null) {
 		let mimeType = `video/${match[match.length-1]}`;
 		element.outerHTML =
 			`<video width="100%" poster="${url}.png" controls>`+
