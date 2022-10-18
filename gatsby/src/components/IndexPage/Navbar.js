@@ -173,7 +173,7 @@ const Navbar = (props) => {
                         </ul>
 
                         <div className="aside-footer">
-                            <a href={`${usefulUrls.strapi}/downloads/Max%20Mastalerz%20Resume.pdf`} className="common-btn three">
+                            <a href={"https://dl.dropboxusercontent.com/s/e0nhwldhl9n5rvl/Max%20Mastalerz%20Resume.pdf?dl=0"} className="common-btn three">
                                 Download CV <i className='bx bxs-download'></i>
                             </a>
                             <ul className="social">

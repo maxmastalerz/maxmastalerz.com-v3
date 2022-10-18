@@ -1,24 +1,9 @@
 module.exports = ({ env }) => {
 
-  const emailSettings = {
-    provider: 'amazon-ses',
-    providerOptions: {
-      key: env('AWS_SES_KEY'),
-      secret: env('AWS_SES_SECRET'),
-      amazon: 'https://email.us-east-2.amazonaws.com',
-    },
-    settings: {
-      defaultFrom: 'contact@maxmastalerz.com',
-    },
-  };
-
   if(env('NODE_ENV') === "development") {
-    return {
-      email: emailSettings
-    };
+    return {};
   } else if(env('NODE_ENV') === "production") {
     return {
-      email: emailSettings,
       upload: {
         provider: 'aws-s3-cloudfront',
         providerOptions: {

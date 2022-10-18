@@ -76,7 +76,7 @@ const ContactForm = () => {
     const sendContactFormForProcessing = async (hCaptchaValue) => {
         const { name, email, number, subject, text } = contact;
 
-        const url = `${usefulUrls.strapi}/contact`;
+        const url = `${usefulUrls.apiGateway}/contact`;
         const payload = { name, email, number, subject, text, hCaptchaValue };
 
         try {
