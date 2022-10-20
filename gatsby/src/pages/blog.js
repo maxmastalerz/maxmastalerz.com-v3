@@ -5,8 +5,8 @@ import Footer from "../components/Common/Footer";
 import { Link, graphql } from 'gatsby';
 import { Index } from "lunr";
 import BlogSearch from "../components/Blog/BlogSearch";
-import usefulUrls from '../utils/usefulUrls';
 import Seo from "../components/App/seo";
+import { GatsbyImage } from "gatsby-plugin-image";
 
 import "../assets/styles/component-scope/Blog.scss";
 
@@ -20,6 +20,16 @@ const Blog = ({ data, location }) => {
     let results = []
     try {
         results = index.search(q).map(({ ref }) => {
+            
+            // TODO: Could be improved
+            // Workaround to get images working from local gatsby source.
+            // Maping of blog.image.localFile___NODE to local gatsby image file
+            let nodeMapped = data.allFile.edges.filter(obj => {
+                return obj.node.id === store[ref].image.localFile___NODE;
+            });
+            store[ref].image.localFile = nodeMapped[0].node;
+            //end mapping
+
             return {
                 slug: ref,
                 ...store[ref],
@@ -65,17 +75,12 @@ const Blog = ({ data, location }) => {
                                 let date = fullDate.getDate();
                                 let month = monthNames[fullDate.getMonth()];
 
-                                let blogImg = (blog.image.formats.small !== undefined ? blog.image.formats.small.url : blog.image.formats.thumbnail.url);
-                                if(blogImg[0] === "/") {
-                                    blogImg = `${usefulUrls.strapi}${blogImg}`;
-                                }
-
                                 return (
                                     <div className="col-sm-6 col-lg-4" key={blog.id}>
                                         <div className="blog-item">
                                             <div className="top">
                                                 <Link to={`/blog/${blog.slug}`}>
-                                                    <img src={blogImg} alt={blog.image.alternativeText} />
+                                                    <GatsbyImage image={blog.image.localFile.childImageSharp.gatsbyImageData} alt={blog.image.alternativeText} />
                                                 </Link>
                                                 
                                                 <div>{("0"+date).slice(-2)} <span>{month}</span></div>
@@ -117,5 +122,16 @@ export const pageQuery = graphql`
       }
     }
     LunrIndex
+    allFile {
+      edges {
+        node {
+          id
+          childImageSharp {
+            id
+            gatsbyImageData
+          }
+        }
+      }
+    }
   }
 `;

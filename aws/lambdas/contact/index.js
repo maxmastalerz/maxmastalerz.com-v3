@@ -2,52 +2,84 @@ const { verify } = require('hcaptcha');
 const aws = require("aws-sdk");
 let ses = new aws.SES({ region: "us-east-2" });
 
-const processRequest = async (postedData) => {
+function escapeHtml(unsafe)
+{
+	return unsafe
+	.replace(/&/g, "&amp;")
+	.replace(/</g, "&lt;")
+	.replace(/>/g, "&gt;")
+	.replace(/"/g, "&quot;")
+	.replace(/'/g, "&#039;");
+}
 
+const sendTemplatedEmail = (postedData) => {
+	return new Promise((resolve, reject) => {
+		
+		let templateData = {
+			sender_subject: escapeHtml(postedData.subject),
+			sender_name: escapeHtml(postedData.name),
+			sender_email: escapeHtml(postedData.email),
+			sender_number: escapeHtml(postedData.number),
+			sender_message: escapeHtml(postedData.text)
+		}
+		templateData.sender_message = templateData.sender_message.replace(new RegExp('\r?\n','g'), '<br/>');
+	
+		const params = {
+			"Source": "contact@maxmastalerz.com",
+			"Template": "ContactTemplate",
+			"Destination": {
+				"ToAddresses": [ "contact@maxmastalerz.com" ]
+			},
+			"ReplyToAddresses": [ postedData.email ],
+			"TemplateData": JSON.stringify(templateData)
+		}
+	
+		ses.sendTemplatedEmail(params, (err, data) =>  {
+			if (err) {
+				reject({
+					statusCode: 400,
+					headers: {
+						"Access-Control-Allow-Origin": "https://maxmastalerz.com"
+					},
+					body: JSON.stringify({
+						data: {
+							message: err
+						}
+					}),
+				});
+			} else {
+				resolve({
+					statusCode: 200,
+					headers: {
+						"Access-Control-Allow-Origin": "https://maxmastalerz.com"
+					},
+					body: JSON.stringify({
+						data: {
+							message: "Your message has been sent."
+						}
+					}),
+				});
+			}
+		});
+
+	});
+}
+
+const processRequest = async (postedData) => {
 	try {
 		const secret = process.env.HCAPTCHA_SECRET_KEY;
 		const token = postedData.hCaptchaValue;
-
+		
 		let { success } = await verify(secret, token);
 
 		if (success) {
-			const params = {
-				"Source": "contact@maxmastalerz.com",
-				"Template": "ContactTemplate",
-				"Destination": {
-					"ToAddresses": [ postedData.email ]
-				},
-				"TemplateData": "{ \"sender_subject\":postedData.subject,\"sender_name\":postedData.name, \"sender_email\":postedData.email ,\"sender_number\":postedData.number, \"sender_message\": postedData.text }"
-			}
-			
-			const response = ses.sendTemplatedEmail(params, (err, data) =>  {
-				if (err) {
-					console.log(err, err.stack); // an error occurred
-					return {
-						statusCode: 400,
-						body: JSON.stringify({
-							data: {
-								message: err
-							}
-						}),
-					};
-				} else{
-					console.log(data);           // successful response
-					return {
-						statusCode: 200,
-						body: JSON.stringify({
-							data: {
-								message: "Your message has been sent."
-							}
-						}),
-					};
-				}     
-			});
-
-			
+			return await sendTemplatedEmail(postedData);
 		} else {
 			return {
 				statusCode: 400,
+				headers: {
+					"Access-Control-Allow-Origin": "https://maxmastalerz.com"
+				},
 				body: JSON.stringify({
 					error: {
 						code: 1,
@@ -59,9 +91,12 @@ const processRequest = async (postedData) => {
 	} catch (err) {
 		return {
 			statusCode: 400,
+			headers: {
+				"Access-Control-Allow-Origin": "https://maxmastalerz.com"
+			},
 			body: JSON.stringify({
 				error: {
-					code: 2,
+					code:2,
 					message: err
 				}
 			}),
@@ -95,6 +130,7 @@ const isValidRequest = (postedData) => {
 	return isValid;
 };
 
+//Contact Lambda Function Start
 exports.handler = async (event) => {
 	const postedData = JSON.parse(event.body);
 	let valid = isValidRequest(postedData);
@@ -104,6 +140,9 @@ exports.handler = async (event) => {
 	} else {
 		return {
 			statusCode: 400,
+			headers: {
+				"Access-Control-Allow-Origin": "https://maxmastalerz.com"
+			},
 			body: JSON.stringify({
 				error: {
 					code: 3,

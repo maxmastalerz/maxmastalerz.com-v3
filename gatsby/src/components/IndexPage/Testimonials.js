@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import Loadable from "@loadable/component";
-import usefulUrls from '../../utils/usefulUrls';
+import { GatsbyImage } from "gatsby-plugin-image";
 
 const OwlCarousel = Loadable(() => import("react-owl-carousel3"), {
   fallback: <div id="carousel-placeholder"></div>
@@ -35,6 +35,11 @@ export const query = graphql`
         desc
         images {
           url
+          localFile {
+            childImageSharp {
+              gatsbyImageData(layout: FULL_WIDTH)
+            }
+          }
         }
       }
     }
@@ -59,16 +64,13 @@ const Testimonials = (props) => {
                         {...options}
                     > 
                         {nodes.map((testimonial) => {
-                            let testimonialImg = testimonial.images.url;
-                            if(testimonialImg[0] === "/") {
-                                testimonialImg = `${usefulUrls.strapi}${testimonialImg}`;
-                            }
-
                             return (
                                 <div className="review-item" key={testimonial.id}>
                                     <i className='bx bxs-quote-right'></i>
                                     <p>{testimonial.desc}</p>
-                                    <img alt="Review" src={testimonialImg} />
+                                    <div className="testimonial-image">
+                                        <GatsbyImage image={testimonial.images.localFile.childImageSharp.gatsbyImageData} alt="Review" style={{borderRadius: "50%"}} />
+                                    </div>
                                     <h3>{testimonial.name}</h3>
                                     <span>{testimonial.position}</span>
                                 </div>
