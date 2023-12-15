@@ -15,7 +15,7 @@ const MainBanner = () => {
                     <div className="container">
                         <div className="banner-content">
                             <h1><span>Max</span> Mastalerz</h1>
-                            <p>Hello and welcome to my site! I am a <span>Software Engineer/Developer</span> with a degree from the University of Guelph. I've completed 6 internship terms(at 4 companies) and am currently working as a full time developer at Tulip Retail. If you need a hand creating highly scaleable and robust software you've come to the right place.</p>
+                            <p>Hello, and welcome to my site! I am a <span>Software Engineer/Developer</span> with a master's degree from the University of Western Ontario. I've worked for 4 companies in diverse roles, including development, testing, and project management support. I am currently available for work. If you need a hand creating highly scaleable and robust software, you've come to the right place.</p>
 
                             <div className="banner-btn-area">
                                 <AnchorLink className="common-btn three" href="#contact">
