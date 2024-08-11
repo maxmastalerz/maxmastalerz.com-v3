@@ -1,0 +1,223 @@
+# Author: Max Mastalerz
+# May 6 2024
+#
+# This script is meant to be run by an AWS Managed Account Administrator. It will create a PowerUserAccessWithCDK permission set
+# which acts like a PowerUserAccess permission set but also includes the bare minimum permissions to allow a dev to bootstrap a
+# (Cloud Development Kit (CDK) environment. To avoid having a dev surpass one's own permissions through clever IAM tricks, a
+# non-removable permission boundary is in place. Run the command below to make a cloudformation stack that creates a permission set.
+#
+# aws cloudformation create-stack --stack-name CDKDeveloperPermissionSet --template-body file://cdk-developer-permission-set.yaml --capabilities CAPABILITY_NAMED_IAM
+#
+# This PermissionSet can now be applied to users or groups. Once the user has this new permission, they can bootstrap up an AWS CDK
+# environment utilising their profile that references an sso role.
+#
+# =================================================================================
+#
+# Steps for the developer using the permission set (not the account administrator):
+# 
+# Prerequisites:
+# node.js ^18.0.0 installed (You can use nvm (https://github.com/nvm-sh/nvm) to easily swap node.js versions)
+# AWS CDK installed:
+#   npm install -g aws-cdk
+# python3 installed
+# pyYaml (pip install pyyaml)
+#
+# 1. Get Current CDK Bootstrap template.
+# cdk bootstrap --show-template > bootstrap-template.yaml
+#
+# 2. Update the template with update_cdk_bootstrap_template.py so that any roles it creates use the permission boundary we require.
+#   Download python script from https://github.com/aws-samples/aws-cdk-v2-bootstrap/blob/main/update_cdk_bootstrap_template.py
+#   You can also find the script at C:\Git\Scripts\CloudFormation\cdk-bootstrapping\update_cdk_bootstrap_template.py
+#   IMPORTANT: Replace 244252657288 with the aws account id where the BoundaryPolicyCDKDeveloper was previously created.
+# python3 update_cdk_bootstrap_template.py "arn:aws:iam::244252657288:policy/BoundaryPolicyCDKDeveloper"
+#
+# 3. Bootstrap with our new template in the account/region of your choice. IMPORTANT: Update the account id to where you want to bootstrap cdk.
+# cdk bootstrap aws://244252657288/us-east-2 --profile PowerUserAccessWithCDK --custom-permissions-boundary BoundaryPolicyCDKDeveloper --template bootstrap-template.yaml
+# 
+# =================================================================================
+# 
+# More Info:
+# https://aws.amazon.com/blogs/devops/secure-cdk-deployments-with-iam-permission-boundaries/
+# https://aws.amazon.com/blogs/mt/how-to-deploy-cdk-v2-to-an-account-that-requires-boundary-policies/
+ 
+Resources:
+  CDKDeveloperPolicy:
+    Type: "AWS::IAM::ManagedPolicy"
+    Properties:
+      ManagedPolicyName: 'CDKDeveloperPolicy'
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: "AllowRolesOnlyInPath"
+            Effect: "Allow"
+            Action:
+            # - "iam:CreateUser"
+            # - "iam:PutUserPermissionsBoundary"
+            # - "iam:PutRolePermissionsBoundary"
+              - "iam:PassRole"
+              - "iam:TagRole"
+              - "iam:CreateRole"
+              - "iam:GetRole"
+              - "iam:GetRolePolicy"
+              - "iam:PutRolePolicy"
+              - "iam:DeleteRole"
+              - "iam:AttachRolePolicy"
+              - "iam:DetachRolePolicy"
+              - "iam:DeleteRolePolicy"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-*
+          - Sid: "AllowInstanceProfiles"
+            Effect: "Allow"
+            Action:
+              - "iam:GetInstanceProfile"
+              - "iam:CreateInstanceProfile"
+              - "iam:AddRoleToInstanceProfile"
+              - "iam:RemoveRoleFromInstanceProfile"
+              - "iam:DeleteInstanceProfile"
+            Resource:
+              - Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-*
+              - Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:instance-profile/cdk-*
+          - Sid: "AllowServiceLinkedRoles"
+            Effect: "Allow"
+            Action:
+              - "iam:PassRole"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+          - Sid: "AllowManagedPolicies"
+            Effect: "Allow"
+            Action:
+              - "iam:CreatePolicy"
+              - "iam:DeletePolicy"
+              - "iam:CreatePolicyVersion"
+              - "iam:DeletePolicyVersion"
+              - "iam:SetDefaultPolicyVersion"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/cdk-*
+  PermissionsBoundary:
+    Type: "AWS::IAM::ManagedPolicy"
+    Properties:
+      ManagedPolicyName: "BoundaryPolicyCDKDeveloper"
+      Description: "Bootstrap Permission Boundary"
+      Path: "/"
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          # ----- Begin base policy ---------------
+          # Copying perms of PowerUserAccess
+          - Sid: "PowerUserAccessAllowAllBut"
+            Effect: Allow
+            NotAction:
+              - "iam:*"
+              - "organizations:*"
+              - "account:*"
+            Resource: "*"
+          - Sid: "PowerUserAccessAllowOverride"
+            Effect: "Allow"
+            Action:
+              - "iam:CreateServiceLinkedRole"
+              - "iam:DeleteServiceLinkedRole"
+              - "iam:ListRoles"
+              - "organizations:DescribeOrganization"
+              - "account:ListRegions"
+              - "account:GetAccountInformation"
+            Resource: '*'
+          # Default permissions to prevent privilege escalation (Some rules are in anticipation of someone giving more iam privileges on the base policy without knowledge of escalation issue.)
+          - Sid: DenyAccessIfRequiredPermBoundaryIsNotBeingApplied
+            Action:
+              - "iam:CreateUser"
+              - "iam:CreateRole"
+              - "iam:AttachRolePolicy"
+              - "iam:DetachRolePolicy"
+              - "iam:PutRolePolicy"
+              - "iam:DeleteRolePolicy"
+              - "iam:PutRolePermissionsBoundary"
+              - "iam:PutUserPermissionsBoundary"
+            Condition:
+              StringNotEquals:
+                iam:PermissionsBoundary:
+                  Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/BoundaryPolicyCDKDeveloper
+            Effect: "Deny"
+            Resource: "*"
+          - Sid: "DenyPermBoundaryIAMPolicyAlteration"
+            Action:
+              - "iam:GetPolicy"
+              - "iam:ListPolicyVersions"
+              - "iam:CreatePolicy"
+              - "iam:CreatePolicyVersion"
+              - "iam:DeletePolicy"
+              - "iam:DeletePolicyVersion"
+              - "iam:SetDefaultPolicyVersion"
+            Effect: "Deny"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/BoundaryPolicyCDKDeveloper
+          - Sid: "DenyRemovalOfPermBoundaryFromAnyUserOrRole"
+            Action: 
+              - "iam:DeleteUserPermissionsBoundary"
+              - "iam:DeleteRolePermissionsBoundary"
+            Effect: "Deny"
+            Resource: "*"
+          # ----- End base policy ---------------
+          # -- Begin Custom Organization Policy --
+          # CDK-specific permissions.
+          - Sid: "AllowRolesOnlyInPAth"
+            Effect: "Allow"
+            Action:
+            # - "iam:CreateUser"
+            # - "iam:PutUserPermissionsBoundary"
+            # - "iam:PutRolePermissionsBoundary"
+              - "iam:PassRole"
+              - "iam:TagRole"
+              - "iam:CreateRole"
+              - "iam:GetRole"
+              - "iam:GetRolePolicy"
+              - "iam:PutRolePolicy"
+              - "iam:DeleteRole"
+              - "iam:AttachRolePolicy"
+              - "iam:DetachRolePolicy"
+              - "iam:DeleteRolePolicy"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-*
+          - Sid: "AllowInstanceProfiles"
+            Effect: "Allow"
+            Action:
+              - "iam:GetInstanceProfile"
+              - "iam:CreateInstanceProfile"
+              - "iam:AddRoleToInstanceProfile"
+              - "iam:RemoveRoleFromInstanceProfile"
+              - "iam:DeleteInstanceProfile"
+            Resource:
+              - Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-*
+              - Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:instance-profile/cdk-*
+          - Sid: "AllowServiceLinkedRoles"
+            Effect: "Allow"
+            Action:
+              - "iam:PassRole"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling
+          # -- End Custom Organization Policy --
+          - Sid: "AllowManagedPolicies"
+            Effect: "Allow"
+            Action:
+              - "iam:GetPolicy"
+              - "iam:ListPolicyVersions"
+              - "iam:CreatePolicy"
+              - "iam:DeletePolicy"
+              - "iam:CreatePolicyVersion"
+              - "iam:DeletePolicyVersion"
+              - "iam:SetDefaultPolicyVersion"
+            Resource:
+              Fn::Sub: arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/cdk-*
+  PowerUserAccessWithCDK:
+    Type: "AWS::SSO::PermissionSet"
+    Properties:
+      InstanceArn: "arn:aws:sso:::instance/ssoins-7223710557d7945a"
+      Name: "PowerUserAccessWithCDK"
+      Description: "Similar to PowerUserAccess + Allows CDK bootstrapping by devs and avoids escalation of privilege through permission boundary. Any new roles must include the same boundary placed on the user."
+      ManagedPolicies:
+      - "arn:aws:iam::aws:policy/PowerUserAccess"
+      CustomerManagedPolicyReferences:
+      - Name: "CDKDeveloperPolicy"
+      PermissionsBoundary:
+        CustomerManagedPolicyReference:
+          Name: "BoundaryPolicyCDKDeveloper"
+      SessionDuration: "PT1H"

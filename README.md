@@ -1,4 +1,4 @@
-# maxmastalerz.com v3!
+# maxmastalerz.com
 
 ## LOCAL SET UP:
 
@@ -44,6 +44,28 @@ TODO: Note that remark42 comments do not seem to work properly on preprod due to
 
 John Doe <johndoe@gmail.com> Password123
 
+## PRODUCTION
+
+Prerequisites:
+- Node v20.12.2
+- Python 3.10.12
+- Your SSO user with "Admin" permission set consisting of AdministratorAccess & AWSSSOMemberAccountAdministrator policies.
+- Use your user's Admin SSO profile to create a permission set for you and other developers:
+$ aws cloudformation create-stack --stack-name CDKDeveloperPermissionSet --template-body file://cdk-iac/bootstrap/cdk-developer-permission-set.yaml --capabilities CAPABILITY_NAMED_IAM --profile Admin
+- Once the PowerUserAccessWithCDK permission set for developers is created, assign it to to yourself and/or other developers.
+
+- A boostrapped AWS account/region (1 time step) (Change the account ids to relevant ones):
+	$ cdk bootstrap --show-template > ./cdk-iac/bootstrap/bootstrap-template-orig.yaml
+	$ python3 cdk-iac/bootstrap/update_cdk_bootstrap_template.py "arn:aws:iam::244252657288:policy/BoundaryPolicyCDKDeveloper"
+	$ cdk bootstrap aws://244252657288/us-east-2 --template ./cdk-iac/bootstrap/bootstrap-template.yaml --custom-permissions-boundary BoundaryPolicyCDKDeveloper --profile PowerUserAccessWithCDK
+
+- Edit/Save bin/cdk-iac.ts with your preferred AWS account and region for infrastructure. Deploy the infrastructure:
+$ aws sso login --profile PowerUserAccessWithCDK
+$ cd cdk-iac
+$ npx cdk deploy --profile PowerUserAccessWithCDK
+
+Cdk will print out instructions for what cname records to place on the domain. Do this manually.
+
 ## PRODUCTION DEPLOYMENT:
 
 ### Retrieve auth token and authenticate your Docker client to the registry.
@@ -70,7 +92,7 @@ $ docker tag maxmastalerzcom_nginx:latest 244252657288.dkr.ecr.us-east-2.amazona
 
 $ docker push 244252657288.dkr.ecr.us-east-2.amazonaws.com/nginx:latest
 
-### In-place deployment (Has downtime)
+### In-place deployment
 
 Go into AWS ECS > the maxmastalerzcom-cluster > Services:
 
@@ -83,18 +105,6 @@ aws ecs update-service --cluster maxmastalerzcom-cluster --service cms-service -
 aws ecs update-service --cluster maxmastalerzcom-cluster --service proxy-service --force-new-deployment
 
 aws ecs update-service --cluster maxmastalerzcom-cluster --service remark42-service --force-new-deployment
-
-### 0 Downtime deployment (Manual step by step process for now):
-
-Prerequisite: Make sure all ECS services(except remark42 which has 0) have a minimum healthy percentage of 100 set.
-Go into AWS ECS > the maxmastalerzcom-cluster > Services. For each service(except remark42) set the minimum healthy percentage to 100.
-Remark42 currently doesn't work as multiple processes due to the database type it uses.
-
-Set the desired capacity of the autoscaling group ( https://us-east-2.console.aws.amazon.com/ec2autoscaling/home?region=us-east-2#/details/EC2ContainerService-maxmastalerzcom-cluster-EcsInstanceAsg-1C0YFKEAYY25V?view=details ) to 3.
-
-Deploy/Update the service twice so that the service jumps to the new instance and then back to the old instance.
-
-Set the desired capacity of the autoscaling group ( https://us-east-2.console.aws.amazon.com/ec2autoscaling/home?region=us-east-2#/details/EC2ContainerService-maxmastalerzcom-cluster-EcsInstanceAsg-1C0YFKEAYY25V?view=details ) back to 2 when the 3rd instance has no tasks on it. This is to avoid incurring extra costs.
 
 ### Once deployed...
 
