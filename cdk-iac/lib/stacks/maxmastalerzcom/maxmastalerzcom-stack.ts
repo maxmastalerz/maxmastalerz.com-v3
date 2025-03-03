@@ -292,7 +292,7 @@ exports.handler = async function(event, context) {
       protocol: 'HTTPS',
       certificates: [{
         //TODO: Pass the certificate arn dynamically. We could either pass it in or make it via cdk?
-        certificateArn: `arn:aws:acm:${this.region}:${process.env.CDK_DEFAULT_ACCOUNT}:certificate/df41621f-b4d1-4439-b724-c23cd32d01ab`,
+        certificateArn: `arn:aws:acm:${this.region}:${process.env.CDK_DEFAULT_ACCOUNT}:certificate/29d6df56-bbaa-4ed3-9977-2458017e1d7c`,
       }]
     });
     httpsListener.addDependency(ecsMaxmasProxyTargetGroup);
